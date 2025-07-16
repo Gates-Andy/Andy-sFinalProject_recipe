@@ -1,0 +1,27 @@
+#spring.application.name=AndysRecipe
+
+spring:
+  application:
+    name: AndysRecipe
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/finalproject
+    username: root
+    password: ${mysql.password}
+
+  thymeleaf:
+    cache: false
+
+  config:
+    import: security-variables.yml
+
+mybatis:
+  mapper-locations: classpath:mappers/*Mapper.xml
