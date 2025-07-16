@@ -1,27 +1,24 @@
-#spring.application.name=AndysRecipe
+#spring.application.name=andy'srecipe
+#
+#spring.thymeleaf.cache=false
 
 spring:
-  application:
-    name: AndysRecipe
-
   jpa:
     hibernate:
       ddl-auto: none
-      naming:
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-
-  datasource:
+      naming: 
+           implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+           physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  config:
+    import: security-variables.yml
+  datasource: 
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/finalproject
     username: root
     password: ${mysql.password}
-
-  thymeleaf:
+  thymeleaf: 
     cache: false
-
-  config:
-    import: security-variables.yml
-
-mybatis:
-  mapper-locations: classpath:mappers/*Mapper.xml
+  application:
+    name: andy'srecipe
+mybatis: 
+  mapper-locations: classpath:/mappers/*Mapper.xml
