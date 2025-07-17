@@ -19,4 +19,26 @@
 	, #{email}
 	)
 	</insert>
+	
+	<select id="selectCountByloginId" parameterType="string" resultType="int">
+	SELECT 
+	count(*) 
+	FROM 
+	`user` 
+	WHERE 
+	`loginId`
+	= 
+	#{loginId}
+	</select>
+	
+	<select id="selectCountByemail" parameterType="string" resultType="int">
+	SELECT 
+	count(*) 
+	FROM 
+	`user` 
+	WHERE 
+	`email`
+	= 
+	#{email}
+	</select>
 </mapper>
