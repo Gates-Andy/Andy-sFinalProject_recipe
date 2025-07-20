@@ -1,14 +1,14 @@
-package com.andy.recipe;
+package com.andy.recipe.post;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/hello")
+@RequestMapping("/post")
 @Controller
-public class HelloController {
-	@GetMapping
-	public String hello() {
-		return "hello/hello";
+public class PostController {
+	@GetMapping("/main/view")
+	public String main() {
+		return "post/main";
 	}
 }

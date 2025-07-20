@@ -28,12 +28,16 @@
 				<label class="form-label">사용하실 닉네임</label>
 
 				<div id="idInputSection" class="d-flex">
-					<input class="form-control col-6" type="text" placeholder="아이디를 입력해주세요" id="loginIdInput">
-					<button class="form-control col-4 ml-3 mr-5" type="button" id="idDuplicateBtn">아이디 중복확인</button>
+					<input class="form-control col-6" type="text"
+						placeholder="아이디를 입력해주세요" id="loginIdInput">
+					<button class="form-control col-4 ml-3 mr-5" type="button"
+						id="idDuplicateBtn">아이디 중복확인</button>
 				</div>
-					<div id="duplicateIdText" class="text-danger mt-1 d-none">❌ 이미 사용중인 아이디 입니다.</div>
-					<div id="availableIdText" class="text-success mt-1 d-none">✅ 사용 가능한 아이디 입니다.</div>
-					
+				<div id="duplicateIdText" class="text-danger mt-1 d-none">❌ 이미
+					사용중인 아이디 입니다.</div>
+				<div id="availableIdText" class="text-success mt-1 d-none">✅
+					사용 가능한 아이디 입니다.</div>
+
 				<label class="form-label">비밀번호</label> <input
 					class="form-control col-6" type="password"
 					placeholder="비밀번호를 입력해주세요" id="passwordInput"> <label
@@ -44,13 +48,17 @@
 				<div>이메일</div>
 
 				<div id="emailInputSection" class="d-flex">
-					<input class="form-control col-6" type="text" placeholder="이메일을 입력해주세요" id="emailInput">
-					<button class="form-control col-4 ml-3 mr-5" type="button" id="emailDuplicateBtn">이메일 중복확인</button>
+					<input class="form-control col-6" type="text"
+						placeholder="이메일을 입력해주세요" id="emailInput">
+					<button class="form-control col-4 ml-3 mr-5" type="button"
+						id="emailDuplicateBtn">이메일 중복확인</button>
 				</div>
-				
-				<div id="duplicateEmailText" class="text-danger mt-1 d-none">❌ 이미 사용중인 이메일 입니다.</div>
-				<div id="availableEmailText" class="text-success mt-1 d-none">✅ 사용 가능한 이메일 입니다.</div>
-				
+
+				<div id="duplicateEmailText" class="text-danger mt-1 d-none">❌
+					이미 사용중인 이메일 입니다.</div>
+				<div id="availableEmailText" class="text-success mt-1 d-none">✅
+					사용 가능한 이메일 입니다.</div>
+
 				<button class="form-control col-11 mt-5" type="button" id="joinBtn">회원가입</button>
 			</div>
 			<!-- 아이디 인풋 -->
@@ -65,7 +73,8 @@
 		</section>
 
 		<div id="loginArea" class="text-center mb-5">
-			<span>이미 계정이 있으신가요? </span> <a href="/user/login/view" class="btn btn-link">로그인</a>
+			<span>이미 계정이 있으신가요? </span> <a href="/user/login/view"
+				class="btn btn-link">로그인</a>
 		</div>
 
 		<footer class="d-flex justify-content-start align-items-center">
@@ -74,14 +83,18 @@
 
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 		crossorigin="anonymous"></script>
 	<script>
-		var checkDuplicate = false
-
-		var isDuplicateloginId = true;
+		let isEmailChecked = false; // 이메일중복버튼을 누르지않았어요
+		let isEmailDuplicated = true; // 이메일이 중복된상태로 먼저 선택
 		
+		let isLoginIdChecked = false;
+		let isLoginIdDuplicated = true;
+
 		$("#emailDuplicateBtn").on("click", function() {
+
 			let email = $("#emailInput").val();
 
 			if (email === "") {
@@ -96,10 +109,10 @@
 					"email" : email
 				},
 				success : function(response) {
-					checkDuplicate = true;
-					isDuplicateloginId = response.isDuplicate;
-					
-					if (response.isDuplicate) {
+					isEmailChecked = true; //이메일 중복확인 버튼을 눌렀다!
+					isEmailDuplicated = response.isDuplicate; // false 값이 이메일이 중복이 되지않았다라는걸로 저장
+
+					if (response.isDuplicate) { // 문구 띄워서 클라이언트에 알려주기
 						$("#duplicateEmailText").removeClass("d-none");
 						$("#availableEmailText").addClass("d-none");
 					} else {
@@ -108,7 +121,7 @@
 					}
 				},
 				error : function() {
-					alert("중복확인 에러.");
+					alert("이메일 중복확인 버튼을 눌러주세요.");
 				}
 			});
 		});
@@ -128,8 +141,8 @@
 					"loginId" : loginId
 				},
 				success : function(response) {
-					checkDuplicate = true;
-					isDuplicateloginId = response.isDuplicate;
+					isLoginIdChecked = true;
+					isLoginIdDuplicated = response.isDuplicate;
 					if (response.isDuplicate) {
 						$("#duplicateIdText").removeClass("d-none");
 						$("#availableIdText").addClass("d-none");
@@ -139,7 +152,7 @@
 					}
 				},
 				error : function() {
-					alert("중복확인 에러.");
+					alert("아이디 중복확인 버튼을 눌러주세요");
 				}
 			});
 		});
@@ -151,12 +164,22 @@
 			let email = $("#emailInput").val();
 
 			if (!loginId || !password || !passwordCheck || !email) {
-				alert("모든 항목을 다 채워 주세요!!!");
+				alert("모든 항목을 다 채워 주세요!");
 				return;
 			}
 
 			if (password !== passwordCheck) {
 				alert("비밀번호를 체크해주세요");
+				return;
+			}
+
+			if (!isLoginIdChecked) {
+				alert("아이디 중복 확인을 해주세요.");
+				return;
+			}
+
+			if (!isEmailChecked) {
+				alert("이메일 중복 확인을 해주세요.");
 				return;
 			}
 

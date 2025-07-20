@@ -2,7 +2,10 @@ package com.andy.recipe.user.service;
 
 import org.springframework.stereotype.Service;
 
+import com.andy.recipe.user.domain.User;
 import com.andy.recipe.user.repository.UserRepository;
+
+import common.MD5HashingEncoder;
 
 @Service
 public class UserService {
@@ -14,7 +17,10 @@ public class UserService {
 	}
 
 	public boolean adduser(String loginId, String password, String email) {
-		int count = userRepository.insertUser(loginId, password, email);
+		
+		String hasgingPassword = MD5HashingEncoder.encode(password);
+		
+		int count = userRepository.insertUser(loginId, hasgingPassword, email);
 
 		if (count == 1) {
 			return true;
@@ -42,4 +48,12 @@ public class UserService {
 			return true;
 		}
 	}
+	
+	public User getUser(String loginId, String password){
+		
+		String hashingPassword = MD5HashingEncoder.encode(password);
+		
+		return userRepository.selectUser(loginId, hashingPassword);
+	}
+	
 }
