@@ -20,11 +20,7 @@ spring:
     cache: false
   application:
     name: andy'srecipe
-<<<<<<< HEAD
-mybatis:
-    mapper-locations: classpath:mappers/*Mapper.xml
-=======
-  
+
 mybatis:  
   mapper-locations: mappers/*Mapper.xml
->>>>>>> 8eed6a7c64ae907dfc60f1ffd5020b688ebb646c
+
