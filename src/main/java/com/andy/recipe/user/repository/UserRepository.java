@@ -5,9 +5,11 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserRepository {
-	public int insertUser(
-			@Param("loginId") String loginId
-			, @Param("password") String password
-			, @Param("email") String email);
-}
 	
+	public int insertUser(@Param("loginId") String loginId, @Param("password") String password, @Param("email") String email);
+
+	public int selectCountByloginId(@Param("loginId") String loginId);
+
+	public int selectCountByemail(@Param("email") String email);
+	
+}

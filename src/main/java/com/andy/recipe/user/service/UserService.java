@@ -14,17 +14,32 @@ public class UserService {
 	}
 
 	public boolean adduser(String loginId, String password, String email) {
-
 		int count = userRepository.insertUser(loginId, password, email);
 
 		if (count == 1) {
-			
 			return true;
-			
 		} else {
-			
 			return false;
-			
+		}
+	}
+
+	public boolean isDuplicateId(String loginId) {
+		int count = userRepository.selectCountByloginId(loginId);
+
+		if (count == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	public boolean isDuplicateEmail(String email) {
+		int count = userRepository.selectCountByemail(email);
+
+		if (count == 0) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 }
