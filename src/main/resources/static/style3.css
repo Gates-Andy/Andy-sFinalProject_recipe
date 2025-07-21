@@ -20,27 +20,24 @@ body {
 
 #wrap {
 	width: 1200px;
-	min-height:800px;
+	min-height: 800px;
 	margin: 0 auto;
 }
 
-.main-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+header {
 	padding: 10px 0;
 	gap: 20px;
-	flex-wrap: wrap; 
-	<!--줄 바꿈 허용! 
+	flex-wrap: wrap;
+	/*줄 바꿈 허용! 
 	칸이 부족하면 아래줄로 
-	자동으로 내려감.-->
+	자동으로 내려감.*/
 }
 
 .logo {
 	font-weight: bold;
 	font-size: 18px;
 	white-space: nowrap;
-	/*이건 글자가 줄 바꿈이 안 되게 막는 속성이에요.*/
+	/*이건 글자가 줄 바꿈이 안 되게 막는 속성.*/
 }
 
 .search-bar {
@@ -96,8 +93,6 @@ body {
 }
 
 .post-list {
-	display: flex;
-	justify-content: space-between;
 	flex-wrap: wrap;
 	gap: 20px;
 	margin-top: 20px;
@@ -121,7 +116,6 @@ body {
 }
 
 .icons {
-	display: flex;
 	gap: 10px;
 	font-size: 16px;
 	margin-top: 10px;

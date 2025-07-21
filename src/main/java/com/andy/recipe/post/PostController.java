@@ -1,14 +1,42 @@
 package com.andy.recipe.post;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.andy.recipe.post.domain.Post;
+import com.andy.recipe.post.service.PostService;
+
+import jakarta.servlet.http.HttpSession;
 
 @RequestMapping("/post")
 @Controller
 public class PostController {
+	
+	private final PostService postService;
+
+	
+	public PostController(PostService postService) {
+		this.postService = postService;
+
+	}
+	
 	@GetMapping("/main/view")
-	public String main() {
+	public String main(HttpSession session, Model model) {
+		
+		Object userIdObj = session.getAttribute("userId");
+
+		long userId = (long) userIdObj;
+		 
+		List<Post> postList = postService.getPostList(userId);
+		
+		model.addAttribute("postList", postList);
+		
+		model.addAttribute("userId", userId);
+
 		return "post/main";
 	}
 }
