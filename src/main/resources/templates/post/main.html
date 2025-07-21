@@ -1,10 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Andy's Recipe</title>
+<title>ANDY's Recipes</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/style3.css">
 </head>
 <body>
-	<h1>Andy's Recipe</h1>
+
+	<div id="wrap">
+
+		<header class="main-header">
+		
+			<div class="logo">ANDY's Recipes</div>
+			
+			<div class="search-bar">
+				<input type="text" placeholder="오늘의 레시피는?">
+				<button class="clear-btn">✕</button>
+			</div>
+			
+			<div class="user-info">
+				<div class="user-icon">
+					<i class="bi bi-person-circle"></i>
+				</div>
+				<div class="user-text"> ???님 환영합니다!<br> <span class="session-text">session 사용 확인 표시</span>
+				</div>
+			</div>
+		</header>
+
+		<nav class="main-nav">
+			<a href="/post/main/view">전체</a> 
+			<a href="#">요리 카테고리 검색</a> 
+			<a href="#">요리 랭킹(post like 높은순)</a> 
+			<a href="#">요리사 랭킹(생각을 좀 더 해보자)</a>
+		</nav>
+
+		<main class="post-list">
+			<!-- 카드(타임리프) -->
+			<div class="post-card">
+				<div class="thumbnail"></div>
+				<div class="content">
+					<div class="menu-title">
+						메뉴 이름<br>치킨 카레 밥
+					</div>
+					<div class="description">
+						메뉴 간단 설명<br>친구들이 놀러왔을 때 빠르고 쉽게 요리 할 수 있어요
+					</div>
+					<div class="ingredients">재료 태그: 치킨 카레 밥</div>
+					<div class="category">요리 카테고리: 간식</div>
+					<div class="icons">
+						<span><i class="bi bi-heart"></i> 30</span> <span><i
+							class="bi bi-chat-left-text"></i></span>
+					</div>
+				</div>
+			</div>
+			<!-- 카드(타임리프) -->
+		</main>
+
+		<footer class="d-flex justify-content-start align-items-center">
+			<div>Copyright 2024. ANDY’s Recipes all rights reserved.</div>
+		</footer>
+
+	</div>
 </body>
 </html>
