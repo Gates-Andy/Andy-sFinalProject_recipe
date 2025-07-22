@@ -15,33 +15,53 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/post")
 @Controller
 public class PostController {
-	
+
 	private final PostService postService;
 
-	
 	public PostController(PostService postService) {
 		this.postService = postService;
 
 	}
-	
+
 	@GetMapping("/main/view")
 	public String main(HttpSession session, Model model) {
-		
+
 		Object userIdObj = session.getAttribute("userId");
-		
+
 		Object loginIdObj = session.getAttribute("loginId");
-		
+
 		long userId = (long) userIdObj;
 		String loginId = (String) loginIdObj;
-		
+
 		List<Post> postList = postService.getPostList(userId);
-		
+
 		model.addAttribute("postList", postList);
-		
+
 		model.addAttribute("userId", userId);
-		
-		model.addAttribute("loginId", loginId); 
-		
+
+		model.addAttribute("loginId", loginId);
+
 		return "post/main";
+	}
+
+	@GetMapping("/myRecipe/view")
+	public String myPage(HttpSession session, Model model) {
+		
+		Object userIdObj = session.getAttribute("userId");
+
+		Object loginIdObj = session.getAttribute("loginId");
+
+		long userId = (long) userIdObj;
+		String loginId = (String) loginIdObj;
+
+		List<Post> postList = postService.getPostList(userId);
+
+		model.addAttribute("postList", postList);
+
+		model.addAttribute("userId", userId);
+
+		model.addAttribute("loginId", loginId);
+		
+		return "post/mypage";
 	}
 }

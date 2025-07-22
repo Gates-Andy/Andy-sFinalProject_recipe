@@ -6,6 +6,16 @@
 	padding: 0;
 }
 
+a {
+	color: inherit; /* 상위 요소의 글자색 그대로 */
+	text-decoration: none; /* 밑줄 제거 */
+}
+
+a:hover, a:visited, a:active {
+	color: inherit; /* 클릭했을 때도 색상 유지 */
+	text-decoration: none; /* hover나 클릭해도 밑줄 안 생김 */
+}
+
 body {
 	font-family: 'Arial', sans-serif;
 	/*
@@ -93,9 +103,11 @@ header {
 }
 
 .post-list {
+	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
 	margin-top: 20px;
+	align-items: flex-start; /* 이걸로 모든 카드 위쪽부터 정렬! */
 }
 
 .post-card {
@@ -104,15 +116,20 @@ header {
 	padding: 10px;
 }
 
-.thumbnail {
-	background-color: #ddd;
+.aritst {
+	font-family: Arial;
+	font-size: 12px; /* 글씨 크기 */
+	color: #ff8000; /* 따뜻한 토마토 레드 색상 */
+}
+
+.food-pics {
 	height: 200px;
 	margin-bottom: 10px;
+	overflow: hidden;
 }
 
 .menu-title, .description, .ingredients, .category {
-	margin-bottom: 5px;
-	font-size: 14px;
+	margin-bottom: 10px; /* 모두 동일한 간격 */
 }
 
 .icons {

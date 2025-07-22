@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ANDY's Recipes</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/style4.css">
+</head>
+<body>
+
+	<div id="wrap">
+
+		<header class="d-flex justify-content-between align-items-center">
+			<a href="/post/main/view"><span class="logo">ANDY's Recipes</span></a>
+			<div class="search-bar">
+				<input type="text" placeholder="오늘의 레시피는?">
+				<button class="clear-btn">✕</button>
+			</div>
+			<div class="user-info">
+				<div class="user-icon">
+					<i class="bi bi-person-circle"></i>
+				</div>
+				<div class="user-text">
+					<a href="/post/myRecipe/view"><span th:text="${loginId} + '님 환영합니다!'"></span></a>
+				</div>
+				<a href="/user/logout" class="text-danger">logout</a>
+			</div>
+		</header>
+
+		<main class="d-flex justify-content-between align-items-center">
+			<div class="recipe-scroll-area">
+				<div class="recipe-container">
+
+					<section class="myrecipe">
+						<img class="food-pics"
+							src="https://cdn.pixabay.com/photo/2022/06/07/20/52/curry-7249247_1280.jpg"
+							alt="치킨 카레 밥">
+						<div class="content">
+							<div class="menu-title">메뉴 이름 : 치킨 카레 밥</div>
+							<div class="description">메뉴 간단 설명 : 친구들이 놀러왔을 때 빠르고 쉽게 요리 할
+								수 있어요</div>
+							<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
+							<div class="category">요리 카테고리 : 간식</div>
+						</div>
+						<div class="inputbuttons d-flex justify-content-end ">
+							<button class="ingredientinput form-control">✔ 재료 넣기</button>
+							<button class="stepinput form-control">✔ 요리과정 및 사진 넣기</button>
+						</div>
+					</section>
+
+					<section class="myrecipe">
+						<img class="food-pics"
+							src="https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_1280.jpg"
+							alt="김치볶음밥">
+						<div class="content">
+							<div class="menu-title">메뉴 이름 : 김치볶음밥</div>
+							<div class="description">메뉴 간단 설명 : 집에 있는 재료로 간단하게 한 끼 해결!</div>
+							<div class="ingredients">재료 태그 : 김치, 밥, 계란, 참기름</div>
+							<div class="category">요리 카테고리 : 한식</div>
+						</div>
+						<div class="inputbuttons d-flex justify-content-end">
+							<button class="ingredientinput form-control">✔ 재료 넣기</button>
+							<button class="stepinput form-control">✔ 요리과정 및 사진 넣기</button>
+						</div>
+					</section>
+
+					<section class="myrecipe">
+						<img class="food-pics"
+							src="https://cdn.pixabay.com/photo/2015/07/14/07/06/the-pan-system-844245_1280.jpg"
+							alt="크림파스타">
+						<div class="content">
+							<div class="menu-title">메뉴 이름 : 크림파스타</div>
+							<div class="description">메뉴 간단 설명 : 부드러운 크림과 치즈가 어우러진 풍미
+								가득한 파스타</div>
+							<div class="ingredients">재료 태그 : 파스타면, 생크림, 치즈, 베이컨</div>
+							<div class="category">요리 카테고리 : 양식</div>
+						</div>
+						<div class="inputbuttons d-flex justify-content-end">
+							<button class="ingredientinput form-control">✔ 재료 넣기</button>
+							<button class="stepinput form-control">✔ 요리과정 및 사진 넣기</button>
+						</div>
+					</section>
+					
+				</div>
+			</div>
+
+			<section class="myinfo">
+				<img class="profilepic" src="https://cdn.pixabay.com/photo/2016/09/08/16/44/fire-1654828_1280.jpg" alt="프로필 사진">
+				<div class="infodata">
+					<span th:text="${loginId}"></span>
+					<div class="edit">자기소개 수정</div>
+					<div class="total">총 조회 : 0 팔로우 : 0 팔로워 : 0</div>
+				</div>
+				<button class="createPost">글작성</button>
+			</section>
+		</main>
+
+
+		<footer class="d-flex justify-content-start align-items-center">
+			<div>Copyright 2024. ANDY’s Recipes all rights reserved.</div>
+		</footer>
+
+	</div>
+</body>
+</html>
