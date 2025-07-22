@@ -28,15 +28,20 @@ public class PostController {
 	public String main(HttpSession session, Model model) {
 		
 		Object userIdObj = session.getAttribute("userId");
-
+		
+		Object loginIdObj = session.getAttribute("loginId");
+		
 		long userId = (long) userIdObj;
-		 
+		String loginId = (String) loginIdObj;
+		
 		List<Post> postList = postService.getPostList(userId);
 		
 		model.addAttribute("postList", postList);
 		
 		model.addAttribute("userId", userId);
-
+		
+		model.addAttribute("loginId", loginId); 
+		
 		return "post/main";
 	}
 }
