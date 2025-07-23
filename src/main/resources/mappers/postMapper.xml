@@ -39,30 +39,29 @@
 		`post`
 	</select>
 
-	<insert id="insertPost"
-		parameterType="com.andy.recipe.post.domain.Post">
-		INSERT
-		INTO
-		`post`
+	<insert id="insertPost" parameterType="com.andy.recipe.post.domain.Post">
+		INSERT 
+		INTO 
+		`post` 
 		(
-		`userId`,
-		`title`,
-		`category`,
-		`headcount`,
-		`content`,
-		`imagePath`,
+		`user_id`, 
+		`title`, 
+		`category`, 
+		`headcount`, 
+		`content`, 
+		`image_path`,
 		`createdAt`,
 		`updatedAt`
 		)
 		VALUES
 		(
-		#{userId},
-		#{title},
-		#{category},
-		#{headcount},
+		#{userId}, 
+		#{title}, 
+		#{category}, 
+		#{headcount}, 
 		#{content},
-		#{imagePath},
-		#{createdAt},
+		#{imagePath}, 
+		#{createdAt}, 
 		#{updatedAt}
 		)
 	</insert>

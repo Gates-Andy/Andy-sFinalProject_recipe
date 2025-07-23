@@ -35,7 +35,7 @@ public class PostController {
 
 	@GetMapping("/myRecipe/view")
 	public String myPage(HttpSession session, Model model) {
-		
+
 		Object userIdObj = session.getAttribute("userId");
 		Object loginIdObj = session.getAttribute("loginId");
 
@@ -49,7 +49,17 @@ public class PostController {
 		model.addAttribute("userId", userId);
 
 		model.addAttribute("loginId", loginId);
-		
+
 		return "post/mypage";
+	}
+	
+	@GetMapping("/create/view")
+	public String inputPost(HttpSession session) {
+
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/user/login/view";
+		}
+
+		return "post/create";
 	}
 }

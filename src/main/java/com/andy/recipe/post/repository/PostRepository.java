@@ -12,5 +12,5 @@ public interface PostRepository {
 	
 	public List<Post> selectPostList();
 	
-	public List<Post> insertPost();
+	public int insertPost(Post post);
 }

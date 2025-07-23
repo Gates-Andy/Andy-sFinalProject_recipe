@@ -25,33 +25,25 @@ public class PostRestController {
 	}
 
 	@PostMapping("/create")
-	public Map<String, String> createPost(@RequestParam("title") String title,
-			@RequestParam("category") String category, @RequestParam("headcount") int headcount,
-			@RequestParam("content") String content, @RequestParam("imageFile") MultipartFile imageFile,
+	public Map<String, String> createPost(
+			@RequestParam("title") String title,
+			@RequestParam("category") String category, 
+			@RequestParam("headcount") int headcount,
+			@RequestParam("content") String content, 
+			@RequestParam("imageFile") MultipartFile imageFile,
 			HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
 
-		long loginId = (long) session.getAttribute("userId"); 
+		Long userId = (Long) session.getAttribute("userId");
 
-		String imagePath = null;
-		
-		if (imageFile != null && !imageFile.isEmpty()) {
-			imagePath = FileManager.saveFile(loginId, imageFile);
-			if (imagePath == null) {
-				resultMap.put("result", "fail");
-				resultMap.put("message", "파일 업로드에 실패했습니다.");
-				return resultMap;
-			}
-		}
+		String imagePath = FileManager.saveFile(userId, imageFile);
 
-		if (postService.addPost(loginId, title, category, headcount, content, imagePath)) {
+		if (postService.addPost(userId, title, category, headcount, content, imagePath)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
-			resultMap.put("message", "게시글 추가에 실패했습니다.");
 		}
-
 		return resultMap;
 	}
 }

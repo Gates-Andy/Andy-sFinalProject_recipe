@@ -31,24 +31,21 @@ public class PostService {
 		return postList;
 	}
 
-	public boolean addPost(long userId,  String title,  String category,  int headcount,  String content, String imagePath) {
-		try {
-			Post post = new Post();
-			post.setUserId(userId);
-			post.setTitle(title);
-			post.setCategory(category);
-			post.setHeadcount(headcount);
-			post.setContent(content);
-			post.setImagePath(imagePath);
-			post.setCreatedAt(LocalDateTime.now());
-			post.setUpdatedAt(LocalDateTime.now());
-
-			postRepository.insertPost(post);
-
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	public boolean addPost(long userId, String title, String category, int headcount, String content, String imagePath) {
+		
+		Post post = new Post();
+		
+		post.setUserId(userId);
+		post.setTitle(title);
+		post.setCategory(category);
+		post.setHeadcount(headcount);
+		post.setContent(content);
+		post.setImagePath(imagePath);
+		post.setCreatedAt(LocalDateTime.now());
+		post.setUpdatedAt(LocalDateTime.now());
+		
+		int result = postRepository.insertPost(post);
+		
+		return result == 1;
 	}
 }
