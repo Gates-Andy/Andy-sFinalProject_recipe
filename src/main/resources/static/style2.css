@@ -1,5 +1,26 @@
 @charset "UTF-8";
 
+a {
+	color: inherit;          /* 상위 요소의 글자색 그대로 */
+	text-decoration: none;   /* 밑줄 제거 */
+}
+
+a:hover, a:visited, a:active {
+	color: inherit;          /* 클릭했을 때도 색상 유지 */
+	text-decoration: none;   /* hover나 클릭해도 밑줄 안 생김 */
+}
+
+.logo {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center; 
+	font-weight: bold;
+	font-size: 70px;
+	white-space: nowrap;
+	/*이건 글자가 줄 바꿈이 안 되게 막는 속성.*/
+}
+
 body {
 	background-color: #f8f9fa;
 	font-family: 'Segoe UI', sans-serif;

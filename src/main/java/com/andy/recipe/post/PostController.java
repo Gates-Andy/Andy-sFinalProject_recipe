@@ -24,22 +24,11 @@ public class PostController {
 	}
 
 	@GetMapping("/main/view")
-	public String main(HttpSession session, Model model) {
+	public String main(Model model) {
 
-		Object userIdObj = session.getAttribute("userId");
-
-		Object loginIdObj = session.getAttribute("loginId");
-
-		long userId = (long) userIdObj;
-		String loginId = (String) loginIdObj;
-
-		List<Post> postList = postService.getPostList(userId);
+		List<Post> postList = postService.getPostList();
 
 		model.addAttribute("postList", postList);
-
-		model.addAttribute("userId", userId);
-
-		model.addAttribute("loginId", loginId);
 
 		return "post/main";
 	}
@@ -48,13 +37,12 @@ public class PostController {
 	public String myPage(HttpSession session, Model model) {
 		
 		Object userIdObj = session.getAttribute("userId");
-
 		Object loginIdObj = session.getAttribute("loginId");
 
 		long userId = (long) userIdObj;
 		String loginId = (String) loginIdObj;
 
-		List<Post> postList = postService.getPostList(userId);
+		List<Post> postList = postService.getPostListByUserId(userId);
 
 		model.addAttribute("postList", postList);
 

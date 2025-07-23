@@ -10,7 +10,7 @@
 <body>
 	<div id="wrap">
 		<header class="d-flex justify-content-between align-items-center">
-			<div class="logo">ANDY's Recipes</div>
+			<a href="/post/main/view"><span class="logo">ANDY's Recipes</span></a>
 			<div class="search-bar">
 				<input type="text" placeholder="오늘의 레시피는?">
 				<button class="clear-btn">✕</button>
@@ -20,177 +20,60 @@
 					<i class="bi bi-person-circle"></i>
 				</div>
 				<div class="user-text">
-					<a href="/post/myRecipe/view"><span th:text="${loginId} + '님 환영합니다!'"></span></a>
+					<!-- 로그인 안하고 사용할시  -->
+					<div th:if="${session.userId == null}">
+						<a href="/user/join/view">회원가입/</a>
+						<a href="/user/login/view">로그인</a>
+					</div>
+					<!-- 로그인 성공시 -->
+					<div th:if="${session.userId != null}">
+						<a href="/post/myRecipe/view"><span th:text="${session.loginId + ' 님 환영합니다!'}"></span></a> 
+						<a href="/user/logout" class="text-danger">logout</a>
+					</div>
 				</div>
-				<a href="/user/logout" class="text-danger">logout</a>
 			</div>
 		</header>
 
 		<nav
 			class="main-nav d-flex justify-content-between align-items-center">
-			<a href="/post/main/view">전체</a> 
-			<a href="#">요리 카테고리 검색</a> 
+			<a href="/post/main/view">전체</a> <a href="#">요리 카테고리 검색</a> 
 			<a href="#">요리 랭킹(post like 높은순)</a> 
 			<a href="#">요리사 랭킹(생각을 좀 더 해보자)</a>
 		</nav>
 
-		<main
-			class="post-list d-flex justify-content-between align-items-center">
+		<main class="post-list d-flex justify-content-between align-items-center">
 
 			<!-- 카드(타임리프) -->
-			<div class="post-card">
-				<span class="aritst" th:text="${loginId} + '의 Recipe'"></span>
+			<div class="post-card" th:each="post : ${postList}"> 
+			
+				<span class="aritst" th:text="${post.userId} + '의 Recipe'"></span>
+				
 				<div class="food-pics">
-					<img
-						src="https://cdn.pixabay.com/photo/2022/06/07/20/52/curry-7249247_1280.jpg"
-						alt="요리 이미지" style="width: 100%; height: auto;">
-				</div>
+					<img th:src="${post.imagePath != null} ? ${post.imagePath} : '/images/default.jpg'" alt="요리 이미지" style="width: 100%; height: auto;">
+				</div> 
 
 				<div class="content">
 
-					<div class="menu-title">메뉴 이름 : 치킨 카레 밥</div>
+					<div class="menu-title" th:text="${post.title"}>메뉴 이름 : 치킨 카레 밥</div>
 
-					<div class="description">메뉴 간단 설명 : 친구들이 놀러왔을 때 빠르고 쉽게 요리 할 수
-						있어요</div>
-
+					<div class="description" th:text="${post.content">메뉴 간단 설명 : 친구들이 놀러왔을 때 빠르고 쉽게 요리 할 수 있어요</div>
+					
+					<div class="headcount" th:text="${post.headcount">인분수 : 3인분</div>
+					
 					<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
 
-					<div class="category">요리 카테고리 : 간식</div>
+					<div class="category" th:text="${post.category">요리 카테고리 : 간식</div>
 
 					<div class="icons d-flex justify-content-start align-items-center">
-						<span><i class="bi bi-heart"></i> 30</span> <span><i
-							class="bi bi-chat-left-text"> 30</i></span> <input type="text"
-							class="form-control col-5" placeholder="증말맛있겠다!!">
+						<span><i class="bi bi-heart"></i> 30</span> 
+						<span><i class="bi bi-chat-left-text"> 30</i></span> <input type="text" class="form-control col-5" placeholder="증말맛있겠다!!">
 						<button type="button" class="form-control col-3">등록</button>
 					</div>
 
 				</div>
 			</div>
 			<!-- 카드(타임리프) -->
-			
-			<!-- 김치볶음밥 카드 -->
-			<div class="post-card">
-				<span th:text="${loginId} + '의 Recipe'"></span>
-				<div class="food-pics">
-					<img
-						src="https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_1280.jpg"
-						alt="김치볶음밥" style="width: 100%; height: auto;">
-				</div>
-				<div class="content">
-					<div class="menu-title">메뉴 이름 : 김치볶음밥</div>
-					<div class="description">메뉴 간단 설명 : 집에 있는 재료로 간단하게 한 끼 해결!</div>
-					<div class="ingredients">재료 태그 : 김치, 밥, 계란, 참기름</div>
-					<div class="category">요리 카테고리 : 한식</div>
-					<div class="icons d-flex justify-content-start align-items-center">
-						<span><i class="bi bi-heart"></i> 30</span> <span><i
-							class="bi bi-chat-left-text"> 30</i></span> <input type="text"
-							class="form-control col-5" placeholder="증말맛있겠다!!">
-						<button type="button" class="form-control col-3">등록</button>
-					</div>
-				</div>
-			</div>
-			<!-- 김치볶음밥 카드 -->
-			
-			<!-- 크림파스타 카드 -->
-			<div class="post-card">
-				<span th:text="${loginId} + '의 Recipe'"></span>
-				<div class="food-pics">
-					<img
-						src="https://cdn.pixabay.com/photo/2015/07/14/07/06/the-pan-system-844245_1280.jpg"
-						alt="크림파스타" style="width: 100%; height: auto;">
-				</div>
-				<div class="content">
-					<div class="menu-title">메뉴 이름 : 크림파스타</div>
-					<div class="description">메뉴 간단 설명 : 부드러운 크림과 치즈가 어우러진 풍미 가득한
-						파스타</div>
-					<div class="ingredients">재료 태그 : 파스타면, 생크림, 치즈, 베이컨</div>
-					<div class="category">요리 카테고리 : 양식</div>
-					<div class="icons d-flex justify-content-start align-items-center">
-						<span><i class="bi bi-heart"></i> 30</span> <span><i
-							class="bi bi-chat-left-text"> 30</i></span> <input type="text"
-							class="form-control col-5" placeholder="증말맛있겠다!!">
-						<button type="button" class="form-control col-3">등록</button>
-					</div>
-				</div>
-			</div>
-			<!-- 크림파스타 카드 -->
-			
-			<!-- 카드(타임리프) -->
-			<div class="post-card">
 
-				<div class="food-pics">
-					<img
-						src="https://cdn.pixabay.com/photo/2022/06/07/20/52/curry-7249247_1280.jpg"
-						alt="요리 이미지" style="width: 100%; height: auto;">
-				</div>
-
-				<div class="content">
-
-					<div class="menu-title">메뉴 이름 : 치킨 카레 밥</div>
-
-					<div class="description">메뉴 간단 설명 : 친구들이 놀러왔을 때 빠르고 쉽게 요리 할 수
-						있어요</div>
-
-					<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
-
-					<div class="category">요리 카테고리 : 간식</div>
-
-					<div class="icons d-flex justify-content-start align-items-center">
-						<span><i class="bi bi-heart"></i> 30</span> <span><i
-							class="bi bi-chat-left-text"> 30</i></span> <input type="text"
-							class="form-control col-5" placeholder="증말맛있겠다!!">
-						<button type="button" class="form-control col-3">등록</button>
-					</div>
-
-				</div>
-			</div>
-			<!-- 카드(타임리프) -->
-			
-			<!-- 김치볶음밥 카드 -->
-			<div class="post-card">
-				<div class="food-pics">
-					<img
-						src="https://cdn.pixabay.com/photo/2014/01/09/10/14/kimchi-fried-rice-241051_1280.jpg"
-						alt="김치볶음밥" style="width: 100%; height: auto;">
-				</div>
-				<div class="content">
-					<div class="menu-title">메뉴 이름 : 김치볶음밥</div>
-					<div class="description">메뉴 간단 설명 : 집에 있는 재료로 간단하게 한 끼 해결!</div>
-					<div class="ingredients">재료 태그 : 김치, 밥, 계란, 참기름</div>
-					<div class="category">요리 카테고리 : 한식</div>
-					<div class="icons d-flex justify-content-start align-items-center">
-						<span><i class="bi bi-heart"></i> 30</span> <span><i
-							class="bi bi-chat-left-text"> 30</i></span> <input type="text"
-							class="form-control col-5" placeholder="증말맛있겠다!!">
-						<button type="button" class="form-control col-3">등록</button>
-					</div>
-				</div>
-			</div>
-			<!-- 김치볶음밥 카드 -->
-			
-			<!-- 크림파스타 카드 -->
-			<div class="post-card">
-				<div class="food-pics">
-					<img
-						src="https://cdn.pixabay.com/photo/2015/07/14/07/06/the-pan-system-844245_1280.jpg"
-						alt="크림파스타" style="width: 100%; height: auto;">
-				</div>
-				<div class="content">
-					<div class="menu-title">메뉴 이름 : 크림파스타</div>
-					<div class="description">메뉴 간단 설명 : 부드러운 크림과 치즈가 어우러진 풍미 가득한
-						파스타</div>
-					<div class="ingredients">재료 태그 : 파스타면, 생크림, 치즈, 베이컨</div>
-					<div class="category">요리 카테고리 : 양식</div>
-					<div class="icons d-flex justify-content-start align-items-center">
-						<span><i class="bi bi-heart"></i> 30</span> <span><i
-							class="bi bi-chat-left-text"> 30</i></span> <input type="text"
-							class="form-control col-5" placeholder="증말맛있겠다!!">
-						<button type="button" class="form-control col-3">등록</button>
-					</div>
-				</div>
-			</div>
-			<!-- 크림파스타 카드 -->
-			
 		</main>
 
 		<footer class="d-flex justify-content-start align-items-center">
