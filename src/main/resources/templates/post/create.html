@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Andy's Recipe</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/5createstyle.css">
 </head>
 <body>
 	<div id="wrap">
+	
 		<header class="d-flex justify-content-between align-items-center">
 			<a href="/post/main/view"><span class="logo">ANDY's Recipes</span></a>
 			<div class="search-bar">
@@ -17,6 +25,11 @@
 					<i class="bi bi-person-circle"></i>
 				</div>
 				<div class="user-text">
+					<!-- 로그인 안하고 사용할시  -->
+					<div th:if="${session.userId == null}">
+						<a href="/user/join/view">회원가입/</a> <a href="/user/login/view">로그인</a>
+					</div>
+					<!-- 로그인 성공시 -->
 					<div th:if="${session.userId != null}">
 						<a href="/post/myRecipe/view"><span
 							th:text="${session.loginId + ' 님 환영합니다!'}"></span></a> <a
@@ -27,45 +40,32 @@
 		</header>
 
 		<main>
-			<form id="recipeForm" enctype="multipart/form-data">
-				<div class="form-row">
-					<div class="form-group">
-						<label for="title">레시피이름 &lt;title&gt;</label> <input type="text"
-							id="title" name="title" value="치킨 카레 밥" />
-					</div>
-					<div class="form-group">
-						<label for="category">요리 카테고리 추가 &lt;category&gt;</label> <input
-							type="text" id="category" name="category" value="간식" />
-					</div>
-					<div class="form-group">
-						<label for="headcount">인원수 추가 &lt;headcount&gt;</label> <input
-							type="number" id="headcount" name="headcount" value="3" min="1" />
-					</div>
-				</div>
+			<div class="type-box d-flex justify-content-between align-items-center">
+				<label class="title">레시피이름 : <input type="text"></label> 
+				<label class="category">요리 카테고리 : <input type="text"> </label> 
+				<label class="headcount">인원수 추가 : <input type="number"></label>
+			</div>
 
-				<div>
-					<label for="content" class="content-label">&lt;content&gt;
-						간단 설명</label>
-					<textarea id="content" name="content"
-						placeholder="친구들이 놀러왔을 때 빠르고 쉽게 요리 할 수 있어요 ~~~&#10;초보자들도 쉽게 할 수 있어요~&#10;요리시간 약 45분&#10;요리 도구 :"></textarea>
-				</div>
+			<div class="content">
+				<label>요리 설명 : </label>
+				<textarea class="form-control" placeholder="요리 설명을 해보아요">
+					</textarea>
+			</div>
 
-				<div class="image-section">
-					<label for="imageFile" class="image-button">음식 사진</label> <input
-						type="file" id="imageFile" name="imageFile" style="display: none;"
-						accept="image/*" />
-					<div class="image-preview" id="imagePreview">&lt;imagePath&gt;</div>
-				</div>
+			<div class="d-flex justify-content-center align-items-center">
 
-				<div class="bottom-buttons">
-					<button type="button" class="btn-delete">
-						<i>🗑️</i> 게시글 삭제
-					</button>
-					<button type="submit" class="btn-save">myRecipe에 저장</button>
-				</div>
-			</form>
+				<button type="button" class="image-inputbtn form-control">사진 첨부</button>
+
+			</div>
+
+			<div class="function d-flex justify-content-between">
+				<button type="button" class="btn-delete btn btn-danger">게시글
+					삭제</button>
+				<button type="button" class="btn-save btn btn-primary">myRecipe에
+					저장</button>
+			</div>
+
 		</main>
-
 
 		<footer class="d-flex justify-content-start align-items-center">
 			<div>Copyright 2024. ANDY’s Recipes all rights reserved.</div>

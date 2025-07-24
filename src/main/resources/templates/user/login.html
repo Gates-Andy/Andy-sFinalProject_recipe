@@ -3,58 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <title>ANDY's Recipes</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<link rel="stylesheet" href="/style2.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/style1.css">
 </head>
 <body>
 	<div id="wrap">
 
-		<header class="text-center">
-			<a href="/post/main/view"><span class="logo">ANDY's Recipes</span></a>
+		<header class="login-logo text-center">
+			<div class="display-3">ANDY's Recipes</div>
 		</header>
 
-		<form id="loginForm">
+		<main class="loginForm">
 
 			<section>
+			
 				<h2 class="text-center">로그인</h2>
 
-				<div class="d-flex justify-content-between align-items-center mt-5">
+				<div class="d-flex justify-content-center align-items-center mt-5">
 
 					<div class="mr-5">
-						<label>닉네임</label> <input type="text" class="form-control" id="loginIdInput" placeholder="닉네임을 입력하세요">
+						<label>아이디 <input type="text" class="form-control" id="loginIdInput" placeholder="닉네임을 입력하세요"></label>
 					</div>
 
 					<div class="ml-5">
-						<label>비밀번호</label> <input type="password" class="form-control" id="passwordInput" placeholder="비밀번호를 입력하세요">
+						<label>비밀번호 <input type="password" class="form-control" id="passwordInput" placeholder="비밀번호를 입력하세요"></label> 
 					</div>
 
 				</div>
-
-				<button type="submit" class="btn btn-primary btn-block mt-5" id="loginBtn">로그인</button>
+				
+				<div class="d-flex justify-content-center align-items-center mt-5">
+					<button type="button" class="login-btn btn-primary" id="loginBtn">로그인</button>
+				</div>
 
 				<div class="text-center mt-5">아이디가 없으세요?</div>
-				
+
 				<div class="text-center mt-5">
 					<a href="/user/join/view">회원가입</a>
 				</div>
 
 			</section>
+			
+		</main>
 
-		</form>
 		<footer class="d-flex justify-content-start align-items-center">
 			<div>Copyright 2024. ANDY’s Recipes all rights reserved.</div>
 		</footer>
 
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous"></script>
 	<script>
-		$("#loginForm").on("submit", function(e) {
+		$("#loginBtn").on("click", function(e) {
 			e.preventDefault();
 
 			let loginId = $("#loginIdInput").val();
