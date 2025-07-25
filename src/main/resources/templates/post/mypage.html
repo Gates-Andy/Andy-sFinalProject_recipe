@@ -11,15 +11,17 @@
 					<section class="myrecipe" th:each="post : ${postList}">
 					
 						<div class="food-pics" >
-							<img th:src="${post.imagePath != null ? post.imagePath : '/images/default.jpg'}">
+							<img th:src="${post.imagePath}">
 						</div>
 						
 						<div class="content">
-							<div class="title" th:text="${'레시피 이름 : ' + post.title}">치킨 카레 밥</div>
-							<div class="description" th:text="${'레시피 간단 설명 : ' + post.content}">친구들이 놀러왔을 때 빠르고 쉽게 요리 할 수 있어요</div>
+							<div class="title" th:text="${'레시피 이름 : ' + post.title}"></div>
+							<div class="description" th:text="${'레시피 간단 설명 : ' + post.content}"></div>
+							
 							<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
-							<div class="headcount" th:text="${'인원수 : ' + post.headcount + '인분'}">인원수 : 3 인분</div>
-							<div class="category" th:text="${'요리 카테고리 :' + post.category}"> 간식</div>
+							
+							<div class="headcount" th:text="${'인분수 : ' + post.headcount + '인분'}"></div>
+							<div class="category" th:text="${'요리 카테고리 :' + post.category}"></div>
 						</div>
 						
 						<div class="inputbuttons d-flex justify-content-end ">

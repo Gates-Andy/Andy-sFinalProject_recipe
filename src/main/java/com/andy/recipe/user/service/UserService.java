@@ -2,10 +2,9 @@ package com.andy.recipe.user.service;
 
 import org.springframework.stereotype.Service;
 
+import com.andy.recipe.common.MD5HashingEncoder;
 import com.andy.recipe.user.domain.User;
 import com.andy.recipe.user.repository.UserRepository;
-
-import common.MD5HashingEncoder;
 
 @Service
 public class UserService {

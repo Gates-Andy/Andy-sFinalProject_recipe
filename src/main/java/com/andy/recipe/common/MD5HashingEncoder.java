@@ -1,4 +1,4 @@
-package common;
+package com.andy.recipe.common;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

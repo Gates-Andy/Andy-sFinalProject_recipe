@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.andy.recipe.common.FileManager;
 import com.andy.recipe.post.service.PostService;
 
-import common.FileManager;
 import jakarta.servlet.http.HttpSession;
 
 @RestController
