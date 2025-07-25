@@ -31,14 +31,14 @@ public class PostService {
 		return postList;
 	}
 
-	public boolean addPost(long userId, String title, String category, int headcount, String content, String imagePath) {
+	public boolean addPost(long userId, String title, int headcount, String category, String content, String imagePath) {
 		
 		Post post = new Post();
 		
 		post.setUserId(userId);
 		post.setTitle(title);
-		post.setCategory(category);
 		post.setHeadcount(headcount);
+		post.setCategory(category);
 		post.setContent(content);
 		post.setImagePath(imagePath);
 		post.setCreatedAt(LocalDateTime.now());

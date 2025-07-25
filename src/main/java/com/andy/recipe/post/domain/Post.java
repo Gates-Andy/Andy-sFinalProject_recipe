@@ -6,8 +6,8 @@ public class Post {
 	private long id;
 	private long userId;
 	private String title;
-	private String category;
 	private int headcount;
+	private String category;
 	private String content;
 	private String imagePath;
 	private LocalDateTime createdAt;
@@ -37,20 +37,20 @@ public class Post {
 		this.title = title;
 	}
 
-	public String getCategory() {
-		return category;
-	}
-
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public int getHeadcount() {
 		return headcount;
 	}
 
 	public void setHeadcount(int headcount) {
 		this.headcount = headcount;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getContent() {

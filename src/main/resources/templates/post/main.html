@@ -8,13 +8,13 @@
 	
 		<span class="artist" th:text="${post.userId + '의 Recipe'}"></span>
 
-		<div class="food-pics">
-			<img th:src="${post.imagePath != null} ? post.imagePath : '/images/default.jpg'" alt="요리 이미지" style="width: 100%; height: auto;">
-		</div>
+<div class="main-food-pics">
+  <img th:src="${post.imagePath != null ? post.imagePath : '/images/default.jpg'}" alt="요리 이미지" style="width: 100%; height: auto;">
+</div>
 
 		<div class="content">
 		
-			<div class="menu-title" th:text="${post.title}">메뉴 이름</div>
+			<div class="title" th:text="${post.title}">메뉴 이름</div>
 			<div class="description" th:text="${post.content}">설명</div>
 			<div class="headcount" th:text="${post.headcount}">인분 수</div>
 			<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
@@ -28,6 +28,8 @@
 			<input type="text" class="form-control col-5" placeholder="증말맛있겠다!!">
 			<button type="button" class="form-control col-3">등록</button>
 		</div>
+			
+	</div>
 			
 	</div>
 </main>

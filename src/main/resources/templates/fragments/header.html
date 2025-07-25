@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>Andy's Recipe</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="/styles/style1.css">
 </head>
 <th:block th:fragment="header">
+
 	<header class="d-flex justify-content-between align-items-center">
 		<a href="/post/main/view"><span class="logo">ANDY's Recipes</span></a>
 		<div class="search-bar">
@@ -29,10 +31,13 @@
 			</div>
 		</div>
 	</header>
-
+	
 	<nav class="main-nav d-flex justify-content-between align-items-center">
-		<a href="/post/main/view">전체</a> <a href="#">요리 카테고리 검색</a> <a
-			href="#">요리 랭킹(post like 높은순)</a> <a href="#">요리사 랭킹(생각을 좀 더 해보자)</a>
+		<a href="/post/main/view">전체</a> 
+		<a href="#">요리 카테고리 검색</a> 
+		<a href="#">요리 랭킹(post like 높은순)</a> 
+		<a href="#">요리사 랭킹(생각을 좀 더 해보자)</a>
 	</nav>
+	
 </th:block>
 </html>

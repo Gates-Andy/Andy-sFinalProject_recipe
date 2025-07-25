@@ -20,16 +20,16 @@ public class FileManager {
 
 		String directoryName = "/" + userId + "_" + System.currentTimeMillis();
 
-		String directoryPath = FILE_UPLOAD_PATH + directoryName;
+		String directoryPath = FILE_UPLOAD_PATH + directoryName; // 그 모든 주소
 
-		File directory = new File(directoryPath);
+		File directory = new File(directoryPath); // 객체 생성
 
-		if (!directory.mkdir()) {
+		if (!directory.mkdir()) { // 폴더 생성
 			return null;
 		}
 		;
 
-		String filePath = directoryPath + "/" + file.getOriginalFilename();
+		String filePath = directoryPath + "/" + file.getOriginalFilename(); 
 
 		try {
 			byte[] bytes = file.getBytes();

@@ -114,9 +114,8 @@ header {
 .post-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 20px;
-	margin-top: 20px;
-	align-items: flex-start; /* 이걸로 모든 카드 위쪽부터 정렬! */
+	justify-content: flex-start;
+	gap: 24px;
 }
 
 .post-card {
@@ -125,13 +124,13 @@ header {
 	padding: 10px;
 }
 
-.aritst {
+.artist {
 	font-family: Arial;
 	font-size: 12px; /* 글씨 크기 */
 	color: #ff8000; /* 따뜻한 토마토 레드 색상 */
 }
 
-.food-pics {
+.main-food-pics {
 	height: 200px;
 	margin-bottom: 10px;
 	overflow: hidden;
@@ -143,7 +142,7 @@ header {
 	margin-bottom: 6px;
 }
 
-.description, .ingredients, .category {
+.description, .ingredients, .headcount, .category {
 	font-size: 14px;
 	color: #444;
 	margin-bottom: 4px;
@@ -252,6 +251,34 @@ header {
 
 .createPost:hover {
 	background-color: #e67622;
+}
+
+.type-box label {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.type-box input {
+	margin-top: 4px;
+}
+
+.content textarea {
+	margin-top: 6px;
+}
+
+.btn-imginput {
+	width: 150px;
+	margin-top: 20px;
+}
+
+.function {
+	margin-top: 30px;
+}
+
+.btn-delete, .btn-save {
+	width: 48%;
+	font-weight: bold;
+	margin-bottom: 20px;
 }
 
 .icons {

@@ -4,6 +4,23 @@
 
 <mapper
 	namespace="com.andy.recipe.post.repository.PostRepository">
+
+	<select id="selectPostList"
+		resultType="com.andy.recipe.post.domain.Post">
+		SELECT
+		`id`,
+		`userId`,
+		`title`,
+		`category`,
+		`headcount`,
+		`content`,
+		`imagePath`,
+		`createdAt`,
+		`updatedAt`
+		FROM
+		`post`
+	</select>
+
 	<select id="selectByUserId" parameterType="long"
 		resultType="com.andy.recipe.post.domain.Post">
 		SELECT
@@ -23,45 +40,32 @@
 		#{userId}
 	</select>
 
-	<select id="selectPostList"
-		resultType="com.andy.recipe.post.domain.Post">
-		SELECT
-		`id`,
+
+
+	<insert id="insertPost"
+		parameterType="com.andy.recipe.post.domain.Post">
+		INSERT
+		INTO
+		`post`
+		(
 		`userId`,
 		`title`,
-		`category`,
 		`headcount`,
+		`category`,
 		`content`,
 		`imagePath`,
-		`createdAt`,
-		`updatedAt`
-		FROM
-		`post`
-	</select>
-
-	<insert id="insertPost" parameterType="com.andy.recipe.post.domain.Post">
-		INSERT 
-		INTO 
-		`post` 
-		(
-		`user_id`, 
-		`title`, 
-		`category`, 
-		`headcount`, 
-		`content`, 
-		`image_path`,
 		`createdAt`,
 		`updatedAt`
 		)
 		VALUES
 		(
-		#{userId}, 
-		#{title}, 
-		#{category}, 
-		#{headcount}, 
+		#{userId},
+		#{title},
+		#{headcount},
+		#{category},
 		#{content},
-		#{imagePath}, 
-		#{createdAt}, 
+		#{imagePath},
+		#{createdAt},
 		#{updatedAt}
 		)
 	</insert>

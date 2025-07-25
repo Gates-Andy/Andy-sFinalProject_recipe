@@ -8,9 +8,10 @@ import com.andy.recipe.post.domain.Post;
 
 @Mapper
 public interface PostRepository {
-	public List<Post> selectByUserId(long userId);
 	
 	public List<Post> selectPostList();
+	
+	public List<Post> selectByUserId(long userId);
 	
 	public int insertPost(Post post);
 }
