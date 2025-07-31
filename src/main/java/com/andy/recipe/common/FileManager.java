@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileManager {//파일이 저장될 기본 경로를 상수로 정의함
-	// public static final String FILE_UPLOAD_PATH = "D:\\ANDY_GATES\\WEB\\20250220\\springProject\\upload";
-	public static final String FILE_UPLOAD_PATH = "C:\\Users\\mujik\\OneDrive\\바탕 화면\\project\\upload";
+	public static final String FILE_UPLOAD_PATH = "D:\\ANDY_GATES\\WEB\\20250220\\springProject\\upload";
+	// public static final String FILE_UPLOAD_PATH = "C:\\Users\\mujik\\OneDrive\\바탕 화면\\project\\upload";
 
 	public static String saveFile(long userId, MultipartFile file) {
 

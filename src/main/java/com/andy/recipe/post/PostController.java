@@ -66,4 +66,24 @@ public class PostController {
 
 		return "post/create";
 	}
+	
+	@GetMapping("/putIngredient/view")
+	public String ingredientPage(HttpSession session) {
+		
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/user/login/view";
+		}
+
+		return "post/ingredient";
+	}
+	
+	@GetMapping("/putStep/view")
+	public String stepPage(HttpSession session) {
+		
+		if (session.getAttribute("userId") == null) {
+			return "redirect:/user/login/view";
+		}
+
+		return "post/step";
+	}
 }

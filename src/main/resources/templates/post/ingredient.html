@@ -1,0 +1,32 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<main layout:fragment="contents">
+
+	<div class="mb-1">
+		<input type="text" class="mb-1" id="ingredientName1" placeholder="재료1: 치킨">
+		<input type="text" class="mb-1" id="quantity1" placeholder="수량: 달가슴살 1봉지">
+		<textarea class="note form-control" id="note1" placeholder="추가 설명"></textarea>
+	</div>
+	
+	<div class="mb-1">
+		<input type="text" class="mb-1" id="ingredientName2" name="ingredientName" placeholder="재료1: 카레">
+		<input type="text" class="mb-1" id="quantity2" placeholder="수량: 1팩">
+		<textarea class="note form-control" id="note2" placeholder="추가 설명"></textarea>
+	</div>
+	
+	<div class="mb-1">
+		<input type="text" class="mb-1" id="ingredientName3" name="ingredientName" placeholder="재료1: 밥">
+		<input type="text" class="mb-1" id="quantity3" placeholder="수량: 2공기">
+		<textarea class="note form-control" id="note3" placeholder="추가 설명"></textarea>
+	</div>
+	
+	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script layout:fragment="script">
+</script>

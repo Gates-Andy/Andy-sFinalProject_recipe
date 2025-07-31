@@ -39,15 +39,15 @@ public class PostService {
 
 		for (Post post : postList) {
 			
-			User user = userService.getUserById(post.getUserId());
+			User user = userService.getUserById(post.getUserId()); // user객체 id = 1 
 			
-			String loginId = user.getLoginId();
-
 			PostDto dto = new PostDto();
+
+			String loginId = user.getLoginId(); // use의 객체의 id가 1인 놈의 로그인아이디 반환.
 			
-			dto.setUserId(post.getUserId());
+			dto.setUserId(post.getUserId()); // 1
 			
-			dto.setLoginId(loginId);
+			dto.setLoginId(loginId); // superyoon1
 			
 			dto.setTitle(post.getTitle());
 			dto.setContent(post.getContent());
@@ -55,7 +55,7 @@ public class PostService {
 			dto.setCategory(post.getCategory());
 			dto.setImagePath(post.getImagePath());
 
-			dtoList.add(dto);
+			dtoList.add(dto); // id = 2 인놈을 찾으러 다 넣엇으면 저장 dto1이 저장되겠지
 		}
 
 		return dtoList;
@@ -86,4 +86,6 @@ public class PostService {
 
 		return result == 1;
 	}
+	
+	
 }

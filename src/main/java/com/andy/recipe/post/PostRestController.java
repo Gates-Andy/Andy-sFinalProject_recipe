@@ -46,4 +46,30 @@ public class PostRestController {
 		}
 		return resultMap;
 	}
+	
+	@PostMapping("/ingredient")
+	public Map<String, String> putIngredient(
+			@RequestParam("ingredientName") String ingredientName,
+			@RequestParam("ingredientamount") String ingredientamount,
+			@RequestParam("imageFile") MultipartFile imageFile,
+			HttpSession session) {
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		return resultMap;
+	}
+	
+	@PostMapping("/step")
+	public Map<String, String> putStep(
+			@RequestParam("stepNumber") int stepNumber,
+			@RequestParam("content") String content,
+			@RequestParam("imageFile") MultipartFile imageFile,
+			HttpSession session) {
+		
+		Map<String, String> resultMap = new HashMap<>();
+		
+		return resultMap;
+	}
+	
+	
 }

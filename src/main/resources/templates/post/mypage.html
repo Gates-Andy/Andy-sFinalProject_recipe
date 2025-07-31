@@ -16,7 +16,7 @@
 						
 						<div class="content">
 							<div class="title" th:text="${'레시피 이름 : ' + post.title}"></div>
-							<div class="description" th:text="${'레시피 간단 설명 : ' + post.content}"></div>
+							<div class="description" th:utext="${'레시피 간단 설명 : <br>' + post.content}"></div>
 							
 							<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
 							
@@ -25,8 +25,8 @@
 						</div>
 						
 						<div class="inputbuttons d-flex justify-content-end ">
-							<button class="ingredientinput form-control">✔ 재료 넣기</button>
-							<button class="stepinput form-control">✔ 요리과정 및 사진 넣기</button>
+							<a href="/post/putIngredient/view" class="form-control btn-style mr-1">✔ 재료 넣기</a>
+							<a href="/post/putStep/view" class="form-control btn-style ml-1">✔ 요리과정 및 사진 넣기</a>
 						</div>
 						
 					</section>
@@ -44,7 +44,6 @@
 				<a href="/post/create/view" class="createPost">글작성</a>
 			</section>
 		</main>
-
 
 </body>
 </html>

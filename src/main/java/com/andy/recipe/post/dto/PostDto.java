@@ -4,24 +4,24 @@ public class PostDto {
 	private long userId;
 	private String loginId; // user 테이블에서 조인해서 얻어오자..
 	private String title;
-	private String content;
-	private int headcount;
 	private String category;
+	private int headcount;
+	private String content;
 	private String imagePath;
 
 	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(long userId) { 
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 
-	public String getLoginId() { // user 테이블에서 조인해서 얻어오자..
+	public String getLoginId() {
 		return loginId;
 	}
 
-	public void setLoginId(String loginId) { // user 테이블에서 조인해서 얻어오자..
+	public void setLoginId(String loginId) {
 		this.loginId = loginId;
 	}
 
@@ -33,12 +33,12 @@ public class PostDto {
 		this.title = title;
 	}
 
-	public String getContent() {
-		return content;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getHeadcount() {
@@ -49,12 +49,12 @@ public class PostDto {
 		this.headcount = headcount;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getContent() {
+		return content;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getImagePath() {
@@ -64,4 +64,5 @@ public class PostDto {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+
 }

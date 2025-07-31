@@ -115,6 +115,13 @@ header {
 	flex-wrap: wrap;
 }
 
+.main-nav a {
+	display: inline-block; /* 또는 block */
+	min-width: 150px; /* 적당한 너비를 지정 */
+	text-align: center; /* 텍스트 중앙 정렬 */
+	padding: 5px 10px; /* 필요하면 패딩도 추가 */
+}
+
 .post-list {
 	display: flex;
 	flex-wrap: wrap;
@@ -289,6 +296,18 @@ header {
 	gap: 10px;
 	font-size: 16px;
 	margin-top: 10px;
+}
+
+.btn-style {
+	display: inline-block;
+	padding: 10px;
+	background-color: #ff8000;
+	color: white;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	border-radius: 4px;
 }
 
 footer {

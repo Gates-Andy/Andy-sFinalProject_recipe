@@ -1,0 +1,31 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<main layout:fragment="contents">
+	<div class="mb-1">
+    	<textarea class="form-control" id="stepDescription1" name="stepDescription" rows="5" placeholder="요리 과정을 상세히 적어주세요."></textarea>
+		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
+		<span id="fileName">image.png</span>
+	</div>
+	
+	<div class="mb-1">
+    	<textarea class="form-control" id="stepDescription2" name="stepDescription" rows="5" placeholder="요리 과정을 상세히 적어주세요."></textarea>
+		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
+		<span id="fileName">image.png</span>
+	</div>
+	
+	<div class="mb-1">
+    	<textarea class="form-control" id="stepDescription3" name="stepDescription" rows="5" placeholder="요리 과정을 상세히 적어주세요."></textarea>
+		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
+		<span id="fileName">image.png</span>
+	</div>
+	
+	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
+ 
+</main>
+				
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script layout:fragment="script">
+</script>
