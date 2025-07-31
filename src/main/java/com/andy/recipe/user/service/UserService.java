@@ -16,9 +16,9 @@ public class UserService {
 	}
 
 	public boolean adduser(String loginId, String password, String email) {
-		
+
 		String hasgingPassword = MD5HashingEncoder.encode(password);
-		
+
 		int count = userRepository.insertUser(loginId, hasgingPassword, email);
 
 		if (count == 1) {
@@ -47,12 +47,15 @@ public class UserService {
 			return true;
 		}
 	}
-	
-	public User getUser(String loginId, String password){
-		
+
+	public User getUser(String loginId, String password) {
+
 		String hashingPassword = MD5HashingEncoder.encode(password);
-		
+
 		return userRepository.selectUser(loginId, hashingPassword);
 	}
-	
+
+	public User getUserById(long Id) {
+		return userRepository.selectUserById(Id);
+	}
 }

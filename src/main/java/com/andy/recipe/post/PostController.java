@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.andy.recipe.post.domain.Post;
+import com.andy.recipe.post.dto.PostDto;
 import com.andy.recipe.post.service.PostService;
 
 import jakarta.servlet.http.HttpSession;
@@ -25,11 +26,14 @@ public class PostController {
 
 	@GetMapping("/main/view")
 	public String main(Model model) {
-
+		/*
 		List<Post> postList = postService.getPostList();
-
+		 */
+		
+		List<PostDto> postList = postService.getPostList();
+		
 		model.addAttribute("postList", postList);
-
+		
 		return "post/main";
 	}
 

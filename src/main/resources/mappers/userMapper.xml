@@ -64,4 +64,18 @@
 		#{password}
 	</select>
 
+	<select id="selectUserById" parameterType="long"
+		resultType="com.andy.recipe.user.domain.User">
+		SELECT
+		`id`
+		,`loginId`
+		,`password`
+		,`email`
+		,`createdAt`
+		,`updatedAt`
+		FROM
+		`user`
+		WHERE
+		`id` = #{id}
+	</select>
 </mapper>

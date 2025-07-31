@@ -36,25 +36,29 @@ header {
 	자동으로 내려감.*/
 }
 
-.login-logo {
-	background-color: #808080;
+.login-page {
+	background-color: #f9f9f9;
 }
 
-.loginForm {
-	margin: 0 auto;
-	max-height: 600px;
-}
-
-.login-btn {
-	background-color: #007bff;
+.login-page .login-logo {
+	background-color: #c0c0c0;
 	color: white;
-	font-weight: 600;
-	font-size: 0.9rem; /* 글자 크기 줄임 */
-	padding: 8px 0; /* 세로 패딩 줄임 */
-	border-radius: 5px; /* 둥근 모서리 약간 줄임 */
-	box-shadow: 0 3px 7px rgba(0, 123, 255, 0.3);
-	transition: background-color 0.3s ease, box-shadow 0.3s ease;
-	border: none;
+	padding: 30px 0;
+}
+
+.login-page .login-box {
+	background-color: white;
+	border-radius: 10px;
+}
+
+.login-page .btn-primary {
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.login-page .btn-primary:hover {
+	background-color: #80ffff;
+	border-color: #004a9f;
 }
 
 .logo {

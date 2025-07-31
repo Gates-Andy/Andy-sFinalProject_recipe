@@ -6,16 +6,16 @@
 
 	<div class="post-card" th:each="post : ${postList}">
 	
-		<span class="artist" th:text="${post.userId + '의 Recipe'}"></span>
+		<span class="artist" th:text="${post.loginId + ' 의 Recipe'}"></span>
 
 <div class="main-food-pics">
   <img th:src="${post.imagePath}" alt="요리 이미지" style="width: 100%; height: auto;">
 </div>
 
 		<div class="content">
-		
-			<div class="title" th:text="${'레시피 이름 : ' + post.title}"></div>
-			<div class="description" th:text="${'레시피 간단 설명 : ' + post.content}"></div>
+			<!-- utext 필요 -->
+			<div class="title" th:utext="${'레시피 이름 : <br>' + post.title}"></div> 
+			<div class="description" th:utext="${'레시피 간단 설명 : <br>' + post.content}"></div>
 			<div class="headcount" th:text="${'인분수 : ' + post.headcount + '인분'}"></div>
 			
 			<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
