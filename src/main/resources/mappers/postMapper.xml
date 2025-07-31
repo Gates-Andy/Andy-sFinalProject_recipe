@@ -40,8 +40,6 @@
 		#{userId}
 	</select>
 
-
-
 	<insert id="insertPost"
 		parameterType="com.andy.recipe.post.domain.Post">
 		INSERT
@@ -67,6 +65,28 @@
 		#{imagePath},
 		#{createdAt},
 		#{updatedAt}
+		)
+	</insert>
+
+	<insert id="insertIngredient"
+			parameterType="com.andy.recipe.post.domain.Ingredient">
+		INSERT 
+		INTO 
+		`ingredient` 
+		(
+		`postId`, 
+		`ingredientName`, 
+		`ingredientAmount`, 
+		`content`
+		`imagePath`
+		)
+		VALUES 
+		(
+		#{postId}, 
+		#{ingredientName}, 
+		#{ingredientAmount},
+		#{content},
+		#{imagePath}
 		)
 	</insert>
 </mapper>

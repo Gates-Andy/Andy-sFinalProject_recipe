@@ -5,11 +5,14 @@
 <main layout:fragment="contents">
 
 	<div class="mb-1">
-		<input type="text" class="mb-1" id="ingredientName1" placeholder="재료1: 치킨">
-		<input type="text" class="mb-1" id="quantity1" placeholder="수량: 달가슴살 1봉지">
-		<textarea class="note form-control" id="note1" placeholder="추가 설명"></textarea>
+		<input type="text" class="mb-1" id="ingredientName" placeholder="재료1: 치킨">
+		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
+		<span id="fileName">image.png</span>
+		<input type="text" class="mb-1" id="ingredientAmount" placeholder="수량: 달가슴살 1봉지">
+		<textarea class="note form-control" id="content" placeholder="추가 설명"></textarea>
 	</div>
 	
+	<!-- 
 	<div class="mb-1">
 		<input type="text" class="mb-1" id="ingredientName2" name="ingredientName" placeholder="재료1: 카레">
 		<input type="text" class="mb-1" id="quantity2" placeholder="수량: 1팩">
@@ -21,6 +24,7 @@
 		<input type="text" class="mb-1" id="quantity3" placeholder="수량: 2공기">
 		<textarea class="note form-control" id="note3" placeholder="추가 설명"></textarea>
 	</div>
+	 -->
 	
 	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
 
@@ -29,4 +33,53 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script layout:fragment="script">
+$("#savebtn").on("click", function () {
+	let ingredientName  = $("#ingredientName").val().trim();
+	let ingredientAmount  = $("#ingredientAmount").val().trim();
+	let content = $("#content").val().trim();
+	let imageFile  = $("#fileInput")[0].files[0];
+	
+	if (ingredientName === "") {
+		alert("재료 1을 입력해주세요.");
+		return;
+	}
+
+	if (ingredientAmount === "") {
+		alert("재료 1의 양을 입력해주세요.");
+		return;
+	}
+
+	if (content === "") {
+		alert("재료 손질법을 입력해주세요.");
+		return;
+	}
+
+	let formData = new FormData();
+	formData.append("ingredientName", ingredientName);
+	formData.append("ingredientAmount", ingredientAmount);
+	formData.append("content", content);
+
+	if (imageFile) {
+		formData.append("imageFile", imageFile);
+	}
+
+	$.ajax({
+		type: "post",
+		url: "/post/ingredient",
+		data: formData,
+		enctype: "multipart/form-data",
+		processData: false,
+		contentType: false,
+		success: function (response) {
+			if (response.result === "success") {
+				location.href = "/post/create/view";
+			} else {
+				alert("레시피 재료저장 실패.");
+			}
+		},
+		error: function () {
+			alert("레시피 재료저장 에러");
+		}
+	});
+});
 </script>

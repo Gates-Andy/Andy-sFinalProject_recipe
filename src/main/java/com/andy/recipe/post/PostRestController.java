@@ -49,15 +49,18 @@ public class PostRestController {
 	
 	@PostMapping("/ingredient")
 	public Map<String, String> putIngredient(
-			@RequestParam("ingredientName") String ingredientName,
-			@RequestParam("ingredientamount") String ingredientamount,
+			@RequestParam("postId") int postId, 
+			@RequestParam("ingredientName") String ingredientName, 
+			@RequestParam("ingredientAmount") String ingredientAmount, 
+			@RequestParam("content") String content, 
 			@RequestParam("imageFile") MultipartFile imageFile,
 			HttpSession session) {
 		
-		Map<String, String> resultMap = new HashMap<>();
-		
-		return resultMap;
-	}
+	    Map<String, String> resultMap = new HashMap<>();
+	    
+	    Long userId = (Long) session.getAttribute("userId");
+	   
+
 	
 	@PostMapping("/step")
 	public Map<String, String> putStep(
