@@ -1,4 +1,4 @@
-package com.andy.recipe.post;
+package com.andy.recipe.step;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,42 +10,40 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.andy.recipe.common.FileManager;
-import com.andy.recipe.post.service.PostService;
+import com.andy.recipe.step.service.StepService;
 
 import jakarta.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping("/post")
-public class PostRestController {
+@RequestMapping("/step")
+public class StepRestController {
 
-	private final PostService postService;
+	private final StepService stepService;
 
-	public PostRestController(PostService postService) {
-		this.postService = postService;
+	public StepRestController(StepService stepService) {
+		this.stepService = stepService;
 	}
 
 	@PostMapping("/create")
-	public Map<String, String> createPost(@RequestParam("title") String title, @RequestParam("headcount") int headcount,
-			@RequestParam("category") String category, @RequestParam("content") String content,
+	public Map<String, String> createStep(@RequestParam("postId") int postId,
+			@RequestParam("stepNumber") int stepNumber, @RequestParam("content") String content,
 			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
 
 		Long userId = (Long) session.getAttribute("userId");
+		if (userId == null) {
+			resultMap.put("result", "logout");
+			return resultMap;
+		}
 
 		String imagePath = FileManager.saveFile(userId, imageFile);
 
-		if (postService.addPost(userId, title, headcount, category, content, imagePath)) {
-			
+		if (stepService.addStep(postId, stepNumber, content, imagePath)) {
 			resultMap.put("result", "success");
-			
 		} else {
-			
 			resultMap.put("result", "fail");
-			
 		}
-		
 		return resultMap;
 	}
-
 }

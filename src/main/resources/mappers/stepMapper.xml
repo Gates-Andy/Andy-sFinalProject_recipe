@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.andy.recipe.step.repository.StepRepository">
+
+	<insert id="insertStep" parameterType="com.andy.recipe.step.domain.Step">
+		INSERT
+		INTO
+		`step`
+		(
+		`postId`,
+		`stepNumber`,
+		`content`,
+		`imagePath`,
+		`createdAt`,
+		`updatedAt`
+		)
+		VALUES
+		(
+		#{postId},
+		#{stepNumber},
+		#{content},
+		#{imagePath},
+		#{createdAt},
+		#{updatedAt}
+		)
+	</insert>
+
+</mapper>

@@ -1,24 +1,11 @@
-package com.andy.recipe.post.domain;
+package com.andy.recipe.ingredient.dto;
 
-import java.time.LocalDateTime;
-
-public class Ingredient {
-	private int id;
+public class IngredientDto {
 	private int postId;
 	private String ingredientName;
 	private String ingredientAmount;
 	private String content;
 	private String imagePath;
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getPostId() {
 		return postId;
@@ -58,21 +45,5 @@ public class Ingredient {
 
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 }

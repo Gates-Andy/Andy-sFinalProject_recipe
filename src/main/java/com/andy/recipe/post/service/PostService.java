@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.andy.recipe.post.domain.Ingredient;
 import com.andy.recipe.post.domain.Post;
 import com.andy.recipe.post.dto.PostDto;
 import com.andy.recipe.post.repository.PostRepository;
@@ -86,23 +85,6 @@ public class PostService {
 		int result = postRepository.insertPost(post);
 
 		return result == 1;
-	}
-	
-	public boolean addIngredient(int postId, String ingredientName, String ingredientAmount, String content, String imagePath) {
-		
-	    Ingredient ingredient = new Ingredient();
-	    
-	    ingredient.setPostId(postId);
-	    ingredient.setIngredientName(ingredientName);
-	    ingredient.setIngredientAmount(ingredientAmount);
-	    ingredient.setContent(content);
-	    ingredient.setImagePath(imagePath);
-	    ingredient.setCreatedAt(LocalDateTime.now());
-	    ingredient.setUpdatedAt(LocalDateTime.now());
-
-	    int result = postRepository.insertIngredient(ingredient);
-
-	    return result == 1;
 	}
 	
 }

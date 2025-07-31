@@ -47,7 +47,7 @@ public class PostController {
 		String loginId = (String) loginIdObj;
 
 		List<Post> postList = postService.getPostListByUserId(userId);
-
+		
 		model.addAttribute("postList", postList);
 
 		model.addAttribute("userId", userId);
@@ -67,23 +67,4 @@ public class PostController {
 		return "post/create";
 	}
 	
-	@GetMapping("/putIngredient/view")
-	public String ingredientPage(HttpSession session) {
-		
-		if (session.getAttribute("userId") == null) {
-			return "redirect:/user/login/view";
-		}
-
-		return "post/ingredient";
-	}
-	
-	@GetMapping("/putStep/view")
-	public String stepPage(HttpSession session) {
-		
-		if (session.getAttribute("userId") == null) {
-			return "redirect:/user/login/view";
-		}
-
-		return "post/step";
-	}
 }

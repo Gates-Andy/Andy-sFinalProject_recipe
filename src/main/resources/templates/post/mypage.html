@@ -25,8 +25,8 @@
 						</div>
 						
 						<div class="inputbuttons d-flex justify-content-end ">
-							<a href="/post/putIngredient/view" class="form-control btn-style mr-1">✔ 재료 넣기</a>
-							<a href="/post/putStep/view" class="form-control btn-style ml-1">✔ 요리과정 및 사진 넣기</a>
+							<a th:href="@{/ingredient/create/view(postId=${post.id})}" class="form-control btn-style mr-1">✔ 재료 넣기</a>
+							<a href="/step/create/view" class="form-control btn-style ml-1">✔ 요리과정 및 사진 넣기</a>
 						</div>
 						
 					</section>

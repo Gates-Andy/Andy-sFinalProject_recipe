@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.andy.recipe.post.domain.Ingredient;
 import com.andy.recipe.post.domain.Post;
 
 @Mapper
@@ -15,6 +14,4 @@ public interface PostRepository {
 	public List<Post> selectByUserId(long userId);
 	
 	public int insertPost(Post post);
-	
-	public int insertIngredient(Ingredient ingredient);
 }
