@@ -6,7 +6,8 @@
 <mapper
 	namespace="com.andy.recipe.ingredient.repository.IngredientRepository">
 
-	<insert id="insertIngredient" parameterType="com.andy.recipe.ingredient.domain.Ingredient">
+	<insert id="insertIngredient"
+		parameterType="com.andy.recipe.ingredient.domain.Ingredient">
 		INSERT
 		INTO
 		`ingredient`
@@ -31,4 +32,19 @@
 		)
 	</insert>
 
+	<select id="selectByPostId" parameterType="long" resultType="com.andy.recipe.ingredient.domain.Ingredient">
+		SELECT
+		`id`,
+		`postId`,
+		`ingredientName`,
+		`ingredientAmount`,
+		`content`,
+		`imagePath`,
+		`createdAt`,
+		`updatedAt`
+		FROM
+		`ingredient`
+		WHERE
+		`postId` = #{postId}
+	</select>
 </mapper>

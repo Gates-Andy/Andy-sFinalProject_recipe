@@ -1,5 +1,9 @@
 package com.andy.recipe.post.dto;
 
+import java.util.List;
+
+import com.andy.recipe.ingredient.domain.Ingredient;
+
 public class PostDto {
 	private long userId;
 	private String loginId; // user 테이블에서 조인해서 얻어오자..
@@ -8,6 +12,26 @@ public class PostDto {
 	private int headcount;
 	private String content;
 	private String imagePath;
+
+	private long id;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	private List<Ingredient> ingredientList;
+
+	public List<Ingredient> getIngredientList() {
+		return ingredientList;
+	}
+
+	public void setIngredientList(List<Ingredient> ingredientList) {
+		this.ingredientList = ingredientList;
+	}
 
 	public long getUserId() {
 		return userId;

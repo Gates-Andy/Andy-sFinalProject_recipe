@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.andy.recipe.post.domain.Post;
 import com.andy.recipe.post.dto.PostDto;
 import com.andy.recipe.post.service.PostService;
 
@@ -30,25 +29,38 @@ public class PostController {
 		List<Post> postList = postService.getPostList();
 		 */
 		
+		/*
 		List<PostDto> postList = postService.getPostList();
 		
 		model.addAttribute("postList", postList);
+		 */
+		
+		List<PostDto> postDtoList = postService.getPostList();
+		
+		model.addAttribute("postDtoList", postDtoList);
 		
 		return "post/main";
 	}
 
 	@GetMapping("/myRecipe/view")
-	public String myPage(HttpSession session, Model model) {
+	public String myPage(
+			HttpSession session, 
+			Model model) {
 
 		Object userIdObj = session.getAttribute("userId");
 		Object loginIdObj = session.getAttribute("loginId");
 
 		long userId = (long) userIdObj;
 		String loginId = (String) loginIdObj;
-
-		List<Post> postList = postService.getPostListByUserId(userId);
 		
+		/*
+		List<Post> postList = postService.getPostListByUserId(userId);
 		model.addAttribute("postList", postList);
+		 */
+		
+		List<PostDto> postDtoList = postService.getPostList();
+				
+		model.addAttribute("postDtoList", postDtoList);
 
 		model.addAttribute("userId", userId);
 

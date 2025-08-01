@@ -15,17 +15,17 @@ public class Post {
 	private String imagePath;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+	
+    private List<Ingredient> ingredientList;
 
-	private List<Ingredient> ingredientList;
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
 
-	public List<Ingredient> getIngredientList() {
-		return ingredientList;
-	}
-
-	public void setIngredientList(List<Ingredient> ingredientList) {
-		this.ingredientList = ingredientList;
-	}
-
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
+    }
+    
 	public long getId() {
 		return id;
 	}

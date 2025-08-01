@@ -8,24 +8,30 @@
 			
 				<div class="recipe-container">
 
-					<section class="myrecipe" th:each="post : ${postList}">
+					<section class="myrecipe" th:each="postDto : ${postDtoList}">
 					
 						<div class="food-pics" >
-							<img th:src="${post.imagePath}">
+							<img th:src="${postDto.imagePath}">
 						</div>
 						
 						<div class="content">
-							<div class="title" th:text="${'레시피 이름 : ' + post.title}"></div>
-							<div class="description" th:utext="${'레시피 간단 설명 : <br>' + post.content}"></div>
+							<div class="title" th:text="${'레시피 이름 : ' + postDto.title}"></div>
+							<div class="description" th:utext="${'레시피 간단 설명 : <br>' + postDto.content}"></div>
 							
-							<div class="ingredients">재료 태그 : 치킨, 카레, 밥</div>
+							<div class="ingredients">
+								<span>재료 태그 : </span>
+								<span th:each="ingredient : ${postDto.ingredientList}">
+									<span th:utext="${ingredient.ingredientName}"></span>
+								</span>
 							
-							<div class="headcount" th:text="${'인분수 : ' + post.headcount + '인분'}"></div>
-							<div class="category" th:text="${'요리 카테고리 :' + post.category}"></div>
+							</div>
+							
+							<div class="headcount" th:text="${'인분수 : ' + postDto.headcount + '인분'}"></div>
+							<div class="category" th:text="${'요리 카테고리 :' + postDto.category}"></div>
 						</div>
 						
 						<div class="inputbuttons d-flex justify-content-end ">
-							<a th:href="@{/ingredient/create/view(postId=${post.id})}" class="form-control btn-style mr-1">✔ 재료 넣기</a>
+							<a th:href="@{/ingredient/create/view(postId=${postDto.id})}" class="form-control btn-style mr-1">✔ 재료 넣기</a>
 							<a href="/step/create/view" class="form-control btn-style ml-1">✔ 요리과정 및 사진 넣기</a>
 						</div>
 						

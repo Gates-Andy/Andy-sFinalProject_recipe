@@ -5,15 +5,16 @@
 <main layout:fragment="contents">
 
 	<div class="mb-1">
+	
 		<input type="hidden" id="postId" th:value="${postId}">
 		
-		<input type="text" class="mb-1" id="ingredientName" placeholder="재료1: 닭가슴살">
+		<input type="text" class="form-control mb-1" id="ingredientName" placeholder="재료1: ">
 		
-		<input type="text" class="mb-1" id="ingredientAmount" placeholder="수량:  1봉지">
+		<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
 		
-		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
-		
-		<span id="fileName">image.png</span>
+		<label class="btn btn-style mt-3"> 재료 사진 올리기 
+			<input type="file" id="fileInput" hidden> 
+		</label> 
 		
 		<textarea class="note form-control" id="content" placeholder="추가 설명"></textarea>
 		

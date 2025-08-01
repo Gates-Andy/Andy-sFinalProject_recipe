@@ -25,10 +25,13 @@ public class IngredientRestController {
 	}
 
 	@PostMapping("/create")
-	public Map<String, String> createIngredient(@RequestParam("postId") int postId,
+	public Map<String, String> createIngredient(
+			@RequestParam("postId") int postId,
 			@RequestParam("ingredientName") String ingredientName,
-			@RequestParam("ingredientAmount") String ingredientAmount, @RequestParam("content") String content,
-			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session) {
+			@RequestParam("ingredientAmount") String ingredientAmount, 
+			@RequestParam("content") String content,
+			@RequestParam("imageFile") MultipartFile imageFile, 
+			HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
 
@@ -43,4 +46,5 @@ public class IngredientRestController {
 		}
 		return resultMap;
 	}
+
 }

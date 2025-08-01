@@ -1,6 +1,7 @@
 package com.andy.recipe.ingredient.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,11 @@ public class IngredientService {
 
 		return result == 1;
 	}
-
+	
+	public List<Ingredient> getIngredientsByPostId(long postId) {
+		
+        return ingredientRepository.selectByPostId(postId); // postid에 저장되어있는 모든 정보를 가져와 그대로 가져가
+        
+    }
+	
 }

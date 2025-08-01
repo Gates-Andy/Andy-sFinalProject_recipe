@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.andy.recipe.ingredient.domain.Ingredient;
+import com.andy.recipe.ingredient.service.IngredientService;
 import com.andy.recipe.post.domain.Post;
 import com.andy.recipe.post.dto.PostDto;
 import com.andy.recipe.post.repository.PostRepository;
@@ -17,10 +19,12 @@ public class PostService {
 
 	private final PostRepository postRepository;
 	private final UserService userService; // loginId를 얻어오기 위해
-
-	public PostService(PostRepository postRepository, UserService userService) {
+	private final IngredientService ingredientService; // 재료 수량 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
+	
+	public PostService(PostRepository postRepository, UserService userService, IngredientService ingredientService) {
 		this.postRepository = postRepository;
 		this.userService = userService;
+        this.ingredientService = ingredientService;
 	}
 
 	/*
@@ -35,7 +39,7 @@ public class PostService {
 		
 		List<Post> postList = postRepository.selectPostList();  // DB에서 모든 게시글(Post 객체들)을 가져온다
 
-		List<PostDto> dtoList = new ArrayList<>(); // 결과를 담을 DTO 리스트 생성
+		List<PostDto> postDtoList = new ArrayList<>(); // 결과를 담을 DTO 리스트 생성
 
 		for (Post post : postList) {
 			
@@ -47,17 +51,23 @@ public class PostService {
 			
 			dto.setLoginId(loginId); // 로그인 ID를 DTO에 저장
 			
-			dto.setUserId(post.getUserId());     // 작성자 ID를 DTO에 저장
-			dto.setTitle(post.getTitle());       // 제목을 DTO에 저장
-			dto.setContent(post.getContent());   // 내용을 DTO에 저장
-			dto.setHeadcount(post.getHeadcount()); // 모집 인원 수를 DTO에 저장
-			dto.setCategory(post.getCategory());   // 카테고리를 DTO에 저장
+			dto.setId(post.getId());
+			
+			dto.setUserId(post.getUserId());     // 작성자 ID
+			dto.setTitle(post.getTitle());       // 제목
+			dto.setContent(post.getContent());   // 내용
+			dto.setHeadcount(post.getHeadcount()); // 모집 인원 수
+			dto.setCategory(post.getCategory());   // 카테고리
 			dto.setImagePath(post.getImagePath()); // 이미지 경로를 DTO에 저장
-
-			dtoList.add(dto); // 완성된 DTO를 리스트에 추가
+			
+			List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId()); // postId를 파라미터로 재료내용(list)룰 가져와여기에 저장 한뒤 dto에 저장
+			
+            dto.setIngredientList(ingredientList);
+            
+            postDtoList.add(dto); // 완성된 DTO를 리스트에 추가
 		}
 
-		return dtoList; // 모든 게시글 DTO 목록을 반환
+		return postDtoList; // 모든 게시글 DTO 목록을 반환
 	}
 
 	public List<Post> getPostListByUserId(long userId) {
