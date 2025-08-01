@@ -27,10 +27,22 @@ public class IngredientRestController {
 	@PostMapping("/create")
 	public Map<String, String> createIngredient(
 			@RequestParam("postId") int postId,
+			
 			@RequestParam("ingredientName") String ingredientName,
 			@RequestParam("ingredientAmount") String ingredientAmount, 
 			@RequestParam("content") String content,
 			@RequestParam("imageFile") MultipartFile imageFile, 
+			
+			@RequestParam("ingredientName2") String ingredientName2,
+			@RequestParam("ingredientAmount2") String ingredientAmount2, 
+			@RequestParam("content2") String content2,
+			@RequestParam("imageFile2") MultipartFile imageFile2, 
+			
+			@RequestParam("ingredientName3") String ingredientName3,
+			@RequestParam("ingredientAmount3") String ingredientAmount3, 
+			@RequestParam("content3") String content3,
+			@RequestParam("imageFile3") MultipartFile imageFile3, 
+			
 			HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
@@ -39,7 +51,12 @@ public class IngredientRestController {
 
 		String imagePath = FileManager.saveFile(userId, imageFile);
 
-		if (ingredientService.addIngredient(postId, ingredientName, ingredientAmount, content, imagePath)) {
+		if (ingredientService.addIngredient(
+				postId, 
+				ingredientName,
+				ingredientAmount, 
+				content, 
+				imagePath)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

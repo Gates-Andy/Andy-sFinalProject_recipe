@@ -4,7 +4,7 @@
 
 <main layout:fragment="contents">
 
-	<div class="mb-1">
+	<div class="ingredient1 mb-1">
 	
 		<input type="hidden" id="postId" th:value="${postId}">
 		
@@ -12,7 +12,7 @@
 		
 		<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
 		
-		<label class="btn btn-style mt-3"> 재료 사진 올리기 
+		<label class="btn btn-style"> 재료 사진 올리기 
 			<input type="file" id="fileInput" hidden> 
 		</label> 
 		
@@ -20,6 +20,37 @@
 		
 	</div>
 	
+		<div class="ingredient2 mb-1">
+	
+		<input type="hidden" id="postId" th:value="${postId}">
+		
+		<input type="text" class="form-control mb-1" id="ingredientName2" placeholder="재료2: ">
+		
+		<input type="text" class="form-control mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
+		
+		<label class="btn btn-style"> 재료 사진 올리기 
+			<input type="file" id="fileInput2" hidden> 
+		</label> 
+		
+		<textarea class="note form-control" id="content2" placeholder="추가 설명"></textarea>
+		
+	</div>
+	
+		<div class="ingredient3 mb-1">
+	
+		<input type="hidden" id="postId" th:value="${postId}">
+		
+		<input type="text" class="form-control mb-1" id="ingredientName3" placeholder="재료3: ">
+		
+		<input type="text" class="form-control mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
+		
+		<label class="btn btn-style"> 재료 사진 올리기 
+			<input type="file" id="fileInput3" hidden> 
+		</label> 
+		
+		<textarea class="note form-control" id="content3" placeholder="추가 설명"></textarea>
+		
+	</div>
 	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
 
 </main>
@@ -33,6 +64,18 @@ $("#savebtn").on("click", function () {
 	let ingredientAmount  = $("#ingredientAmount").val().trim();
 	let content = $("#content").val().trim();
 	let imageFile  = $("#fileInput")[0].files[0];
+	
+	// ----------------------------------------------------------------
+	let ingredientName2  = $("#ingredientName2").val().trim();
+	let ingredientAmount2  = $("#ingredientAmount2").val().trim();
+	let content2 = $("#content2").val().trim();
+	let imageFile2  = $("#fileInput2")[0].files[0];
+	// ----------------------------------------------------------------
+	let ingredientName3  = $("#ingredientName3").val().trim();
+	let ingredientAmount3  = $("#ingredientAmount3").val().trim();
+	let content3 = $("#content3").val().trim();
+	let imageFile3  = $("#fileInput3")[0].files[0];
+	// ----------------------------------------------------------------
 	
 	if (ingredientName === "") {
 		alert("재료 1을 입력해주세요.");
@@ -48,13 +91,54 @@ $("#savebtn").on("click", function () {
 		alert("재료 손질법을 입력해주세요.");
 		return;
 	}
+	
+	// ----------------------------------------------------------------
+	if (ingredientName2 === "") {
+		alert("재료 2을 입력해주세요.");
+		return;
+	}
 
+	if (ingredientAmount2 === "") {
+		alert("재료 2의 양을 입력해주세요.");
+		return;
+	}
+
+	if (content2 === "") {
+		alert("재료 손질법2을 입력해주세요.");
+		return;
+	}
+	// ----------------------------------------------------------------
+	
+	// ----------------------------------------------------------------
+	if (ingredientName3 === "") {
+		alert("재료 3을 입력해주세요.");
+		return;
+	}
+
+	if (ingredientAmount3 === "") {
+		alert("재료 3의 양을 입력해주세요.");
+		return;
+	}
+
+	if (content3 === "") {
+		alert("재료 손질법3을 입력해주세요.");
+		return;
+	}
+	// ----------------------------------------------------------------
 	let formData = new FormData();
 	formData.append("postId", postId);
 	formData.append("ingredientName", ingredientName);
 	formData.append("ingredientAmount", ingredientAmount);
 	formData.append("content", content);
-
+	
+	formData.append("ingredientName2", ingredientName2);
+	formData.append("ingredientAmount2", ingredientAmount2);
+	formData.append("content2", content2);
+	
+	formData.append("ingredientName3", ingredientName3);
+	formData.append("ingredientAmount3", ingredientAmount3);
+	formData.append("content3", content3);
+	
 	if (imageFile) {
 		formData.append("imageFile", imageFile);
 	}
