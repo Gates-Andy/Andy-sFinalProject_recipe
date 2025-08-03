@@ -13,7 +13,7 @@
 		<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
 		
 		<label class="btn btn-style"> 재료 사진 올리기 
-			<input type="file" id="fileInput" hidden> 
+			<input type="file" id="fileInput" name="imageFile" hidden> 
 		</label> 
 		
 		<textarea class="note form-control" id="content" placeholder="추가 설명"></textarea>
@@ -22,14 +22,12 @@
 	
 		<div class="ingredient2 mb-1">
 	
-		<input type="hidden" id="postId" th:value="${postId}">
-		
 		<input type="text" class="form-control mb-1" id="ingredientName2" placeholder="재료2: ">
 		
 		<input type="text" class="form-control mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
 		
 		<label class="btn btn-style"> 재료 사진 올리기 
-			<input type="file" id="fileInput2" hidden> 
+			<input type="file" id="fileInput2" name="imageFile2" hidden> 
 		</label> 
 		
 		<textarea class="note form-control" id="content2" placeholder="추가 설명"></textarea>
@@ -37,15 +35,13 @@
 	</div>
 	
 		<div class="ingredient3 mb-1">
-	
-		<input type="hidden" id="postId" th:value="${postId}">
 		
 		<input type="text" class="form-control mb-1" id="ingredientName3" placeholder="재료3: ">
 		
 		<input type="text" class="form-control mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
 		
 		<label class="btn btn-style"> 재료 사진 올리기 
-			<input type="file" id="fileInput3" hidden> 
+			<input type="file" id="fileInput3" name="imageFile3" hidden> 
 		</label> 
 		
 		<textarea class="note form-control" id="content3" placeholder="추가 설명"></textarea>
@@ -87,10 +83,7 @@ $("#savebtn").on("click", function () {
 		return;
 	}
 
-	if (content === "") {
-		alert("재료 손질법을 입력해주세요.");
-		return;
-	}
+
 	
 	// ----------------------------------------------------------------
 	if (ingredientName2 === "") {
@@ -103,10 +96,7 @@ $("#savebtn").on("click", function () {
 		return;
 	}
 
-	if (content2 === "") {
-		alert("재료 손질법2을 입력해주세요.");
-		return;
-	}
+
 	// ----------------------------------------------------------------
 	
 	// ----------------------------------------------------------------
@@ -120,13 +110,11 @@ $("#savebtn").on("click", function () {
 		return;
 	}
 
-	if (content3 === "") {
-		alert("재료 손질법3을 입력해주세요.");
-		return;
-	}
+
 	// ----------------------------------------------------------------
 	let formData = new FormData();
 	formData.append("postId", postId);
+	
 	formData.append("ingredientName", ingredientName);
 	formData.append("ingredientAmount", ingredientAmount);
 	formData.append("content", content);
@@ -141,6 +129,14 @@ $("#savebtn").on("click", function () {
 	
 	if (imageFile) {
 		formData.append("imageFile", imageFile);
+	}
+	
+	if (imageFile2) {
+	    formData.append("imageFile2", imageFile2);
+	}
+	
+	if (imageFile3) {
+	    formData.append("imageFile3", imageFile3);
 	}
 
 	$.ajax({
