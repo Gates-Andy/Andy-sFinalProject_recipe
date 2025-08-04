@@ -1,9 +1,6 @@
 package com.andy.recipe.post.domain;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
-import com.andy.recipe.ingredient.domain.Ingredient;
 
 public class Post {
 	private long id;
@@ -15,16 +12,6 @@ public class Post {
 	private String imagePath;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
-	
-    private List<Ingredient> ingredientList;
-
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
-    }
-
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
-    }
     
 	public long getId() {
 		return id;

@@ -32,7 +32,7 @@ public class StepService {
 		return result == 1;
 	}
 	
-	public List<Step> getIngredientsByPostId(long postId) {
+	public List<Step> getStepsByPostId(long postId) {
 		
         return stepRepository.selectByPostId(postId); // postid에 저장되어있는 모든 정보를 가져와 그대로 가져가
         

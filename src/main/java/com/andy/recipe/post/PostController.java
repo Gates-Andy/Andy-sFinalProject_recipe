@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.andy.recipe.post.dto.PostDto;
 import com.andy.recipe.post.service.PostService;
@@ -25,15 +26,6 @@ public class PostController {
 
 	@GetMapping("/main/view")
 	public String main(Model model) {
-		/*
-		 * List<Post> postList = postService.getPostList();
-		 */
-
-		/*
-		 * List<PostDto> postList = postService.getPostList();
-		 * 
-		 * model.addAttribute("postList", postList);
-		 */
 
 		List<PostDto> postDtoList = postService.getPostList();
 
@@ -43,23 +35,14 @@ public class PostController {
 	}
 
 	@GetMapping("/recipes/view")
-	public String recipes(HttpSession session, Model model) {
-
-		Object userIdObj = session.getAttribute("userId");
-		Object loginIdObj = session.getAttribute("loginId");
-
-		long userId = (long) userIdObj;
-		String loginId = (String) loginIdObj;
+	public String recipes(@RequestParam("id") Long id, Model model) {
 		
-		List<PostDto> postDtoList = postService.getPostList();
-
-		model.addAttribute("postDtoList", postDtoList);
-		
-		model.addAttribute("userId", userId);
-
-		model.addAttribute("loginId", loginId);
-		
-		return "post/recipes";
+		PostDto postDto = postService.getPostById(id);
+	    
+	    model.addAttribute("postDto", postDto);
+	    
+	    return "post/recipes";
+	    
 	}
 
 	@GetMapping("/myRecipe/view")
@@ -71,12 +54,7 @@ public class PostController {
 		long userId = (long) userIdObj;
 		String loginId = (String) loginIdObj;
 
-		/*
-		 * List<Post> postList = postService.getPostListByUserId(userId);
-		 * model.addAttribute("postList", postList);
-		 */
-
-		List<PostDto> postDtoList = postService.getPostList();
+		 List<PostDto> postDtoList = postService.getPostList(userId); // 다른 로그인 아이디로 보이니까
 
 		model.addAttribute("postDtoList", postDtoList);
 

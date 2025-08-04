@@ -21,6 +21,17 @@
 		`post`
 	</select>
 
+	<select id="selectPostListByUserId" parameterType="long"
+		resultType="com.andy.recipe.post.domain.Post">
+		SELECT * FROM
+		`post`
+		WHERE
+		`userId` = #{userId}
+		ORDER BY
+		`createdAt`
+		DESC
+	</select>
+
 	<select id="selectByUserId" parameterType="long"
 		resultType="com.andy.recipe.post.domain.Post">
 		SELECT
@@ -38,6 +49,25 @@
 		WHERE
 		`userId` =
 		#{userId}
+	</select>
+
+	<select id="selectPostById" parameterType="long"
+		resultType="com.andy.recipe.post.domain.Post">
+		SELECT
+		`id`,
+		`userId`,
+		`title`,
+		`category`,
+		`headcount`,
+		`content`,
+		`imagePath`,
+		`createdAt`,
+		`updatedAt`
+		FROM
+		`post`
+		WHERE
+		`id`=
+		#{id}
 	</select>
 
 	<insert id="insertPost"

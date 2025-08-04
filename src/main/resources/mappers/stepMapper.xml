@@ -39,7 +39,7 @@
 		`createdAt`,
 		`updatedAt`
 		FROM
-		`stepNumber`
+		`step`
 		WHERE
 		`postId` = #{postId}
 	</select>

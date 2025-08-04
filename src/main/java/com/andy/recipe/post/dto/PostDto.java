@@ -3,6 +3,7 @@ package com.andy.recipe.post.dto;
 import java.util.List;
 
 import com.andy.recipe.ingredient.domain.Ingredient;
+import com.andy.recipe.step.domain.Step;
 
 public class PostDto {
 	private long userId;
@@ -14,6 +15,17 @@ public class PostDto {
 	private String imagePath;
 
 	private long id;
+	private List<Ingredient> ingredientList;
+
+	private List<Step> stepList;
+
+	public List<Step> getStepList() {
+		return stepList;
+	}
+
+	public void setStepList(List<Step> stepList) {
+		this.stepList = stepList;
+	}
 
 	public long getId() {
 		return id;
@@ -22,8 +34,6 @@ public class PostDto {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	private List<Ingredient> ingredientList;
 
 	public List<Ingredient> getIngredientList() {
 		return ingredientList;

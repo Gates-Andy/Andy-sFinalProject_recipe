@@ -25,9 +25,13 @@ public class PostRestController {
 	}
 
 	@PostMapping("/create")
-	public Map<String, String> createPost(@RequestParam("title") String title, @RequestParam("headcount") int headcount,
-			@RequestParam("category") String category, @RequestParam("content") String content,
-			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session) {
+	public Map<String, String> createPost(
+			@RequestParam("title") String title, 
+			@RequestParam("headcount") int headcount,
+			@RequestParam("category") String category, 
+			@RequestParam("content") String content,
+			@RequestParam("imageFile") MultipartFile imageFile, 
+			HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
 
@@ -36,15 +40,10 @@ public class PostRestController {
 		String imagePath = FileManager.saveFile(userId, imageFile);
 
 		if (postService.addPost(userId, title, headcount, category, content, imagePath)) {
-			
 			resultMap.put("result", "success");
-			
 		} else {
-			
 			resultMap.put("result", "fail");
-			
 		}
-		
 		return resultMap;
 	}
 

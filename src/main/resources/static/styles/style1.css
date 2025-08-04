@@ -310,6 +310,87 @@ header {
 	border-radius: 4px;
 }
 
+.recipesthym {
+	display: flex;
+	justify-content: space-between;
+	gap: 40px;
+}
+
+.recipes-info-left, .recipes-info-right {
+	background-color: #ffffff;
+	padding: 24px;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.menu-title {
+	font-size: 26px;
+	font-weight: 700;
+	color: #333;
+	margin-bottom: 12px;
+}
+
+.description {
+	font-size: 16px;
+	line-height: 1.6;
+	color: #555;
+	margin-bottom: 24px;
+}
+
+.steps h3, .ingredients h4 {
+	font-size: 20px;
+	color: #ff8000;
+	margin-bottom: 16px;
+	border-bottom: 2px solid #ff8000;
+	padding-bottom: 4px;
+}
+
+.step-box {
+	margin-bottom: 24px;
+}
+
+.step-box h4 {
+	font-size: 18px;
+	color: #444;
+	margin-bottom: 8px;
+}
+
+.step-box p {
+	font-size: 15px;
+	color: #444;
+	margin-top: 10px;
+}
+
+.step-box img {
+	width: 100%;
+	border-radius: 8px;
+	object-fit: cover;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ingredients .ingredient-box {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 16px;
+	background-color: #fafafa;
+	padding: 10px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ingredient-box img {
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border-radius: 8px;
+}
+
+.ingredient-box span {
+	font-size: 15px;
+	color: #333;
+}
+
 footer {
 	width: 100%;
 	height: 80px;
