@@ -26,18 +26,22 @@ public class IngredientRestController {
 	}
 
 	@PostMapping("/create")
-	public Map<String, String> createIngredient(@RequestParam("postId") int postId,
+	public Map<String, String> createIngredient(
+			@RequestParam("postId") int postId,
 
 			@RequestParam("ingredientName") String ingredientName,
-			@RequestParam("ingredientAmount") String ingredientAmount, @RequestParam("content") String content,
+			@RequestParam("ingredientAmount") String ingredientAmount, 
+			@RequestParam("content") String content,
 			@RequestPart(value = "imageFile", required = false) MultipartFile imageFile,
 
 			@RequestParam("ingredientName2") String ingredientName2,
-			@RequestParam("ingredientAmount2") String ingredientAmount2, @RequestParam("content2") String content2,
+			@RequestParam("ingredientAmount2") String ingredientAmount2, 
+			@RequestParam("content2") String content2,
 			@RequestPart(value = "imageFile2", required = false) MultipartFile imageFile2,
 
 			@RequestParam("ingredientName3") String ingredientName3,
-			@RequestParam("ingredientAmount3") String ingredientAmount3, @RequestParam("content3") String content3,
+			@RequestParam("ingredientAmount3") String ingredientAmount3, 
+			@RequestParam("content3") String content3,
 			@RequestPart(value = "imageFile3", required = false) MultipartFile imageFile3,
 
 			HttpSession session) {

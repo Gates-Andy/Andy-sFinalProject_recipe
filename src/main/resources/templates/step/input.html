@@ -3,22 +3,28 @@
 	layout:decorate="~{layouts/default}">
 
 <main layout:fragment="contents">
-	<div class="mb-1">
-    	<textarea class="form-control" id="stepDescription1" name="stepDescription" rows="5" placeholder="요리 과정을 상세히 적어주세요."></textarea>
+
+	<input type="hidden" id="postId" th:value="${postId}">
+	
+	<div class="step1 mb-1">
+		<div class="stepNumber">1</div>
+    	<textarea class="form-control" id="content" placeholder="요리 과정을 상세히 적어주세요."></textarea>
 		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
 		<span id="fileName">image.png</span>
 	</div>
 	
-	<div class="mb-1">
-    	<textarea class="form-control" id="stepDescription2" name="stepDescription" rows="5" placeholder="요리 과정을 상세히 적어주세요."></textarea>
-		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
-		<span id="fileName">image.png</span>
+	<div class="step2 mb-1">
+		<div class="stepNumber2">2</div>
+    	<textarea class="form-control" id="content2" placeholder="요리 과정을 상세히 적어주세요."></textarea>
+		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput2" hidden> </label> 
+		<span id="fileName2">image.png</span>
 	</div>
 	
-	<div class="mb-1">
-    	<textarea class="form-control" id="stepDescription3" name="stepDescription" rows="5" placeholder="요리 과정을 상세히 적어주세요."></textarea>
-		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput" hidden> </label> 
-		<span id="fileName">image.png</span>
+	<div class="step3 mb-1">
+		<div class="stepNumber3">3</div>
+    	<textarea class="form-control" id="content3" placeholder="요리 과정을 상세히 적어주세요."></textarea>
+		<label class="btn btn-style mt-3"> 사진 올리기 <input type="file" id="fileInput3" hidden> </label> 
+		<span id="fileName3">image.png</span>
 	</div>
 	
 	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
@@ -28,4 +34,84 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script layout:fragment="script">
+$("#savebtn").on("click", function () {
+	
+	let postId = $("#postId").val();
+	
+	let stepNumber  = "1";
+	let content = $("#content").val().trim();
+	let imageFile  = $("#fileInput")[0].files[0];
+	// ----------------------------------------------------------------
+
+	let stepNumber2  = "2";
+	let content2 = $("#content2").val().trim();
+	let imageFile2  = $("#fileInput2")[0].files[0];
+	// ----------------------------------------------------------------
+
+	let stepNumber3  = "3";
+	let content3 = $("#content3").val().trim();
+	let imageFile3  = $("#fileInput3")[0].files[0];
+	// ----------------------------------------------------------------
+
+	if (content === "") {
+		alert("절차를 설명을 입력해주세요.");
+		return;
+	}
+	// ----------------------------------------------------------------
+
+	if (content2 === "") {
+		alert("절차2을 설명을 입력해주세요.");
+		return;
+	}
+	// ----------------------------------------------------------------
+	if (content3 === "") {
+		alert("절차3을 설명을 입력해주세요.");
+		return;
+	}
+	// ----------------------------------------------------------------
+	
+	let formData = new FormData();
+	
+	formData.append("postId", postId);
+	
+	formData.append("stepNumber", stepNumber);
+	formData.append("content", content);
+	
+	formData.append("stepNumber2", stepNumber2);
+	formData.append("content2", content2);
+	
+	formData.append("stepNumber3", stepNumber3);
+	formData.append("content3", content3);
+	
+	if (imageFile) {
+		formData.append("imageFile", imageFile);
+	}
+	
+	if (imageFile2) {
+	    formData.append("imageFile2", imageFile2);
+	}
+	
+	if (imageFile3) {
+	    formData.append("imageFile3", imageFile3);
+	}
+
+	$.ajax({
+		type: "post",
+		url: "/step/create",
+		data: formData,
+		enctype: "multipart/form-data",
+		processData: false,
+		contentType: false,
+		success: function (response) {
+			if (response.result === "success") {
+				location.href = "/post/myRecipe/view";
+			} else {
+				alert("레시피 절차저장 실패.");
+			}
+		},
+		error: function () {
+			alert("레시피 절차저장 에러");
+		}
+	});
+});
 </script>

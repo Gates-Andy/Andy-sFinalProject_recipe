@@ -29,3 +29,6 @@ spring:
 mybatis:  
   mapper-locations: mappers/*Mapper.xml
 
+server:
+  tomcat:
+    max-part-count: 30

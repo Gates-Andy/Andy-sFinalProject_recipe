@@ -1,11 +1,10 @@
 package com.andy.recipe.like.service;
 
+import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.stereotype.Service;
 
 import com.andy.recipe.like.domain.Like;
 import com.andy.recipe.like.repository.LikeRepository;
-
-import jakarta.persistence.PersistenceException;
 
 @Service
 public class LikeService {

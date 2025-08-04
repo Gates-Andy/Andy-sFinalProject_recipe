@@ -28,5 +28,19 @@
 		#{updatedAt}
 		)
 	</insert>
-
+	
+	<select id="selectByPostId" parameterType="long" resultType="com.andy.recipe.step.domain.Step">
+		SELECT
+		`id`,
+		`postId`,
+		`stepNumber`,
+		`content`,
+		`imagePath`,
+		`createdAt`,
+		`updatedAt`
+		FROM
+		`stepNumber`
+		WHERE
+		`postId` = #{postId}
+	</select>
 </mapper>

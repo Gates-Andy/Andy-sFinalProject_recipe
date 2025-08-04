@@ -26,26 +26,24 @@ public class PostController {
 	@GetMapping("/main/view")
 	public String main(Model model) {
 		/*
-		List<Post> postList = postService.getPostList();
+		 * List<Post> postList = postService.getPostList();
 		 */
-		
+
 		/*
-		List<PostDto> postList = postService.getPostList();
-		
-		model.addAttribute("postList", postList);
+		 * List<PostDto> postList = postService.getPostList();
+		 * 
+		 * model.addAttribute("postList", postList);
 		 */
-		
+
 		List<PostDto> postDtoList = postService.getPostList();
-		
+
 		model.addAttribute("postDtoList", postDtoList);
-		
+
 		return "post/main";
 	}
 
-	@GetMapping("/myRecipe/view")
-	public String myPage(
-			HttpSession session, 
-			Model model) {
+	@GetMapping("/recipes/view")
+	public String recipes(HttpSession session, Model model) {
 
 		Object userIdObj = session.getAttribute("userId");
 		Object loginIdObj = session.getAttribute("loginId");
@@ -53,13 +51,33 @@ public class PostController {
 		long userId = (long) userIdObj;
 		String loginId = (String) loginIdObj;
 		
-		/*
-		List<Post> postList = postService.getPostListByUserId(userId);
-		model.addAttribute("postList", postList);
-		 */
-		
 		List<PostDto> postDtoList = postService.getPostList();
-				
+
+		model.addAttribute("postDtoList", postDtoList);
+		
+		model.addAttribute("userId", userId);
+
+		model.addAttribute("loginId", loginId);
+		
+		return "post/recipes";
+	}
+
+	@GetMapping("/myRecipe/view")
+	public String myPage(HttpSession session, Model model) {
+
+		Object userIdObj = session.getAttribute("userId");
+		Object loginIdObj = session.getAttribute("loginId");
+
+		long userId = (long) userIdObj;
+		String loginId = (String) loginIdObj;
+
+		/*
+		 * List<Post> postList = postService.getPostListByUserId(userId);
+		 * model.addAttribute("postList", postList);
+		 */
+
+		List<PostDto> postDtoList = postService.getPostList();
+
 		model.addAttribute("postDtoList", postDtoList);
 
 		model.addAttribute("userId", userId);
@@ -68,7 +86,7 @@ public class PostController {
 
 		return "post/mypage";
 	}
-	
+
 	@GetMapping("/create/view")
 	public String inputPost(HttpSession session) {
 
@@ -78,5 +96,5 @@ public class PostController {
 
 		return "post/create";
 	}
-	
+
 }

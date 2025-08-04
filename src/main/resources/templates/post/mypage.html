@@ -1,55 +1,56 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{layouts/default}">
+
+<main layout:fragment="contents" class="main-body d-flex">
+
+	<div class="recipe-scroll-area">
 	
-		<main layout:fragment="contents" class="main-body d-flex" >
+		<div class="recipe-container">
 		
-			<div class="recipe-scroll-area">
+			<section class="myrecipe" th:each="postDto : ${postDtoList}">
 			
-				<div class="recipe-container">
-
-					<section class="myrecipe" th:each="postDto : ${postDtoList}">
-					
-						<div class="food-pics" >
-							<img th:src="${postDto.imagePath}">
-						</div>
-						
-						<div class="content">
-							<div class="title" th:text="${'레시피 이름 : ' + postDto.title}"></div>
-							<div class="description" th:utext="${'레시피 간단 설명 : <br>' + postDto.content}"></div>
-							
-							<div class="ingredients">
-								<span>재료 태그 : </span>
-								<span th:each="ingredient : ${postDto.ingredientList}">
-									<span th:utext="${ingredient.ingredientName}"></span>
-								</span>
-							
-							</div>
-							
-							<div class="headcount" th:text="${'인분수 : ' + postDto.headcount + '인분'}"></div>
-							<div class="category" th:text="${'요리 카테고리 :' + postDto.category}"></div>
-						</div>
-						
-						<div class="inputbuttons d-flex justify-content-end ">
-							<a th:href="@{/ingredient/create/view(postId=${postDto.id})}" class="form-control btn-style mr-1">✔ 재료 넣기</a>
-							<a href="/step/create/view" class="form-control btn-style ml-1">✔ 요리과정 및 사진 넣기</a>
-						</div>
-						
-					</section>
-
+				<div class="food-pics">
+					<img th:src="${postDto.imagePath}">
 				</div>
-			</div>
+				
+				<div class="content">
+					<div class="title" th:text="${'레시피 이름 : ' + postDto.title}"></div>
+					<div class="description" th:utext="${'레시피 간단 설명 : <br>' + postDto.content}"></div>
+					<div class="ingredients">
+						<span>재료 태그 : </span> 
+						<span th:each="ingredient : ${postDto.ingredientList}"> 
+							<span th:utext="${ingredient.ingredientName} + ', '"></span>
+						</span>
+					</div>
 
-			<section class="myinfo">
-				<img class="profilepic" src="https://cdn.pixabay.com/photo/2016/09/08/16/44/fire-1654828_1280.jpg" alt="프로필 사진">
-				<div class="infodata">
-					<span th:text="${loginId}"></span>
-					<div class="edit">자기소개 수정</div>
-					<div class="total">총 조회 : 0 팔로우 : 0 팔로워 : 0</div>
+					<div class="headcount" th:text="${'인분수 : ' + postDto.headcount + '인분'}"></div>
+					<div class="category" th:text="${'요리 카테고리 :' + postDto.category}"></div>
 				</div>
-				<a href="/post/create/view" class="createPost">글작성</a>
+
+				<div class="inputbuttons d-flex justify-content-end ">
+					<a th:href="@{/ingredient/create/view(postId=${postDto.id})}"
+						class="form-control btn-style mr-1">✔ 재료 넣기</a> <a
+						th:href="@{/step/create/view(postId=${postDto.id})}"
+						class="form-control btn-style mr-1">✔ 요리과정 및 사진 넣기</a>
+				</div>
+
 			</section>
-		</main>
 
-</body>
+		</div>
+	</div>
+
+	<section class="myinfo">
+		<img class="profilepic"
+			src="https://cdn.pixabay.com/photo/2016/09/08/16/44/fire-1654828_1280.jpg"
+			alt="프로필 사진">
+		<div class="infodata">
+			<span th:text="${loginId}"></span>
+			<div class="edit">자기소개 수정</div>
+			<div class="total">총 조회 : 0 팔로우 : 0 팔로워 : 0</div>
+		</div>
+		<a href="/post/create/view" class="createPost">글작성</a>
+	</section>
+
+</main>
 </html>

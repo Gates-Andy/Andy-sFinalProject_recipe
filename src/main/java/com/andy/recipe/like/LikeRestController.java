@@ -31,7 +31,6 @@ public class LikeRestController {
 
 		if (userIdObj == null) {
 			resultMap.put("result", "fail");
-			resultMap.put("message", "User not logged in");
 			return resultMap;
 		}
 

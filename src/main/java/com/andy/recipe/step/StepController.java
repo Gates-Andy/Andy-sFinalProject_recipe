@@ -13,11 +13,16 @@ import jakarta.servlet.http.HttpSession;
 public class StepController {
 
 	@GetMapping("/create/view")
-	public String createView(@RequestParam("postId") int postId, HttpSession session, Model model) {
+	public String createView(
+			@RequestParam("postId") int postId, 
+			HttpSession session, 
+			Model model) {
 		
 		if (session.getAttribute("userId") == null) {
 			return "redirect:/user/login/view";
 		}
+		
+		model.addAttribute("postId", postId);
 		
 		return "step/input";
 	}

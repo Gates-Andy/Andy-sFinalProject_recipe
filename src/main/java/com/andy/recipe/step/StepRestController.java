@@ -25,9 +25,22 @@ public class StepRestController {
 	}
 
 	@PostMapping("/create")
-	public Map<String, String> createStep(@RequestParam("postId") int postId,
-			@RequestParam("stepNumber") int stepNumber, @RequestParam("content") String content,
-			@RequestParam("imageFile") MultipartFile imageFile, HttpSession session) {
+	public Map<String, String> createStep(
+			@RequestParam("postId") int postId,
+
+			@RequestParam("stepNumber") int stepNumber, 
+			@RequestParam("content") String content,
+			@RequestParam("imageFile") MultipartFile imageFile,
+
+			@RequestParam("stepNumber2") int stepNumber2, 
+			@RequestParam("content") String content2,
+			@RequestParam("imageFile2") MultipartFile imageFile2,
+
+			@RequestParam("stepNumber3") int stepNumber3, 
+			@RequestParam("content") String content3,
+			@RequestParam("imageFile3") MultipartFile imageFile3,
+
+			HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
 
@@ -38,8 +51,12 @@ public class StepRestController {
 		}
 
 		String imagePath = FileManager.saveFile(userId, imageFile);
+		String imagePath2 = FileManager.saveFile(userId, imageFile2);
+		String imagePath3 = FileManager.saveFile(userId, imageFile3);
 
-		if (stepService.addStep(postId, stepNumber, content, imagePath)) {
+		if (stepService.addStep(postId, stepNumber, content, imagePath) 
+				&& stepService.addStep(postId, stepNumber2, content2, imagePath2) 
+				&& stepService.addStep(postId, stepNumber3, content3, imagePath3)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

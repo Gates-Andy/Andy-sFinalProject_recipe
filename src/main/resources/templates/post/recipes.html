@@ -1,0 +1,69 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<main layout:fragment="contents" class="recipes">
+	<div id="wrap" class="main-body">
+	
+		<input type="hidden" id="postId" th:value="${postId}">
+		
+		<section class="recipes-info-left">
+
+			<div class="">
+
+				<article class="myrecipe">
+					<h2 class="menu-title">치킨 카레 밥</h2>
+					<p class="description"> 친구들이 놀러왔을 때 빠르고 쉽게 요리할 수 있어요 ~~~<br> 재료는 오른쪽 요리과정은 사진과 함께 아래에 적어놨어요 </p>
+
+					<div class=""></div>
+					<div class="Step">
+						<h3>Step 1 재료 손질</h3>
+						<p>토마토 깨끗이 씻고 양파 당근 그리고 감자를 이렇~게 썰어주세요.</p>
+						<p>
+							<strong>TIP)</strong> 먹기 좋은 사이즈로 잘라야 카레가 잘 배이고 맛이 좋습니다.
+						</p>
+
+					</div>
+
+					<div class=""> </div>
+					<div class="Step">
+						<h3>Step 2 재료 조리 및 본론</h3>
+						<p>토마토 깨끗이 씻고 양파 당근 그리고 감자를 이렇~게 썰어주세요.</p>
+						<p>
+							<strong>TIP)</strong> 먹기 좋은 사이즈로 잘라야 카레가 잘 배이고 맛이 좋습니다.
+						</p>
+
+					</div>
+					
+					<div class=""> </div>
+					<div class="Step">
+						<h3>Step 3 마무리</h3>
+						<p>추가적인 향신료를 추가해주세요</p>
+						<p>그릇을 이렇게 세팅하면 됩니다.</p>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<div class="recipes-info-right">
+		
+			<div class="ingredient-pic">
+				<img src="https://cdn.pixabay.com/photo/2021/02/27/13/03/meat-6054511_1280.jpg" alt="10호 닭" width=500px;>
+			</div>
+			<p class="ingredients">치킨 10호 소형</p>
+
+			<div class="ingredient-pic">
+				<img src="https://cdn.pixabay.com/photo/2016/08/30/17/45/spice-1631562_1280.jpg" width=500px;>
+			</div>
+			<p class="ingredients">카레 1팩</p>
+
+			<div class="ingredient-pic">
+				<img src="https://cdn.pixabay.com/photo/2018/06/29/13/01/rice-3505977_1280.jpg" width=500px;>
+			</div>
+			<p class="ingredients">밥 2인분</p>
+			
+		</div>
+		
+	</div>
+</main>
+</html>

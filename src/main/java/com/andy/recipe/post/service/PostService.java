@@ -76,7 +76,7 @@ public class PostService {
 
 		return postList;
 	}
-
+	
 	public boolean addPost(long userId, String title, int headcount, String category, String content,
 			String imagePath) {
 
