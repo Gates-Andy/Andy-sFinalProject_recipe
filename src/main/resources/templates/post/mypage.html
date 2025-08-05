@@ -26,13 +26,13 @@
 
 					<div class="headcount" th:text="${'인분수 : ' + postDto.headcount + '인분'}"></div>
 					<div class="category" th:text="${'요리 카테고리 :' + postDto.category}"></div>
+					
 				</div>
 
 				<div class="inputbuttons d-flex justify-content-end ">
-					<a th:href="@{/ingredient/create/view(postId=${postDto.id})}"
-						class="form-control btn-style mr-1">✔ 재료 넣기</a> <a
-						th:href="@{/step/create/view(postId=${postDto.id})}"
-						class="form-control btn-style mr-1">✔ 요리과정 및 사진 넣기</a>
+					<a th:href="@{/ingredient/create/view(postId=${postDto.id})}" class="form-control btn-style mr-1">✔ 재료 넣기</a> 
+					<a th:href="@{/step/create/view(postId=${postDto.id})}" class="form-control btn-style mr-1">✔ 요리과정 및 사진 넣기</a>
+					<a th:href="@{/post/update/view(id=${postDto.id})}" class="form-control btn-style mr-1">✔ 수정하기</a>
 				</div>
 
 			</section>

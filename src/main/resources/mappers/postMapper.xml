@@ -98,4 +98,24 @@
 		)
 	</insert>
 
+	<update id="updatePost"
+		parameterType="com.andy.recipe.post.domain.Post">
+		UPDATE
+		`post`
+		SET
+		`title` = #{title},
+		`headcount` = #{headcount},
+		`content` = #{content},
+		`imagePath` = #{imagePath},
+		`updatedAt` = #{updatedAt}
+		WHERE
+		`id` = #{id}
+	</update>
+
+	<delete id="deletePost" parameterType="long">
+		DELETE FROM
+		`post`
+		WHERE
+		`id` = #{id}
+	</delete>
 </mapper>

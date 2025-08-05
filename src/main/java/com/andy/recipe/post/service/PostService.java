@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.andy.recipe.common.FileManager;
 import com.andy.recipe.ingredient.domain.Ingredient;
 import com.andy.recipe.ingredient.service.IngredientService;
 import com.andy.recipe.post.domain.Post;
@@ -22,7 +24,7 @@ public class PostService {
 	private final PostRepository postRepository;
 	private final UserService userService; // loginId를 얻어오기 위해
 	private final IngredientService ingredientService; // 재료 수량 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
-	private final StepService stepService;
+	private final StepService stepService; // 작업 절차 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
 
 	public PostService(PostRepository postRepository, UserService userService, IngredientService ingredientService,
 			StepService stepService) {
@@ -32,7 +34,7 @@ public class PostService {
 		this.stepService = stepService;
 	}
 
-	public List<PostDto> getPostList() {
+	public List<PostDto> getPostList() { // main 에서 사용할 정보들이 다 보여야하니
 
 		List<Post> postList = postRepository.selectPostList(); // DB에서 모든 게시글(Post 객체들)을 가져온다
 
@@ -55,10 +57,8 @@ public class PostService {
 			dto.setCategory(post.getCategory()); // 카테고리
 			dto.setImagePath(post.getImagePath()); // 이미지 경로를 DTO에 저장
 
-			List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId()); // postId를 파라미터로
-																										// 재료내용(list)룰
-																										// 가져와여기에 저장 한뒤
-																										// dto에 저장
+			List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId());
+			// postId를 파라미터로 재료내용(list)를 가져와여기에 저장 한뒤 dto에 저장
 			dto.setIngredientList(ingredientList);
 
 			postDtoList.add(dto); // 완성된 DTO를 리스트에 추가
@@ -147,4 +147,26 @@ public class PostService {
 		return result == 1;
 	}
 
+	public boolean updatePost(long id, long loginId, String title, int headcount, String content,
+			MultipartFile imageFile) {
+
+		Post post = postRepository.selectPostById(id);
+
+		String imagePath = FileManager.saveFile(loginId, imageFile);
+
+		post.setTitle(title);
+		post.setHeadcount(headcount);
+		post.setContent(content);
+		post.setImagePath(imagePath);
+
+		int result = postRepository.updatePost(post);
+		return result == 1;
+	}
+
+	public boolean deletePost(long id) {
+
+		int result = postRepository.deletePost(id);
+
+		return result == 1;
+	}
 }
