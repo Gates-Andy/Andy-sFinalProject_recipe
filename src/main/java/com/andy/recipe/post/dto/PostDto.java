@@ -15,6 +15,7 @@ public class PostDto {
 	private String imagePath;
 
 	private long id;
+	
 	private List<Ingredient> ingredientList;
 
 	private List<Step> stepList;

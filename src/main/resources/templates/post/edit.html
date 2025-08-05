@@ -4,7 +4,7 @@
 
 <main layout:fragment="contents">
 
-	<div class="edit">
+	<div class="edit" th:each="postDto : ${PostDto}">
 	
 		<input type="hidden" id="postId" th:value="${postDto.id}">
 		
@@ -12,7 +12,6 @@
 			<input type="text" id="titleInput" th:value="${postDto.title}">
 			<input type="number" id="headcountInput" th:value="${postDto.headcount}">
 			<input type="text" id="categoryInput" th:value="${postDto.category}">
-
 		</div>
 
 		<div class="content">
@@ -37,6 +36,29 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script layout:fragment="script">
+
+$("#deletebtn").on("click", function() {
+
+	let id = $("#postId").val();
+
+	$.ajax({
+		type : "delete",
+		url : "/post/delete",
+		data : { "id" : id
+		},
+		success : function(response) {
+			if (response.result === "success") {
+				alert("삭제성공!");
+				location.href = "/post/main/view";
+			} else {
+				alert("삭제 실패");
+			}
+		},
+		error : function() {
+			alert("삭제 에러!");
+		}
+	});
+});
 
 $("#savebtn").on("click", function () {
 	let postId = $("#postId").val();
@@ -68,6 +90,7 @@ $("#savebtn").on("click", function () {
 
 	let formData = new FormData();
 	formData.append("postId", postId);
+	
 	formData.append("title", title);
 	formData.append("headcount", headcount);
 	formData.append("category", category);
@@ -78,7 +101,7 @@ $("#savebtn").on("click", function () {
 	}
 
 	$.ajax({
-		type: "post",
+		type: "put",
 		url: "/post/update",
 		data: formData,
 		enctype: "multipart/form-data",

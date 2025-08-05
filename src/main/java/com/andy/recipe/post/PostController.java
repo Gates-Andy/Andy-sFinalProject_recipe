@@ -52,19 +52,20 @@ public class PostController {
 	}
 	
 	@GetMapping("/update/view")
-	public String updateView(@RequestParam("id") Long id, HttpSession session, Model model) {
+	public String updateView(
+			@RequestParam("id") long id,
+			HttpSession session, 
+			Model model) {
 		
 		Object userIdObj = session.getAttribute("userId");
 		Object loginIdObj = session.getAttribute("loginId");
 		long userId = (long) userIdObj;
 		String loginId = (String) loginIdObj;
-		
-		List<PostDto> postDtoList = postService.getPostList(userId);
-
-		model.addAttribute("postDtoList", postDtoList);
-		
 		model.addAttribute("userId", userId);
 		model.addAttribute("loginId", loginId);
+		
+		PostDto PostDto = postService.getPostById(id);
+		model.addAttribute("PostDto", PostDto);
 		
 		return "post/edit";
 	}

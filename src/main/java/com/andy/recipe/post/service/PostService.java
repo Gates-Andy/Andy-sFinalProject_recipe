@@ -147,19 +147,21 @@ public class PostService {
 		return result == 1;
 	}
 
-	public boolean updatePost(long id, long loginId, String title, int headcount, String content,
-			MultipartFile imageFile) {
+	public boolean updatePost(long id, long loginId, String title, int headcount, String content, MultipartFile imageFile) {
 
 		Post post = postRepository.selectPostById(id);
-
-		String imagePath = FileManager.saveFile(loginId, imageFile);
 
 		post.setTitle(title);
 		post.setHeadcount(headcount);
 		post.setContent(content);
-		post.setImagePath(imagePath);
+
+		if (imageFile != null) {
+			String imagePath = FileManager.saveFile(loginId, imageFile);
+			post.setImagePath(imagePath);
+		}
 
 		int result = postRepository.updatePost(post);
+
 		return result == 1;
 	}
 
