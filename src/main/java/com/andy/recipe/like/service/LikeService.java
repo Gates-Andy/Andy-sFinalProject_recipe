@@ -1,6 +1,5 @@
 package com.andy.recipe.like.service;
 
-import org.apache.ibatis.exceptions.PersistenceException;
 import org.springframework.stereotype.Service;
 
 import com.andy.recipe.like.domain.Like;
@@ -21,19 +20,21 @@ public class LikeService {
 		like.setUserId((int) userId);
 		like.setPostId((int) postId);
 
-		try {
-			likeRepository.insertLike(like);
-		} catch (PersistenceException e) {
-			return false;
-		}
-		return true;
+		int result = likeRepository.insertLike(like);
+
+		return result == 1;
 	}
 
 	public int likeCountByPostId(long postId) {
+		
 		return likeRepository.countByPostId(postId);
+		
 	}
 
-	public boolean isLikePostIdAndUserId(long postId, long loginId) {
-		return likeRepository.existsByPostIdAndLoginId(postId, loginId);
+	public boolean isLikePostIdAndUserId(long postId, long userId) {
+		
+		return likeRepository.existsByPostIdAndUserId(postId, userId);
+		
 	}
+
 }

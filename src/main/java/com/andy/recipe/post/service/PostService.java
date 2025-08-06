@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.andy.recipe.common.FileManager;
 import com.andy.recipe.ingredient.domain.Ingredient;
 import com.andy.recipe.ingredient.service.IngredientService;
+import com.andy.recipe.like.service.LikeService;
 import com.andy.recipe.post.domain.Post;
 import com.andy.recipe.post.dto.PostDto;
 import com.andy.recipe.post.repository.PostRepository;
@@ -25,13 +26,15 @@ public class PostService {
 	private final UserService userService; // loginId를 얻어오기 위해
 	private final IngredientService ingredientService; // 재료 수량 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
 	private final StepService stepService; // 작업 절차 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
+	private final LikeService likeService;
 
 	public PostService(PostRepository postRepository, UserService userService, IngredientService ingredientService,
-			StepService stepService) {
+			StepService stepService, LikeService likeService) {
 		this.postRepository = postRepository;
 		this.userService = userService;
 		this.ingredientService = ingredientService;
 		this.stepService = stepService;
+		this.likeService = likeService;
 	}
 
 	public List<PostDto> getPostList() { // main 에서 사용할 정보들이 다 보여야하니
@@ -88,7 +91,7 @@ public class PostService {
 
 			List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId());
 			dto.setIngredientList(ingredientList);
-
+			
 			postDtoList.add(dto);
 		}
 
@@ -117,7 +120,13 @@ public class PostService {
 
 		List<Step> stepList = stepService.getStepsByPostId(post.getId());
 		dto.setStepList(stepList);
-
+		
+		int likeCount = likeService.likeCountByPostId(post.getId());
+		dto.setLikeCount(likeCount);
+		
+//		boolean isLiked = likeService.isLikePostIdAndUserId(post.getId(), userId);
+//		dto.setLike(isLiked); 이건 집에서 수정을 해야할듯
+		
 		return dto;
 	}
 
@@ -147,7 +156,8 @@ public class PostService {
 		return result == 1;
 	}
 
-	public boolean updatePost(long id, long loginId, String title, int headcount, String content, MultipartFile imageFile) {
+	public boolean updatePost(long id, long loginId, String title, int headcount, String content,
+			MultipartFile imageFile) {
 
 		Post post = postRepository.selectPostById(id);
 

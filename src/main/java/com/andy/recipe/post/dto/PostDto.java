@@ -15,10 +15,29 @@ public class PostDto {
 	private String imagePath;
 
 	private long id;
-	
+
 	private List<Ingredient> ingredientList;
 
 	private List<Step> stepList;
+
+	private int likeCount;
+	private boolean isLike;
+
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+
+	public boolean isLike() {
+		return isLike;
+	}
+
+	public void setLike(boolean isLike) {
+		this.isLike = isLike;
+	}
 
 	public List<Step> getStepList() {
 		return stepList;

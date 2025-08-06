@@ -27,25 +27,13 @@ public class LikeRestController {
 
 		Map<String, String> resultMap = new HashMap<>();
 
-		Object userIdObj = session.getAttribute("userId");
-
-		if (userIdObj == null) {
-			resultMap.put("result", "fail");
-			return resultMap;
-		}
-
-		long userId = (long) userIdObj;
+		long userId = (long) session.getAttribute("userId");
 
 		if (likeService.addLike(userId, postId)) {
-
 			resultMap.put("result", "success");
-
 		} else {
-
 			resultMap.put("result", "fail");
-
 		}
-
 		return resultMap;
 	}
 }

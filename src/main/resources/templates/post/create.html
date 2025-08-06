@@ -86,7 +86,7 @@ $("#savebtn").on("click", function () {
 		contentType: false,
 		success: function (response) {
 			if (response.result === "success") {
-				location.href = "/post/main/view";
+				location.href = "/post/myRecipe/view";
 			} else {
 				alert("레시피 저장 실패.");
 			}

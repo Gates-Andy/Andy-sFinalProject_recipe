@@ -27,13 +27,16 @@ public class StepRestController {
 	@PostMapping("/create")
 	public Map<String, String> createStep(@RequestParam("postId") int postId,
 
-			@RequestParam("stepNumber") int stepNumber, @RequestParam("content") String content,
+			@RequestParam("stepNumber") int stepNumber, 
+			@RequestParam("content") String content,
 			@RequestParam("imageFile") MultipartFile imageFile,
 
-			@RequestParam("stepNumber2") int stepNumber2, @RequestParam("content") String content2,
+			@RequestParam("stepNumber2") int stepNumber2, 
+			@RequestParam("content2") String content2,
 			@RequestParam("imageFile2") MultipartFile imageFile2,
 
-			@RequestParam("stepNumber3") int stepNumber3, @RequestParam("content") String content3,
+			@RequestParam("stepNumber3") int stepNumber3, 
+			@RequestParam("content3") String content3,
 			@RequestParam("imageFile3") MultipartFile imageFile3,
 
 			HttpSession session) {

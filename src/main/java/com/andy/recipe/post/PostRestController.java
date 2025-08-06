@@ -79,15 +79,10 @@ public class PostRestController {
 		Map<String, String> resultMap = new HashMap<>();
 		
 		if (postService.deletePost(id)) {
-			
 			resultMap.put("result", "success");
-			
 		} else {
-			
 			resultMap.put("result", "fail");
-			
 		}
-		
 		return resultMap;
 	}
 

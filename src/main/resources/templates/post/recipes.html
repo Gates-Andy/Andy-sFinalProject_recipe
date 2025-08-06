@@ -9,7 +9,10 @@
 		<div class="recipesthym" th:each="postDto : ${postDto}">
 
 			<section class="recipes-info-left">
+
 				<article class="myrecipe">
+
+					<h2 class="menu-pic" th:src="${postDto.imagePath}"></h2>
 
 					<h2 class="menu-title" th:text="${postDto.title}"></h2>
 
@@ -46,7 +49,53 @@
 
 			</div>
 		</div>
-
 	</div>
+
+		<div class="icons d-flex justify-content-start align-items-center">
+
+			<i th:unless="${postDto.isLike}" class="bi bi-heart text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
+            <i th:if="${postDto.isLike}" class="bi bi-heart-fill text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
+			<span th:text="${postDto.likeCount}"></span>
+			
+			<input type="text" class="form-control col-10" placeholder="댓글을 등록 해주세요">
+			<!-- 댓글 입력 ajax 보내기 -->
+			<button type="button" class="form-control col-1">등록</button>
+			<!-- 댓글 입력 ajax 보내기 -->
+		</div>
+		
+		<div class="">
+			<div>사용자1 : 정말 최고에요 </div>
+			<div>사용자2 : 역시나		</div>	
+			<div>사용자3 : 정말 웩이에요 </div>
+			<div>사용자4 : 존시나		</div>	
+		</div>
 </main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script layout:fragment="script">
+
+	$(".heartIcon").on("click", function() {
+		
+	     let postId = $(this).data("post-id");
+
+		$.ajax({
+			type : "post",
+			url : "/post/like",
+			data : {
+				"postId" : postId
+			},
+			success : function(response) {
+				if (response.result == "success") {
+					location.reload();
+				} else {
+					alert("좋아요 실패!!!");
+				}
+			},
+			error : function() {
+				alert("좋아요 애러!!!");
+			}
+		});
+	});
+</script>
 </html>
