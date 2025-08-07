@@ -30,13 +30,4 @@
 		WHERE
 		`postId` = #{postId}
 	</select>
-
-	<select id="existsByUserIdAndPostId" resultType="int">
-		SELECT COUNT(*) FROM
-		`post_like`
-		WHERE
-		`userId` = #{userId}
-		AND
-		`postId` = #{postId}
-	</select>
 </mapper>

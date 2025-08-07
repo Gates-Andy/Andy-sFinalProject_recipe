@@ -98,7 +98,7 @@ public class PostService {
 		return postDtoList;
 	}
 
-	public PostDto getPostById(long postId, long userId) {
+	public PostDto getPostById(long postId) {
 
 		Post post = postRepository.selectPostById(postId);
 
@@ -123,9 +123,6 @@ public class PostService {
 
 		int likeCount = likeService.likeCountByPostId(post.getId());
 		dto.setLikeCount(likeCount);
-
-		boolean isLiked = likeService.isUserLikedPost(userId, postId);
-		dto.setLiked(isLiked);
 
 		return dto;
 	}

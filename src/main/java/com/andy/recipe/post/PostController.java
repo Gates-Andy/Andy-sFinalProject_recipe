@@ -37,15 +37,7 @@ public class PostController {
 	@GetMapping("/recipes/view")
 	public String recipes(@RequestParam("id") Long id, Model model, HttpSession session) {
 
-		Object userIdObj = session.getAttribute("userId");
-		if (userIdObj == null) {
-			return "redirect:/user/login/view";
-		}
-		long userId = ((Number) userIdObj).longValue();
-
-		model.addAttribute("userId", userId);
-
-		PostDto postDto = postService.getPostById(id, userId);
+		PostDto postDto = postService.getPostById(id);
 
 		model.addAttribute("postDto", postDto);
 
@@ -76,11 +68,7 @@ public class PostController {
 		long userId = (long) userIdObj;
 		model.addAttribute("userId", userId);
 
-		Object loginIdObj = session.getAttribute("loginId");
-		String loginId = (String) loginIdObj;
-		model.addAttribute("loginId", loginId);
-
-		PostDto PostDto = postService.getPostById(id, userId);
+		PostDto PostDto = postService.getPostById(id);
 		model.addAttribute("PostDto", PostDto);
 
 		return "post/edit";
