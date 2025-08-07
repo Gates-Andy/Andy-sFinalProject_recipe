@@ -21,7 +21,15 @@ public class PostDto {
 	private List<Step> stepList;
 
 	private int likeCount;
-	private boolean isLike;
+	private boolean liked;
+
+	public boolean isLiked() {
+		return liked;
+	}
+
+	public void setLiked(boolean liked) {
+		this.liked = liked;
+	}
 
 	public int getLikeCount() {
 		return likeCount;
@@ -29,14 +37,6 @@ public class PostDto {
 
 	public void setLikeCount(int likeCount) {
 		this.likeCount = likeCount;
-	}
-
-	public boolean isLike() {
-		return isLike;
-	}
-
-	public void setLike(boolean isLike) {
-		this.isLike = isLike;
 	}
 
 	public List<Step> getStepList() {

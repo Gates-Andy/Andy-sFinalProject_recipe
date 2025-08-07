@@ -7,10 +7,10 @@ import com.andy.recipe.like.domain.Like;
 
 @Mapper
 public interface LikeRepository {
-	
+
 	int insertLike(Like like);
 
 	int countByPostId(@Param("postId") Long postId);
-
-	boolean existsByPostIdAndUserId(@Param("postId") Long postId, @Param("userId") Long userId);
+	
+	int existsByUserIdAndPostId(@Param("userId") int userId, @Param("postId") int postId);
 }

@@ -3,41 +3,40 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.andy.recipe.like.repository.LikeRepository">
+<mapper
+	namespace="com.andy.recipe.like.repository.LikeRepository">
 
-	<insert id="insertLike" parameterType="com.andy.recipe.like.domain.Like">
-		INSERT 
-		INTO 
-		`post_like` 
+	<insert id="insertLike"
+		parameterType="com.andy.recipe.like.domain.Like">
+		INSERT
+		INTO
+		`post_like`
 		(
-		`userId`, 
-		`postId`, 
+		`userId`,
+		`postId`,
 		`createdAt`
 		)
-		VALUES 
+		VALUES
 		(
-		#{userId}, 
-		#{postId}, 
+		#{userId},
+		#{postId},
 		NOW()
 		)
 	</insert>
-	
+
 	<select id="countByPostId" parameterType="long" resultType="int">
-		SELECT COUNT(*) FROM 
-		`post_like` 
-		WHERE 
+		SELECT COUNT(*) FROM
+		`post_like`
+		WHERE
 		`postId` = #{postId}
 	</select>
 
-	<select id="existsByPostIdAndUserId" resultType="boolean">
-		SELECT EXISTS (
-		SELECT 1 FROM 
-		`post_like` 
-		WHERE 
-		`postId` = #{postId} 
-		AND 
+	<select id="existsByUserIdAndPostId" resultType="int">
+		SELECT COUNT(*) FROM
+		`post_like`
+		WHERE
 		`userId` = #{userId}
-		)
+		AND
+		`postId` = #{postId}
 	</select>
-
 </mapper>

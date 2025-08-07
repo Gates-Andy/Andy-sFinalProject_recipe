@@ -49,12 +49,13 @@
 
 			</div>
 		</div>
+		
 	</div>
 
-		<div class="icons d-flex justify-content-start align-items-center">
+		<div class="icons d-flex justify-content-start align-items-center"">
 
-			<i th:unless="${postDto.isLike}" class="bi bi-heart text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
-            <i th:if="${postDto.isLike}" class="bi bi-heart-fill text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
+			<i th:unless="${postDto.liked}" class="bi bi-heart text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
+			<i th:if="${postDto.liked}" class="bi bi-heart-fill text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
 			<span th:text="${postDto.likeCount}"></span>
 			
 			<input type="text" class="form-control col-10" placeholder="댓글을 등록 해주세요">

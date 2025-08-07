@@ -35,9 +35,17 @@ public class PostController {
 	}
 
 	@GetMapping("/recipes/view")
-	public String recipes(@RequestParam("id") Long id, Model model) {
+	public String recipes(@RequestParam("id") Long id, Model model, HttpSession session) {
 
-		PostDto postDto = postService.getPostById(id); // 특정 포스트 번호의 모든 정보(객체)를 다 가져와
+		Object userIdObj = session.getAttribute("userId");
+		if (userIdObj == null) {
+			return "redirect:/user/login/view";
+		}
+		long userId = ((Number) userIdObj).longValue();
+
+		model.addAttribute("userId", userId);
+
+		PostDto postDto = postService.getPostById(id, userId);
 
 		model.addAttribute("postDto", postDto);
 
@@ -67,12 +75,12 @@ public class PostController {
 		Object userIdObj = session.getAttribute("userId");
 		long userId = (long) userIdObj;
 		model.addAttribute("userId", userId);
-		
+
 		Object loginIdObj = session.getAttribute("loginId");
 		String loginId = (String) loginIdObj;
 		model.addAttribute("loginId", loginId);
 
-		PostDto PostDto = postService.getPostById(id);
+		PostDto PostDto = postService.getPostById(id, userId);
 		model.addAttribute("PostDto", PostDto);
 
 		return "post/edit";
@@ -80,11 +88,11 @@ public class PostController {
 
 	@GetMapping("/create/view")
 	public String inputPost(HttpSession session) {
-		
+
 		if (session.getAttribute("userId") == null) {
 			return "redirect:/user/login/view";
 		}
-		
+
 		return "post/create";
 	}
 

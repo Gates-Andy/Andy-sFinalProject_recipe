@@ -26,15 +26,16 @@ public class LikeService {
 	}
 
 	public int likeCountByPostId(long postId) {
-		
+
 		return likeRepository.countByPostId(postId);
-		
+
 	}
 
-	public boolean isLikePostIdAndUserId(long postId, long userId) {
-		
-		return likeRepository.existsByPostIdAndUserId(postId, userId);
-		
+	public boolean isUserLikedPost(long userId, long postId) {
+
+		int result = likeRepository.existsByUserIdAndPostId((int) userId, (int) postId);
+
+		return result == 1;
 	}
 
 }

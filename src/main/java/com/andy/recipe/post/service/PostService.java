@@ -91,18 +91,18 @@ public class PostService {
 
 			List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId());
 			dto.setIngredientList(ingredientList);
-			
+
 			postDtoList.add(dto);
 		}
 
 		return postDtoList;
 	}
 
-	public PostDto getPostById(long id) {
+	public PostDto getPostById(long postId, long userId) {
 
-		Post post = postRepository.selectPostById(id); // post id 를 파라미터로 하나 통째로 가져올거고
+		Post post = postRepository.selectPostById(postId);
 
-		PostDto dto = new PostDto(); // dto 객체를 반들어
+		PostDto dto = new PostDto();
 
 		User user = userService.getUserById(post.getUserId());
 		dto.setLoginId(user.getLoginId());
@@ -120,13 +120,13 @@ public class PostService {
 
 		List<Step> stepList = stepService.getStepsByPostId(post.getId());
 		dto.setStepList(stepList);
-		
+
 		int likeCount = likeService.likeCountByPostId(post.getId());
 		dto.setLikeCount(likeCount);
-		
-//		boolean isLiked = likeService.isLikePostIdAndUserId(post.getId(), userId);
-//		dto.setLike(isLiked); 이건 집에서 수정을 해야할듯
-		
+
+		boolean isLiked = likeService.isUserLikedPost(userId, postId);
+		dto.setLiked(isLiked);
+
 		return dto;
 	}
 
