@@ -3,26 +3,26 @@ package com.andy.recipe.comment.domain;
 import java.sql.Timestamp;
 
 public class Comment {
-	private int id;
-	private int userId;
+	private long id;
+	private long userId;
 	private int postId;
 	private String text;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public int getUserId() {
+	public long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 

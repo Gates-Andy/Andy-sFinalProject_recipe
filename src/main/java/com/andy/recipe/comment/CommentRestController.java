@@ -27,21 +27,17 @@ public class CommentRestController {
 			HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
+
 		Object userIdObj = session.getAttribute("userId");
 
-		if (userIdObj == null) {
-			resultMap.put("result", "fail");
-			resultMap.put("message", "User not logged in");
-			return resultMap;
-		}
-
-		int userId = (int) userIdObj;
+		long userId = (long) userIdObj;
 
 		if (commentService.addComment(userId, postId, text)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
 		}
+
 		return resultMap;
 	}
 }

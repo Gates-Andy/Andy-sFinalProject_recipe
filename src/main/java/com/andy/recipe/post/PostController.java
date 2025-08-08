@@ -34,16 +34,6 @@ public class PostController {
 
 	}
 
-	@GetMapping("/recipes/view")
-	public String recipes(@RequestParam("id") Long id, Model model, HttpSession session) {
-
-		PostDto postDto = postService.getPostById(id);
-
-		model.addAttribute("postDto", postDto);
-
-		return "post/recipes";
-	}
-
 	@GetMapping("/myRecipe/view")
 	public String myPage(HttpSession session, Model model) {
 
@@ -61,15 +51,25 @@ public class PostController {
 		return "post/mypage";
 	}
 
+	@GetMapping("/recipes/view")
+	public String recipes(@RequestParam("id") Long id, Model model, HttpSession session) {
+
+		long userId = (long) session.getAttribute("userId");
+
+		PostDto postDto = postService.getPostById(id, userId);
+
+		model.addAttribute("postDto", postDto);
+		model.addAttribute("userId", userId);
+
+		return "post/recipes";
+	}
+
 	@GetMapping("/update/view")
 	public String updateView(@RequestParam("id") long id, HttpSession session, Model model) {
 
-		Object userIdObj = session.getAttribute("userId");
-		long userId = (long) userIdObj;
-		model.addAttribute("userId", userId);
 
-		PostDto PostDto = postService.getPostById(id);
-		model.addAttribute("PostDto", PostDto);
+		PostDto postDto = postService.getPostById(id);
+		model.addAttribute("postDto", postDto);
 
 		return "post/edit";
 	}

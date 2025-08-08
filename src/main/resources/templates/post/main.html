@@ -23,7 +23,7 @@
 
 			<div class="ingredients">
 				<span>재료 태그 : </span> 
-				<span th:each="ingredient : ${postDto.ingredientList}"> 
+					<span th:each="ingredient : ${postDto.ingredientList}"> 
 					<span th:utext="${ingredient.ingredientName + ', '}"></span>
 				</span>
 			</div>

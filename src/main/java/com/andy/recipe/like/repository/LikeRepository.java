@@ -10,5 +10,9 @@ public interface LikeRepository {
 
 	int insertLike(Like like);
 
+	int deleteLike(@Param("userId") long userId, @Param("postId") long postId);
+	
 	int countByPostId(@Param("postId") Long postId);
+
+	boolean existsByPostIdAndUserId(long postId, long userId);
 }

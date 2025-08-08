@@ -25,9 +25,26 @@ public class LikeService {
 		return result == 1;
 	}
 
+	public boolean removeLike(long userId, long postId) {
+
+		Like like = new Like();
+		like.setUserId((int) userId);
+		like.setPostId((int) postId);
+
+		int result = likeRepository.deleteLike(userId, postId);
+
+		return result == 1;
+	}
+
 	public int likeCountByPostId(long postId) {
 
 		return likeRepository.countByPostId(postId);
+
+	}
+
+	public boolean isPostLikedByUser(long postId, long userId) {
+
+		return likeRepository.existsByPostIdAndUserId(postId, userId);
 
 	}
 

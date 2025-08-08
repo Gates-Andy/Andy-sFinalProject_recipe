@@ -36,4 +36,20 @@ public class LikeRestController {
 		}
 		return resultMap;
 	}
+
+	@PostMapping("/dislike")
+	public Map<String, String> removeLike(@RequestParam("postId") long postId, HttpSession session) {
+
+		Map<String, String> resultMap = new HashMap<>();
+
+		long userId = (long) session.getAttribute("userId");
+
+		if (likeService.removeLike(userId, postId)) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+		}
+		return resultMap;
+	}
+
 }

@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.andy.recipe.comment.domain.Comment;
+import com.andy.recipe.comment.service.CommentService;
 import com.andy.recipe.common.FileManager;
 import com.andy.recipe.ingredient.domain.Ingredient;
 import com.andy.recipe.ingredient.service.IngredientService;
@@ -27,14 +29,16 @@ public class PostService {
 	private final IngredientService ingredientService; // 재료 수량 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
 	private final StepService stepService; // 작업 절차 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
 	private final LikeService likeService;
-
+	private final CommentService commentService;
+	
 	public PostService(PostRepository postRepository, UserService userService, IngredientService ingredientService,
-			StepService stepService, LikeService likeService) {
+			StepService stepService, LikeService likeService, CommentService commentService) {
 		this.postRepository = postRepository;
 		this.userService = userService;
 		this.ingredientService = ingredientService;
 		this.stepService = stepService;
 		this.likeService = likeService;
+		this.commentService = commentService;
 	}
 
 	public List<PostDto> getPostList() { // main 에서 사용할 정보들이 다 보여야하니
@@ -97,8 +101,34 @@ public class PostService {
 
 		return postDtoList;
 	}
+	
+	public PostDto getPostById(long id) {
 
-	public PostDto getPostById(long postId) {
+		Post post = postRepository.selectPostById(id);
+
+		PostDto dto = new PostDto();
+
+		User user = userService.getUserById(post.getUserId());
+		dto.setLoginId(user.getLoginId());
+
+		dto.setId(post.getId());
+		dto.setUserId(post.getUserId());
+		dto.setTitle(post.getTitle());
+		dto.setContent(post.getContent());
+		dto.setHeadcount(post.getHeadcount());
+		dto.setCategory(post.getCategory());
+		dto.setImagePath(post.getImagePath());
+
+		List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId());
+		dto.setIngredientList(ingredientList);
+
+		List<Step> stepList = stepService.getStepsByPostId(post.getId());
+		dto.setStepList(stepList);
+		
+		return dto;
+	}
+	
+	public PostDto getPostById(long postId, long currentUserId) {
 
 		Post post = postRepository.selectPostById(postId);
 
@@ -123,7 +153,13 @@ public class PostService {
 
 		int likeCount = likeService.likeCountByPostId(post.getId());
 		dto.setLikeCount(likeCount);
-
+		
+		boolean likedByCurrentUser = likeService.isPostLikedByUser(postId, currentUserId);
+		dto.setLikedByCurrentUser(likedByCurrentUser);
+		
+		List<Comment> commentList = commentService.getCommentListByPostId(post.getId());
+		dto.setCommentList(commentList);
+		
 		return dto;
 	}
 

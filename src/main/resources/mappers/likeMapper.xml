@@ -23,11 +23,35 @@
 		NOW()
 		)
 	</insert>
-
+	
+	 <delete id="deleteLike">
+        DELETE 
+        FROM 
+        `post_like`
+        WHERE 
+        `userId` = #{userId} 
+        AND 
+        `postId` = #{postId}
+    </delete>
+    
 	<select id="countByPostId" parameterType="long" resultType="int">
 		SELECT COUNT(*) FROM
 		`post_like`
 		WHERE
 		`postId` = #{postId}
+	</select>
+
+	<select id="existsByPostIdAndUserId" resultType="boolean">
+		SELECT EXISTS 
+		(
+		SELECT 
+		1 
+		FROM 
+		`post_like`
+		WHERE 
+		`postId` = #{postId} 
+		AND 
+		`userId` = #{userId}
+		)
 	</select>
 </mapper>

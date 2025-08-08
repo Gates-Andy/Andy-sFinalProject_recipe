@@ -15,24 +15,29 @@ public class CommentService {
 		this.commentRepository = commentRepository;
 	}
 
-	public boolean addComment(int userId, int postId, String text) {
+	public boolean addComment(long userId, int postId, String text) {
 
 		Comment comment = new Comment();
-		comment.setUserId(userId);
-		comment.setPostId(postId);
+		comment.setUserId((int) userId);
+		comment.setPostId((int) postId);
 		comment.setText(text);
 
 		int result = commentRepository.insertComment(comment);
 		
-		return result > 0;
+		return result == 1;
 	}
-
-	public List<Comment> getCommentListByPostId(int postId) {
-		return commentRepository.findCommentsByPostId(postId);
-	}
-
+	
 	public boolean deleteComment(int id) {
-		return commentRepository.deleteCommentById(id) > 0;
+		
+		int result = commentRepository.deleteCommentById(id);
+		
+		return result == 1;
+	}
+
+	public List<Comment> getCommentListByPostId(long postId) {
+		
+		return commentRepository.findCommentsByPostId(postId);
+		
 	}
 
 }

@@ -6,13 +6,14 @@
 
 	<div id="wrap" class="main-body">
 
-		<div class="recipesthym" th:each="postDto : ${postDto}">
+		<div class="recipesthym">
 
 			<section class="recipes-info-left">
 
 				<article class="myrecipe">
 
-					<img class="menu-pic" th:src="${postDto.imagePath}" alt="완성 음식" width="100px">
+					<img class="menu-pic" th:src="${postDto.imagePath}" alt="완성 음식"
+						width="100px">
 
 					<h2 class="menu-title" th:text="${postDto.title}"></h2>
 
@@ -49,54 +50,102 @@
 
 			</div>
 		</div>
-		
+
 	</div>
 
-		<div class="icons d-flex justify-content-start align-items-center">
+	<div class="icons d-flex justify-content-start align-items-center">
 
-			<i th:unless="${postDto.liked}" class="bi bi-heart text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
-			<i th:if="${postDto.liked}" class="bi bi-heart-fill text-danger heartIcon" th:data-post-id="${postDto.id}"></i>
-			<span th:text="${postDto.likeCount}"></span>
-			
-			<input type="text" class="form-control col-10" placeholder="댓글을 등록 해주세요">
-			<!-- 댓글 입력 ajax 보내기 -->
-			<button type="button" class="form-control col-1">등록</button>
-			<!-- 댓글 입력 ajax 보내기 -->
+		<i th:unless="${postDto.likedByCurrentUser}" class="bi bi-heart text-danger heartIcon" th:data-post-id="${postDto.id}"></i> 
+		<i th:if="${postDto.likedByCurrentUser}" class="bi bi-heart-fill text-danger heartIcon" th:data-post-id="${postDto.id}"></i> 
+		<span th:text="${postDto.likeCount}"></span> 
+		<input type="text" class="form-control col-10 comment-text" id="text" placeholder="댓글을 등록 해주세요">
+
+		<button type="button" class="form-control comment-submit" th:data-post-id="${postDto.id}" >등록</button>
+
+	</div>
+
+	<div class="comments">
+		<div th:each="comment : ${postDto.commentList}">
+			<span th:text="${comment.userId}">사용자</span> : 
+			<span th:text="${comment.text}">댓글 내용</span>
 		</div>
-		
-		<div class="">
-			<div>사용자1 : 정말 최고에요 </div>
-			<div>사용자2 : 역시나		</div>	
-			<div>사용자3 : 정말 웩이에요 </div>
-			<div>사용자4 : 존시나		</div>	
-		</div>
+	</div>
+
 </main>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
 
 <script layout:fragment="script">
-
-	$(".heartIcon").on("click", function() {
+	$(".comment-submit").on("click", function() {
 		
-	     let postId = $(this).data("post-id");
-
+		let postId = $(this).data("post-id");
+    	let text = $("#text").val();
+		
 		$.ajax({
 			type : "post",
-			url : "/post/like",
+			url : "/post/comment/create",
 			data : {
-				"postId" : postId
+				postId : postId,
+				text : text
 			},
 			success : function(response) {
-				if (response.result == "success") {
+				if (response.result === "success") {
 					location.reload();
 				} else {
-					alert("좋아요 실패!!!");
+					alert("댓글 실패");
 				}
 			},
 			error : function() {
-				alert("좋아요 애러!!!");
+				alert("댓글 에러!");
 			}
 		});
+	});
+
+	$(".heartIcon").on("click", function() {
+
+		let postId = $(this).data("post-id");
+
+		if ($(this).hasClass("bi-heart-fill")) {
+			$.ajax({
+				type : "post",
+				url : "/post/dislike",
+				data : {
+					postId : postId
+				},
+				success : function(response) {
+					if (response.result === "success") {
+						location.reload();
+					} else {
+						alert("좋아요 취소 실패!");
+					}
+				},
+				error : function() {
+					alert("좋아요 취소 에러!");
+				}
+			});
+		}
+
+		else {
+			$.ajax({
+				type : "post",
+				url : "/post/like",
+				data : {
+					postId : postId
+				},
+				success : function(response) {
+					if (response.result === "success") {
+						location.reload();
+					} else {
+						alert("좋아요 실패!");
+					}
+				},
+				error : function() {
+					alert("좋아요 에러!");
+				}
+			});
+		}
 	});
 </script>
 </html>

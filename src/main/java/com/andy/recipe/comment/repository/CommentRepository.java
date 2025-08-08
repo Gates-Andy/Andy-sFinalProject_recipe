@@ -12,8 +12,8 @@ public interface CommentRepository {
 	
 	int insertComment(Comment comment);
 
-	List<Comment> findCommentsByPostId(@Param("postId") int postId);
-
 	int deleteCommentById(@Param("id") int id);
-	
+
+	List<Comment> findCommentsByPostId(@Param("postId") long postId);
+
 }

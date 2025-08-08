@@ -2,6 +2,7 @@ package com.andy.recipe.post.dto;
 
 import java.util.List;
 
+import com.andy.recipe.comment.domain.Comment;
 import com.andy.recipe.ingredient.domain.Ingredient;
 import com.andy.recipe.step.domain.Step;
 
@@ -21,14 +22,24 @@ public class PostDto {
 	private List<Step> stepList;
 
 	private int likeCount;
-	private boolean liked;
+	private boolean likedByCurrentUser;
 
-	public boolean isLiked() {
-		return liked;
+	private List<Comment> commentList;
+
+	public List<Comment> getCommentList() {
+		return commentList;
 	}
 
-	public void setLiked(boolean liked) {
-		this.liked = liked;
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
+
+	public boolean isLikedByCurrentUser() {
+		return likedByCurrentUser;
+	}
+
+	public void setLikedByCurrentUser(boolean likedByCurrentUser) {
+		this.likedByCurrentUser = likedByCurrentUser;
 	}
 
 	public int getLikeCount() {

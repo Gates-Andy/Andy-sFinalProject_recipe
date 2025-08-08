@@ -2,39 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.andy.recipe.comment.repository.CommentRepository">
+<mapper
+	namespace="com.andy.recipe.comment.repository.CommentRepository">
 
-	<insert id="insertComment" parameterType="com.andy.recipe.comment.domain.Comment">
+	<insert id="insertComment"
+		parameterType="com.andy.recipe.comment.domain.Comment">
 		INSERT INTO `post_comment` (
-			`userId`,
-			`postId`,
-			`comment`
+		`userId`,
+		`postId`,
+		`text`
 		) VALUES (
-			#{userId},
-			#{postId},
-			#{comment}
+		#{userId},
+		#{postId},
+		#{text}
 		)
 	</insert>
 
-	<select id="findCommentsByPostId" resultType="com.andy.recipe.comment.domain.Comment">
+	<select id="findCommentsByPostId"
+		resultType="com.andy.recipe.comment.domain.Comment">
 		SELECT
-			id,
-			userId,
-			postId,
-			comment,
-			createdAt,
-			updatedAt
+		`id`,
+		`userId`,
+		`postId`,
+		`text`,
+		`createdAt`,
+		`updatedAt`
 		FROM
-			post_comment
+		`post_comment`
 		WHERE
-			postId = #{postId}
+		`postId` = #{postId}
 		ORDER BY
-			createdAt
+		`createdAt`
 	</select>
 
 	<delete id="deleteCommentById">
-		DELETE FROM `post_comment`
-		WHERE `id` = #{id}
+		DELETE FROM
+		`post_comment`
+		WHERE
+		`id` = #{id}
 	</delete>
 
 </mapper>
