@@ -19,8 +19,8 @@
 					<div class="description" th:utext="${'레시피 간단 설명 : <br>' + postDto.content}"></div>
 					<div class="ingredients">
 						<span>재료 태그 : </span> 
-						<span th:each="ingredient : ${postDto.ingredientList}"> 
-							<span th:utext="${ingredient.ingredientName} + ', '"></span>
+						<span th:each="ingredient,stat : ${postDto.ingredientList}"> 
+							<span th:utext="${ingredient.ingredientName} + (stat.last ? '' : ', ')"></span>
 						</span>
 					</div>
 

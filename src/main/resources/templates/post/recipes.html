@@ -21,11 +21,9 @@
 
 					<div class="steps">
 						<h3>🍽 요리 순서</h3>
-						<div th:each="step : ${postDto.stepList}" class="step-box"
-							style="margin-bottom: 32px;">
+						<div th:each="step : ${postDto.stepList}" class="step-box" style="margin-bottom: 32px;">
 							<h4 th:text="'STEP ' + ${step.stepNumber}"></h4>
-							<img th:src="${step.imagePath}" alt="단계 이미지"
-								style="width: 100%; max-width: 500px; height: auto; border-radius: 8px; margin-bottom: 16px;" />
+							<img th:src="${step.imagePath}" alt="단계 이미지" style="width: 100%; max-width: 500px; height: auto; border-radius: 8px; margin-bottom: 16px;" />
 							<p th:text="${step.content}" style="font-size: 18px;"></p>
 						</div>
 					</div>
@@ -38,12 +36,14 @@
 
 				<div class="ingredients">
 					<h4>🍳 재료 목록</h4>
-					<div th:each="ingredient : ${postDto.ingredientList}"
-						class="ingredient-box">
+					<div th:each="ingredient : ${postDto.ingredientList}" class="ingredient-box">
 						<img th:src="${ingredient.imagePath}" alt="재료 이미지">
 						<div>
-							<span th:text="${ingredient.ingredientName}">재료명</span> - <span
-								th:text="${ingredient.ingredientAmount}">수량</span>
+							<span th:text="${ingredient.ingredientName}">재료명</span> 
+							
+														- 
+														
+							<span th:text="${ingredient.ingredientAmount}">수량</span>
 						</div>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 
 	<div class="comments">
 		<div th:each="comment : ${postDto.commentList}">
-			<span th:text="${comment.userId}">사용자</span> : 
+			<span th:text="${comment.userName}"></span> : 
 			<span th:text="${comment.text}">댓글 내용</span>
 		</div>
 	</div>

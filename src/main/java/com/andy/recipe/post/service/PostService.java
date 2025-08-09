@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.andy.recipe.comment.domain.Comment;
+import com.andy.recipe.comment.dto.CommentDto;
 import com.andy.recipe.comment.service.CommentService;
 import com.andy.recipe.common.FileManager;
 import com.andy.recipe.ingredient.domain.Ingredient;
@@ -67,7 +67,10 @@ public class PostService {
 			List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId());
 			// postId를 파라미터로 재료내용(list)를 가져와여기에 저장 한뒤 dto에 저장
 			dto.setIngredientList(ingredientList);
-
+			
+			int likeCount = likeService.likeCountByPostId(post.getId());
+			dto.setLikeCount(likeCount);
+			
 			postDtoList.add(dto); // 완성된 DTO를 리스트에 추가
 		}
 
@@ -157,7 +160,7 @@ public class PostService {
 		boolean likedByCurrentUser = likeService.isPostLikedByUser(postId, currentUserId);
 		dto.setLikedByCurrentUser(likedByCurrentUser);
 		
-		List<Comment> commentList = commentService.getCommentListByPostId(post.getId());
+		List<CommentDto> commentList = commentService.getCommentListByPostId(post.getId());
 		dto.setCommentList(commentList);
 		
 		return dto;

@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Like {
 	private long id;
 	private long userId;
-	private int postId;
+	private long postId;
 	private Timestamp createdAt;
 
 	public long getId() {
@@ -24,11 +24,11 @@ public class Like {
 		this.userId = userId;
 	}
 
-	public int getPostId() {
+	public long getPostId() {
 		return postId;
 	}
 
-	public void setPostId(int postId) {
+	public void setPostId(long postId) {
 		this.postId = postId;
 	}
 

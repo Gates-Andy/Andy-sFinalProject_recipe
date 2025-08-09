@@ -14,5 +14,5 @@ public interface LikeRepository {
 	
 	int countByPostId(@Param("postId") Long postId);
 
-	boolean existsByPostIdAndUserId(long postId, long userId);
+	boolean existsByPostIdAndUserId(@Param("postId")long postId, @Param("userId")long userId);
 }

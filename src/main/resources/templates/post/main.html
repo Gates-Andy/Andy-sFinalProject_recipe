@@ -7,7 +7,7 @@
 
 	<div class="post-card" th:each="postDto : ${postDtoList}">
 
-		<span class="artist" th:text="${postDto.loginId + ' 의 Recipe'}"></span>
+		<span class="artist" th:utext="${'<h4>' + postDto.loginId + '</h4>' + ' 의 Recipe'}"></span>
 		<div class="main-food-pics">
 		
 			<a th:href="@{/post/recipes/view(id=${postDto.id})}">
@@ -18,13 +18,13 @@
 
 		<div class="content">
 			<div class="title" th:utext="${'레시피 이름 : <br>' + postDto.title}"></div>
-			<div class="description" th:utext="${'레시피 간단 설명 : <br>' + postDto.content}"></div>
+			<div class="description" th:utext="${'<br>' + postDto.content}"></div>
 			<div class="headcount" th:text="${'인분수 : ' + postDto.headcount + '인분'}"></div>
 
 			<div class="ingredients">
 				<span>재료 태그 : </span> 
-					<span th:each="ingredient : ${postDto.ingredientList}"> 
-					<span th:utext="${ingredient.ingredientName + ', '}"></span>
+					<span th:each="ingredient,stat : ${postDto.ingredientList}"> 
+						<span th:utext="${ingredient.ingredientName + (stat.last ? '' : ', ')}"></span>
 				</span>
 			</div>
 
@@ -33,10 +33,8 @@
 		</div>
 
 		<div class="icons d-flex justify-content-start align-items-center">
-			<span><i class="bi bi-heart"></i> 30</span> 
-			<span> <i class="bi bi-chat-left-text"> 30</i> </span> 
-			<input type="text" class="form-control col-5" placeholder="증말맛있겠다!!">
-			<button type="button" class="form-control col-3">등록</button>
+			<i class="bi bi-heart-fill text-danger heartIcon"></i> 
+			<span th:text="${postDto.likeCount}"></span>  
 		</div>
 
 	</div>

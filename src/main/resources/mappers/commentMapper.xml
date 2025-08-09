@@ -11,7 +11,8 @@
 		`userId`,
 		`postId`,
 		`text`
-		) VALUES (
+		)
+		VALUES (
 		#{userId},
 		#{postId},
 		#{text}
@@ -33,6 +34,7 @@
 		`postId` = #{postId}
 		ORDER BY
 		`createdAt`
+		DESC
 	</select>
 
 	<delete id="deleteCommentById">
