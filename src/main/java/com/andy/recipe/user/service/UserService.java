@@ -29,6 +29,7 @@ public class UserService {
 	}
 
 	public boolean isDuplicateId(String loginId) {
+		
 		int count = userRepository.selectCountByloginId(loginId);
 
 		if (count == 0) {
@@ -39,6 +40,7 @@ public class UserService {
 	}
 
 	public boolean isDuplicateEmail(String email) {
+		
 		int count = userRepository.selectCountByemail(email);
 
 		if (count == 0) {
@@ -56,6 +58,8 @@ public class UserService {
 	}
 
 	public User getUserById(long Id) {
+		
 		return userRepository.selectUserById(Id);
+		
 	}
 }

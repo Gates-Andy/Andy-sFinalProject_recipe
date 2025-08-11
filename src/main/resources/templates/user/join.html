@@ -3,89 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <title>ANDY's Recipes</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <link rel="stylesheet" href="/styles/style1.css">
 </head>
-<body>
 
-	<div id="wrap">
+<body class="join-page">
 
-		<header class="text-center">
+	<div id="wrap" class="d-flex flex-column" style="min-height: 100vh;">
+
+		<header class="join-logo text-center py-4">
 			<div class="display-3">ANDY's Recipes</div>
 			<h2 class="text-center">회원가입</h2>
 		</header>
 
-		<section class="d-flex justify-content-center align-items-center">
+		<main class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding: 40px;">
 
-			<!-- 아이디 인풋 -->
-			<div id="inputSection" class="mr-5">
+			<div class="join-box card p-5 shadow" style="width: 100%; max-width: 500px;">
 
 				<label class="form-label">사용하실 닉네임</label>
 
 				<div id="idInputSection" class="d-flex">
-					<input class="form-control col-6" type="text"
-						placeholder="아이디를 입력해주세요" id="loginIdInput">
-					<button class="form-control col-4 ml-3 mr-5" type="button"
-						id="idDuplicateBtn">아이디 중복확인</button>
+					<input class="form-control" style="flex: 1;" type="text" placeholder="아이디를 입력해주세요" id="loginIdInput">
+					<button class="btn btn-primary ml-3" type="button" id="idDuplicateBtn" style="min-width: 110px;">아이디 중복확인</button>
 				</div>
-				<div id="duplicateIdText" class="text-danger mt-1 d-none">❌ 이미
-					사용중인 아이디 입니다.</div>
-				<div id="availableIdText" class="text-success mt-1 d-none">✅
-					사용 가능한 아이디 입니다.</div>
+				<div id="duplicateIdText" class="text-danger mt-1 d-none">❌ 이미 사용중인 아이디 입니다.</div>
+				<div id="availableIdText" class="text-success mt-1 d-none">✅ 사용 가능한 아이디 입니다.</div>
 
-				<label class="form-label">비밀번호</label> <input
-					class="form-control col-6" type="password"
-					placeholder="비밀번호를 입력해주세요" id="passwordInput"> <label
-					class="form-label">비밀번호 확인</label> <input
-					class="form-control col-6" type="password"
-					placeholder="비밀번호를 확인해주세요" id="passwordCheckInput">
+				<label class="form-label mt-4">비밀번호</label>
+				<input class="form-control" type="password" placeholder="비밀번호를 입력해주세요" id="passwordInput">
 
-				<div>이메일</div>
+				<label class="form-label mt-3">비밀번호 확인</label>
+				<input class="form-control" type="password" placeholder="비밀번호를 확인해주세요" id="passwordCheckInput">
+
+				<label class="form-label mt-4">이메일</label>
 
 				<div id="emailInputSection" class="d-flex">
-					<input class="form-control col-6" type="text"
-						placeholder="이메일을 입력해주세요" id="emailInput">
-					<button class="form-control col-4 ml-3 mr-5" type="button"
-						id="emailDuplicateBtn">이메일 중복확인</button>
+					<input class="form-control" style="flex: 1;" type="text" placeholder="이메일을 입력해주세요" id="emailInput">
+					<button class="btn btn-primary ml-3" type="button" id="emailDuplicateBtn" style="min-width: 110px;">이메일 중복확인</button>
 				</div>
 
-				<div id="duplicateEmailText" class="text-danger mt-1 d-none">❌
-					이미 사용중인 이메일 입니다.</div>
-				<div id="availableEmailText" class="text-success mt-1 d-none">✅
-					사용 가능한 이메일 입니다.</div>
+				<div id="duplicateEmailText" class="text-danger mt-1 d-none">❌ 이미 사용중인 이메일 입니다.</div>
+				<div id="availableEmailText" class="text-success mt-1 d-none">✅ 사용 가능한 이메일 입니다.</div>
 
-				<button class="form-control col-11 mt-5" type="button" id="joinBtn">회원가입</button>
+				<button class="btn btn-success btn-block mt-5" type="button" id="joinBtn">회원가입</button>
 			</div>
-			<!-- 아이디 인풋 -->
 
-			<!-- 움직이는 사진 -->
-			<div id="imageSection" class="ml-5">
-				<img alt="음식사진" width="230"
-					src="https://cdn.pixabay.com/photo/2017/08/06/06/43/pizza-2589575_1280.jpg">
+			<div id="imageSection" class="ml-5" style="max-width: 280px; flex-shrink: 0;">
+				<img alt="음식사진" width="100%" src="https://cdn.pixabay.com/photo/2017/08/06/06/43/pizza-2589575_1280.jpg" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
 			</div>
-			<!-- 움직이는 사진 -->
 
-		</section>
+		</main>
 
-		<div id="loginArea" class="text-center mt-5">
-			<span>이미 계정이 있으신가요? </span> <a href="/user/login/view"
-				class="btn btn-link">로그인</a>
+		<div id="loginArea" class="text-center mt-4 mb-3">
+			<span>이미 계정이 있으신가요? </span> <a href="/user/login/view" class="btn btn-link">로그인</a>
 		</div>
 
-		<footer class="d-flex justify-content-start align-items-center">
+		 <footer class="d-flex justify-content-start align-items-center py-3" style="background-color:#f0f0f0;">
 			<div>Copyright 2024. ANDY’s Recipes all rights reserved.</div>
 		</footer>
 
 	</div>
 
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-		crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script>
 		let isEmailChecked = false; // 이메일중복버튼을 누르지않았어요
 		let isEmailDuplicated = true; // 이메일이 중복된상태로 먼저 선택

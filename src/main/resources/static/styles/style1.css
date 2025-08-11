@@ -36,7 +36,30 @@ header {
 	자동으로 내려감.*/
 }
 
-.login-page {
+section {
+	flex: 1; /* section이 가능한 공간 모두 차지 */
+}
+
+<!--
+회원가입 -->.join-page {
+	background-color: #f9f9f9;
+}
+
+.join-page .join-logo {
+	background-color: #c0c0c0;
+	color: white;
+	padding-top: 40px;
+	padding-bottom: 20px;
+	border-radius: 50px;
+}
+
+.join-page .join-box {
+	background-color: white;
+	border-radius: 10px;
+}
+
+<!--
+회원가입 --><!--로그인 -->.login-page {
 	background-color: #f9f9f9;
 }
 
@@ -44,6 +67,7 @@ header {
 	background-color: #c0c0c0;
 	color: white;
 	padding: 30px 0;
+	border-radius: 50px;
 }
 
 .login-page .login-box {
@@ -61,7 +85,8 @@ header {
 	border-color: #004a9f;
 }
 
-.logo {
+<!--
+로그인 -->.logo {
 	font-weight: bold;
 	font-size: 18px;
 	white-space: nowrap;
@@ -182,6 +207,24 @@ header {
 	border-radius: 10px;
 	border: 1px solid #ddd;
 	background-color: #fff;
+}
+
+.mypage-food-pics {
+  width: 100%;
+  max-height: 250px;  /* 적당한 고정 높이 */
+  overflow: hidden;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center;     /* 세로 중앙 정렬 */
+}
+
+.mypage-food-pics img {
+  max-height: 100%;       /* 컨테이너 높이에 맞춤 */
+  max-width: 100%;         /* 최대 너비 70%로 축소 */
+  object-fit: contain;    /* 비율 유지하며 꽉 채우지 않고 들어가도록 */
+  object-position: center;
+  display: block;
 }
 
 .food-pics {
@@ -337,6 +380,39 @@ header {
 	margin-bottom: 24px;
 }
 
+.ingredients-list {
+	position: sticky;
+	top: 20px;
+	border: 1px solid #ff8000;
+	border-radius: 8px;
+	padding: 12px;
+	background-color: #fff;
+}
+
+.ingredients {
+	border: 1px solid #ff8000;
+	border-radius: 8px;
+	padding: 12px;
+}
+
+.headcount {
+	border: 1px solid #ff8000;
+	border-radius: 8px;
+	padding: 12px;
+}
+
+.category {
+	border: 1px solid #ff8000;
+	border-radius: 8px;
+	padding: 12px;
+}
+
+.category {
+	border: 1px solid #ff8000;
+	border-radius: 8px;
+	padding: 12px;
+}
+
 .steps h3, .ingredients h4 {
 	font-size: 20px;
 	color: #ff8000;
@@ -398,4 +474,6 @@ footer {
 	display: flex;
 	align-items: center;
 	padding-left: 20px;
+	flex-shrink: 0;
+	border-radius: 50px;
 }

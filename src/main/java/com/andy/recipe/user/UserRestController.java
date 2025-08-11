@@ -25,7 +25,9 @@ public class UserRestController {
 	}
 
 	@PostMapping("/join")
-	public Map<String, String> join(@RequestParam("loginId") String loginId, @RequestParam("password") String password,
+	public Map<String, String> join(
+			@RequestParam("loginId") String loginId, 
+			@RequestParam("password") String password,
 			@RequestParam("email") String email) {
 
 		Map<String, String> resultMap = new HashMap<>();
@@ -39,7 +41,8 @@ public class UserRestController {
 	}
 
 	@GetMapping("/duplicate-id")
-	public Map<String, Boolean> isDuplicateId(@RequestParam("loginId") String loginId) {
+	public Map<String, Boolean> isDuplicateId(
+			@RequestParam("loginId") String loginId) {
 
 		Map<String, Boolean> resultMap = new HashMap<>();
 
@@ -52,7 +55,8 @@ public class UserRestController {
 	}
 
 	@GetMapping("/duplicate-email")
-	public Map<String, Boolean> isDuplicateEmail(@RequestParam("email") String email) {
+	public Map<String, Boolean> isDuplicateEmail(
+			@RequestParam("email") String email) {
 
 		Map<String, Boolean> resultMap = new HashMap<>();
 
@@ -65,7 +69,9 @@ public class UserRestController {
 	}
 
 	@PostMapping("/login")
-	public Map<String, String> login(@RequestParam("loginId") String loginId, @RequestParam("password") String password,
+	public Map<String, String> login(
+			@RequestParam("loginId") String loginId, 
+			@RequestParam("password") String password,
 			HttpServletRequest request) {
 
 		Map<String, String> resultMap = new HashMap<>();
@@ -73,6 +79,7 @@ public class UserRestController {
 		User user = userService.getUser(loginId, password);
 
 		if (user != null) {
+			
 			resultMap.put("result", "success");
 
 			HttpSession session = request.getSession();
@@ -81,9 +88,13 @@ public class UserRestController {
 			session.setAttribute("loginId", user.getLoginId());
 			
 		} else {
+			
 			resultMap.put("result", "fail");
+			
 		}
+		
 		return resultMap;
+		
 	}
 
 }
