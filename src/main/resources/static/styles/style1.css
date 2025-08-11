@@ -210,21 +210,21 @@ section {
 }
 
 .mypage-food-pics {
-  width: 100%;
-  max-height: 250px;  /* 적당한 고정 높이 */
-  overflow: hidden;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center; /* 가로 중앙 정렬 */
-  align-items: center;     /* 세로 중앙 정렬 */
+	width: 100%;
+	max-height: 250px; /* 적당한 고정 높이 */
+	overflow: hidden;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center; /* 가로 중앙 정렬 */
+	align-items: center; /* 세로 중앙 정렬 */
 }
 
 .mypage-food-pics img {
-  max-height: 100%;       /* 컨테이너 높이에 맞춤 */
-  max-width: 100%;         /* 최대 너비 70%로 축소 */
-  object-fit: contain;    /* 비율 유지하며 꽉 채우지 않고 들어가도록 */
-  object-position: center;
-  display: block;
+	max-height: 100%; /* 컨테이너 높이에 맞춤 */
+	max-width: 100%; /* 최대 너비 70%로 축소 */
+	object-fit: contain; /* 비율 유지하며 꽉 채우지 않고 들어가도록 */
+	object-position: center;
+	display: block;
 }
 
 .food-pics {
@@ -321,18 +321,65 @@ section {
 }
 
 .btn-imginput {
-	width: 150px;
 	margin-top: 20px;
+	display: inline-block;
+	background-color: #ff8000; /* 주황색 */
+	color: white;
+	padding: 10px 20px;
+	border-radius: 6px;
+	font-weight: bold;
+	cursor: pointer;
+	user-select: none; /* 텍스트 선택 방지 */
+	transition: background-color 0.3s ease;
+}
+
+.btn-imginput:hover {
+	background-color: #e67622; /* 진한 주황 */
+}
+
+.menu-pic {
+  width: 300px;        /* 원하는 정사각형 크기 */
+  height: 300px;       /* 너비와 동일하게 맞춤 */
+  object-fit: cover;   /* 비율 유지하며 영역 꽉 채우기, 잘릴 수 있음 */
+  border-radius: 8px;  /* 모서리 둥글게 */
+  display: block;
+  margin: 0 auto;
 }
 
 .function {
 	margin-top: 30px;
 }
 
-.btn-delete, .btn-save {
+.btn-delete {
 	width: 48%;
 	font-weight: bold;
 	margin-bottom: 20px;
+	background-color: #ff0000; /* 밝은 주황 */
+	border: none;
+	color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+	background-color: #cc6600; /* 더 진한 주황 */
+}
+
+.btn-save {
+	width: 48%;
+	font-weight: bold;
+	margin-bottom: 20px;
+	background-color: #ff9933; /* 살짝 밝고 따뜻한 주황 */
+	border: none;
+	color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+	background-color: #e67622; /* 기존 버튼 호버색 유지 */
 }
 
 .icons {

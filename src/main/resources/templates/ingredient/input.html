@@ -8,29 +8,41 @@
 	<div class="ingredient1 mb-1">
 		<input type="text" class="form-control mb-1" id="ingredientName" placeholder="재료1: ">
 		<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
+		<img id="previewImg1" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
+		
 		<label class="btn btn-style"> 재료 사진 올리기 
 			<input type="file" id="fileInput" name="imageFile" hidden> 
 		</label> 
+		
 		<textarea class="note form-control" id="content" placeholder="추가 설명"></textarea>
 	</div>
 	
 	<div class="ingredient2 mb-1">
-		<input type="text" class="form-control mb-1" id="ingredientName2" placeholder="재료2: ">
-		<input type="text" class="form-control mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
-		<label class="btn btn-style"> 재료 사진 올리기 
-			<input type="file" id="fileInput2" name="imageFile2" hidden> 
-		</label> 
-		<textarea class="note form-control" id="content2" placeholder="추가 설명"></textarea>
-		
+  		<input type="text" class="form-control mb-1" id="ingredientName2" placeholder="재료2: ">
+   		<input type="text" class="form-control mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
+   		<img id="previewImg2" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
+   		
+   		<label class="btn btn-style"> 재료 사진 올리기 
+    		<input type="file" id="fileInput2" name="imageFile2" hidden> 
+    	
+    	
+    	</label> 
+    	
+    	<textarea class="note form-control" id="content2" placeholder="추가 설명"></textarea>
 	</div>
-		<div class="ingredient3 mb-1">
-		<input type="text" class="form-control mb-1" id="ingredientName3" placeholder="재료3: ">
-		<input type="text" class="form-control mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
-		<label class="btn btn-style"> 재료 사진 올리기 
-			<input type="file" id="fileInput3" name="imageFile3" hidden> 
-		</label> 
-		<textarea class="note form-control" id="content3" placeholder="추가 설명"></textarea>
-	</div>
+	
+	<div class="ingredient3 mb-1">
+    	<input type="text" class="form-control mb-1" id="ingredientName3" placeholder="재료3: ">
+   	 	<input type="text" class="form-control mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
+    	<img id="previewImg3" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
+    	
+    	<label class="btn btn-style"> 재료 사진 올리기 
+        	<input type="file" id="fileInput3" name="imageFile3" hidden> 
+    	
+    	</label> 
+    
+   		<textarea class="note form-control" id="content3" placeholder="추가 설명"></textarea>
+</div>
 	
 	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
 
@@ -39,6 +51,27 @@
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script layout:fragment="script">
+
+function previewImage(input, previewId) {
+	  if (input.files && input.files[0]) {
+	    const reader = new FileReader();
+	    reader.onload = function(e) {
+	      $('#' + previewId).attr('src', e.target.result).show();
+	    };
+	    reader.readAsDataURL(input.files[0]);
+	  }
+	}
+
+	$('#fileInput').on('change', function() {
+	  previewImage(this, 'previewImg1');
+	});
+	$('#fileInput2').on('change', function() {
+	  previewImage(this, 'previewImg2');
+	});
+	$('#fileInput3').on('change', function() {
+	  previewImage(this, 'previewImg3');
+	});
+	
 $("#savebtn").on("click", function () {
 	let postId = $("#postId").val();
 	let ingredientName  = $("#ingredientName").val().trim();
