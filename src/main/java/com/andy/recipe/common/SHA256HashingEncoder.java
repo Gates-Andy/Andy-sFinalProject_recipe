@@ -3,10 +3,10 @@ package com.andy.recipe.common;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class MD5HashingEncoder {
+public class SHA256HashingEncoder {
 	public static String encode(String message) {
 		try {
-			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
 
 			byte[] bytes = message.getBytes();
 

@@ -40,8 +40,7 @@ section {
 	flex: 1; /* section이 가능한 공간 모두 차지 */
 }
 
-<!--
-회원가입 -->.join-page {
+.join-page {
 	background-color: #f9f9f9;
 }
 
@@ -58,8 +57,7 @@ section {
 	border-radius: 10px;
 }
 
-<!--
-회원가입 --><!--로그인 -->.login-page {
+.login-page {
 	background-color: #f9f9f9;
 }
 
@@ -85,8 +83,7 @@ section {
 	border-color: #004a9f;
 }
 
-<!--
-로그인 -->.logo {
+.logo {
 	font-weight: bold;
 	font-size: 18px;
 	white-space: nowrap;
@@ -156,7 +153,7 @@ section {
 
 .post-card {
 	width: 30%;
-	border: 1px solid #ccc;
+	border: 1px solid #ff8000;
 	padding: 10px;
 }
 
@@ -338,12 +335,12 @@ section {
 }
 
 .menu-pic {
-  width: 300px;        /* 원하는 정사각형 크기 */
-  height: 300px;       /* 너비와 동일하게 맞춤 */
-  object-fit: cover;   /* 비율 유지하며 영역 꽉 채우기, 잘릴 수 있음 */
-  border-radius: 8px;  /* 모서리 둥글게 */
-  display: block;
-  margin: 0 auto;
+	width: 300px; /* 원하는 정사각형 크기 */
+	height: 300px; /* 너비와 동일하게 맞춤 */
+	object-fit: cover; /* 비율 유지하며 영역 꽉 채우기, 잘릴 수 있음 */
+	border-radius: 8px; /* 모서리 둥글게 */
+	display: block;
+	margin: 0 auto;
 }
 
 .function {
