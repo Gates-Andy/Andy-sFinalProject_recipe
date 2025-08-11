@@ -1,0 +1,78 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<main layout:fragment="contents">
+
+	<input type="hidden" id="postId" th:value="${postId}"> \
+
+	<div class="ingredient" data-index="0">
+		<input type="text" name="ingredients[0].name" placeholder="재료명">
+		<input type="text" name="ingredients[0].amount" placeholder="수량">
+		<textarea name="ingredients[0].content" placeholder="설명"></textarea>
+		<input type="file" name="ingredients[0].imageFile">
+	</div>
+
+	<div class="ingredient" data-index="1">
+		<input type="text" name="ingredients[1].name" placeholder="재료명">
+		<input type="text" name="ingredients[1].amount" placeholder="수량">
+		<textarea name="ingredients[1].content" placeholder="설명"></textarea>
+		<input type="file" name="ingredients[1].imageFile">
+	</div>
+
+	<div class="ingredient" data-index="2">
+		<input type="text" name="ingredients[2].name" placeholder="재료명">
+		<input type="text" name="ingredients[2].amount" placeholder="수량">
+		<textarea name="ingredients[2].content" placeholder="설명"></textarea>
+		<input type="file" name="ingredients[2].imageFile">
+	</div>
+
+	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+	crossorigin="anonymous"></script>
+
+<script layout:fragment="script">
+
+		let formData = new FormData();
+		formData.append("postId", postId);
+
+		$(".ingredient").each(function(index, element){
+		  let prefix = `ingredients[${index}]`;
+		  let name = $(element).find(`input[name='${prefix}.name']`).val().trim();
+		  let amount = $(element).find(`input[name='${prefix}.amount']`).val().trim();
+		  let content = $(element).find(`textarea[name='${prefix}.content']`).val().trim();
+		  let fileInput = $(element).find(`input[name='${prefix}.imageFile']`)[0];
+		  let file = fileInput.files[0];
+		
+		  formData.append(`${prefix}.name`, name);
+		  formData.append(`${prefix}.amount`, amount);
+		  formData.append(`${prefix}.content`, content);
+		  if(file){
+		    formData.append(`${prefix}.imageFile`, file);
+		  }
+		});
+
+		$.ajax({
+			type : "post",
+			url : "/ingredient/create",
+			data : formData,
+			enctype : "multipart/form-data",
+			processData : false,
+			contentType : false,
+			success : function(response) {
+				if (response.result === "success") {
+					location.href = "/post/myRecipe/view";
+				} else {
+					alert("레시피 재료저장 실패.");
+				}
+			},
+			error : function() {
+				alert("레시피 재료저장 에러");
+			}
+		});
+	});
+</script>
