@@ -3,8 +3,9 @@
 	layout:decorate="~{layouts/default}">
 
 <main layout:fragment="contents">
-	<input type="hidden" id="postId" th:value="${postId}">
 
+	<input type="hidden" id="postId" th:value="${postId}">
+	
 	<div class="ingredient1 mb-1">
 		<input type="text" class="form-control mb-1" id="ingredientName" placeholder="재료1: ">
 		<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
@@ -13,7 +14,6 @@
 		<label class="btn btn-style"> 재료 사진 올리기 
 			<input type="file" id="fileInput" name="imageFile" hidden> 
 		</label> 
-		
 		<textarea class="note form-control" id="content" placeholder="추가 설명"></textarea>
 	</div>
 	
@@ -24,10 +24,7 @@
    		
    		<label class="btn btn-style"> 재료 사진 올리기 
     		<input type="file" id="fileInput2" name="imageFile2" hidden> 
-    	
-    	
     	</label> 
-    	
     	<textarea class="note form-control" id="content2" placeholder="추가 설명"></textarea>
 	</div>
 	
@@ -38,14 +35,14 @@
     	
     	<label class="btn btn-style"> 재료 사진 올리기 
         	<input type="file" id="fileInput3" name="imageFile3" hidden> 
-    	
     	</label> 
-    
    		<textarea class="note form-control" id="content3" placeholder="추가 설명"></textarea>
-</div>
-	
-	<button type="button" class="form-control btn-style" id="savebtn">저장하기</button>
+	</div>
 
+	<div class="function d-flex justify-content-center mb-5">
+		<button type="button" class="form-control col-4 btn-style" id="savebtn">저장하기</button>
+	</div>
+	
 </main>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
