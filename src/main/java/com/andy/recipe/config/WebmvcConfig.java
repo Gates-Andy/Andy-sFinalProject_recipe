@@ -13,7 +13,8 @@ public class WebmvcConfig implements WebMvcConfigurer {
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/images/**")
 
-				.addResourceLocations("file:///" + FileManager.FILE_UPLOAD_PATH + "/");
+				// .addResourceLocations("file:///" + FileManager.FILE_UPLOAD_PATH + "/");
+				.addResourceLocations("file://" + FileManager.FILE_UPLOAD_PATH + "/"); // 배포시
 				// file:///D:\\ANDY_GATES\\WEB\\20250220\\springProject\\upload/
 	}
 
