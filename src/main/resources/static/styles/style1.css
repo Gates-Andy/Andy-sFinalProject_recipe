@@ -44,12 +44,19 @@ section {
 	background-color: #f9f9f9;
 }
 
-.join-page .join-logo {
-	background-color: #c0c0c0;
+.join-page .join-logo,
+.login-page .login-logo {
+	background: linear-gradient(135deg, #ff9933, #ff8000);
 	color: white;
-	padding-top: 40px;
-	padding-bottom: 20px;
 	border-radius: 50px;
+	padding: 30px 0;
+	box-shadow: 0 4px 10px rgba(255, 128, 0, 0.4);
+	font-size: 2.8rem; /* 글자 크기 키우기 */
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+	position: relative;
+	overflow: hidden;
 }
 
 .join-page .join-box {
@@ -57,15 +64,20 @@ section {
 	border-radius: 10px;
 }
 
-.login-page {
-	background-color: #f9f9f9;
+.join-box .join-btn {
+	background-color: #ff8000 !important;
+	border-color: #ff8000 !important;
+	color: white !important;
 }
 
-.login-page .login-logo {
-	background-color: #c0c0c0;
-	color: white;
-	padding: 30px 0;
-	border-radius: 50px;
+.join-box .join-btn:hover {
+	background-color: #e67622 !important;
+	border-color: #e67622 !important;
+	color: white !important;
+}
+
+.login-page {
+	background-color: #f9f9f9;
 }
 
 .login-page .login-box {
@@ -74,12 +86,12 @@ section {
 }
 
 .login-page .btn-primary {
-	background-color: #007bff;
+	background-color: #ff8000;
 	border-color: #007bff;
 }
 
 .login-page .btn-primary:hover {
-	background-color: #80ffff;
+	background-color: #ff8000;
 	border-color: #004a9f;
 }
 
@@ -158,21 +170,51 @@ section {
 }
 
 .artist {
-	font-family: Arial;
-	font-size: 12px; /* 글씨 크기 */
-	color: #ff8000; /* 따뜻한 토마토 레드 색상 */
+	font-size: 1rem;
+	font-weight: 500;
+	color: #444;
+}
+
+.badge {
+	display: inline-block;
+	background-color: #ff8000; /* 예쁜 포인트 컬러 */
+	color: white;
+	font-weight: bold;
+	padding: 3px 8px;
+	margin-left: 2px;
+	margin-bottom: 8px;
+	border-radius: 12px;
+	font-size: 0.9rem;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .main-food-pics {
-	height: 200px;
-	margin-bottom: 10px;
+	height: 300px; /* 원하는 고정 높이 */
 	overflow: hidden;
+	display: flex;
+	justify-content: center; /* 가로 중앙 정렬 */
+	align-items: center; /* 세로 중앙 정렬 */
+	background-color: #fff; /* 필요하면 배경색 */
+}
+
+.main-food-pics img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain; /* 비율 유지하며 축소 */
+	object-position: center; /* 이미지 중앙을 보여줌 */
+	display: block;
 }
 
 .menu-title {
 	font-weight: bold;
 	font-size: 16px;
 	margin-bottom: 6px;
+}
+
+.content {
+	max-height: 150px; /* 원하는 높이 설정 */
+	overflow-y: auto; /* 세로 스크롤 */
+	padding-right: 8px; /* 스크롤바 공간 확보 */
 }
 
 .description, .ingredients, .headcount, .category {
@@ -314,6 +356,7 @@ section {
 }
 
 .content textarea {
+	white-space: normal;
 	margin-top: 6px;
 }
 
@@ -418,6 +461,7 @@ section {
 }
 
 .description {
+	white-space: pre-line;
 	font-size: 16px;
 	line-height: 1.6;
 	color: #555;

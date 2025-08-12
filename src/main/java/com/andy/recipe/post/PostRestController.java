@@ -64,7 +64,7 @@ public class PostRestController {
 
 		Map<String, String> resultMap = new HashMap<>();
 
-		if (postService.updatePost(postId, loginId, title, headcount, content, imageFile)) {
+		if (postService.updatePost(postId, loginId, title, headcount, category, content, imageFile)) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

@@ -44,4 +44,19 @@
 		`id` = #{id}
 	</delete>
 
+	<select id="findById" parameterType="long"
+		resultType="com.andy.recipe.comment.domain.Comment">
+		SELECT
+		`id`,
+		`userId`,
+		`postId`,
+		`text`,
+		`createdAt`,
+		`updatedAt`
+		FROM
+		`post_comment`
+		WHERE
+		`id` = #{id}
+	</select>
+
 </mapper>

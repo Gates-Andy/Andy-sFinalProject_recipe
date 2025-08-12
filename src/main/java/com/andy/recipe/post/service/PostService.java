@@ -192,7 +192,7 @@ public class PostService {
 		return result == 1;
 	}
 
-	public boolean updatePost(long id, long loginId, String title, int headcount, String content,
+	public boolean updatePost(long id, long loginId, String title, int headcount, String category, String content,
 			MultipartFile imageFile) {
 
 		Post post = postRepository.selectPostById(id);
@@ -200,6 +200,7 @@ public class PostService {
 		post.setTitle(title);
 		post.setHeadcount(headcount);
 		post.setContent(content);
+		post.setCategory(category);
 
 		if (imageFile != null) {
 			String imagePath = FileManager.saveFile(loginId, imageFile);

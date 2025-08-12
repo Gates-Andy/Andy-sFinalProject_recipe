@@ -33,11 +33,16 @@ public class CommentService {
 		return result == 1;
 	}
 
-	public boolean deleteComment(int id) {
-
-		int result = commentRepository.deleteCommentById(id);
-
-		return result == 1;
+	public boolean deleteComment(long commentId, long currentUserId) {
+	    Comment comment = commentRepository.findById(commentId);
+	    if (comment == null) {
+	        return false; // 댓글이 없음
+	    }
+	    if (comment.getUserId() != currentUserId) {
+	        return false; // 작성자가 아니므로 삭제 불가
+	    }
+	    int result = commentRepository.deleteCommentById(commentId);
+	    return result == 1;
 	}
 
 	public List<CommentDto> getCommentListByPostId(long postId) {
