@@ -6,15 +6,25 @@
 
 	<input type="hidden" id="postId" th:value="${postId}">
 	
-	<div class="ingredient1 mb-1">
-		<input type="text" class="form-control col-4 mb-1" id="ingredientName" placeholder="재료1: ">
-		<input type="text" class="form-control col-4 mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
-		<img id="previewImg1" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
-		<textarea class="note form-control col-4" id="content" placeholder="추가 설명" rows="5"></textarea>
+	<div class="ingredient1 d-flex mb-3" style="gap: 10px; height: 200px;">
+	
+		<div class="ingredient-input">
+			<input type="text" class="form-control mb-1" id="ingredientName" placeholder="재료1: ">
+			<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
+			<textarea class="note form-control" id="content" placeholder="재료 손질법등을 알려주세요." rows="5"></textarea>	
+		</div>
 		
-		<label class="btn btn-style mt-1"> 재료 사진 올리기 
-			<input type="file" id="fileInput" name="imageFile" hidden> 
-		</label> 
+		<div class="ingredient-photo">
+			<img id="previewImg1" src="#" alt="미리보기" style="display:none; 
+			width:620px; max-width:none; height:auto; margin-top:5px;">
+
+			<input type="file" class="btn btn-style ml-3" id="fileInput" name="imageFile" hidden> 
+			 
+			 <label for="fileInput">
+			 	<span class="d-flex justify-content-center align-items-center">+</span>
+			 </label>
+		</div>
+		
 	</div>
 	
 	<div class="ingredient2 mb-1">

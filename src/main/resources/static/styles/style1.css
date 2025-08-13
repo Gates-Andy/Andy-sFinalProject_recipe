@@ -549,6 +549,51 @@ section {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.ingredient-input {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.ingredient-photo {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 2px solid #ff8000;
+}
+
+.ingredient-photo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	display: none; /* 미리보기 없으면 숨김 */
+}
+
+.ingredient-photo label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ingredient-photo label span {
+    color: rgba(0,0,0,0.4);
+    font-weight: bold;
+    font-size: 16px;
+    background: none; /* 배경 제거 */
+}
+
 .ingredients .ingredient-box {
 	display: flex;
 	align-items: center;
