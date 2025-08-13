@@ -107,6 +107,11 @@
 		let postId = $(this).data("post-id");
     	let text = $("#text").val();
 		
+    	if(text=" "){
+    		alert("댓글을 작성 해주세요");
+    		return;
+    	}
+    	
 		$.ajax({
 			type : "post",
 			url : "/post/comment/create",
