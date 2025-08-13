@@ -64,11 +64,18 @@
 	</div>
 
 	<div class="comments">
-		<div th:each="comment : ${postDto.commentList}">
-			<span th:text="${comment.userName}"></span> : 
-			<span th:text="${comment.text}">댓글 내용</span>
-				<a href="#" class="text-danger comment-delete" th:data-comment-id="${comment.id}" th:if="${comment.userId == session.userName}"> 댓글삭제 </a>
-		</div>
+	    <div th:each="comment : ${postDto.commentList}" 
+	         class="d-flex justify-content-between align-items-center">
+	        
+	        <div>
+	            <span th:text="${comment.userName}"></span> : 
+	            <span th:text="${comment.text}">댓글 내용</span>
+	        </div>
+	        
+	        <a href="#" class="comment-delete text-danger" th:data-comment-id="${comment.id}" th:if="${comment.userId == session.userId}">
+	           댓글 삭제
+	        </a>
+	    </div>
 	</div>
 
 </main>
@@ -105,9 +112,9 @@
 	$(".comment-submit").on("click", function() {
 		
 		let postId = $(this).data("post-id");
-    	let text = $("#text").val();
+    	let text = $("#text").val().trim();
 		
-    	if(text=" "){
+    	if(text === ""){
     		alert("댓글을 작성 해주세요");
     		return;
     	}

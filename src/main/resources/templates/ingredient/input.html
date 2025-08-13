@@ -7,36 +7,36 @@
 	<input type="hidden" id="postId" th:value="${postId}">
 	
 	<div class="ingredient1 mb-1">
-		<input type="text" class="form-control mb-1" id="ingredientName" placeholder="재료1: ">
-		<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
+		<input type="text" class="form-control col-4 mb-1" id="ingredientName" placeholder="재료1: ">
+		<input type="text" class="form-control col-4 mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
 		<img id="previewImg1" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
+		<textarea class="note form-control col-4" id="content" placeholder="추가 설명" rows="5"></textarea>
 		
-		<label class="btn btn-style"> 재료 사진 올리기 
+		<label class="btn btn-style mt-1"> 재료 사진 올리기 
 			<input type="file" id="fileInput" name="imageFile" hidden> 
 		</label> 
-		<textarea class="note form-control" id="content" placeholder="추가 설명"></textarea>
 	</div>
 	
 	<div class="ingredient2 mb-1">
-  		<input type="text" class="form-control mb-1" id="ingredientName2" placeholder="재료2: ">
-   		<input type="text" class="form-control mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
+  		<input type="text" class="form-control col-4 mb-1" id="ingredientName2" placeholder="재료2: ">
+   		<input type="text" class="form-control col-4 mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
    		<img id="previewImg2" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
+    	<textarea class="note form-control col-4" id="content2" placeholder="추가 설명" rows="3"></textarea>
    		
-   		<label class="btn btn-style"> 재료 사진 올리기 
+   		<label class="btn btn-style mt-1"> 재료 사진 올리기 
     		<input type="file" id="fileInput2" name="imageFile2" hidden> 
     	</label> 
-    	<textarea class="note form-control" id="content2" placeholder="추가 설명"></textarea>
 	</div>
 	
 	<div class="ingredient3 mb-1">
-    	<input type="text" class="form-control mb-1" id="ingredientName3" placeholder="재료3: ">
-   	 	<input type="text" class="form-control mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
+    	<input type="text" class="form-control col-4 mb-1" id="ingredientName3" placeholder="재료3: ">
+   	 	<input type="text" class="form-control col-4 mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
     	<img id="previewImg3" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
+   		<textarea class="note form-control col-4" id="content3" placeholder="추가 설명" rows="3"></textarea>
     	
-    	<label class="btn btn-style"> 재료 사진 올리기 
+    	<label class="btn btn-style mt-1"> 재료 사진 올리기 
         	<input type="file" id="fileInput3" name="imageFile3" hidden> 
     	</label> 
-   		<textarea class="note form-control" id="content3" placeholder="추가 설명"></textarea>
 	</div>
 
 	<div class="function d-flex justify-content-center mb-5">
@@ -70,51 +70,26 @@ function previewImage(input, previewId) {
 	});
 	
 $("#savebtn").on("click", function () {
-	let postId = $("#postId").val();
-	let ingredientName  = $("#ingredientName").val().trim();
-	let ingredientAmount  = $("#ingredientAmount").val().trim();
-	let content = $("#content").val().trim();
-	let imageFile  = $("#fileInput")[0].files[0];
-	// ----------------------------------------------------------------
-	let ingredientName2  = $("#ingredientName2").val().trim();
-	let ingredientAmount2  = $("#ingredientAmount2").val().trim();
-	let content2 = $("#content2").val().trim();
-	let imageFile2  = $("#fileInput2")[0].files[0];
-	// ----------------------------------------------------------------
-	let ingredientName3  = $("#ingredientName3").val().trim();
-	let ingredientAmount3  = $("#ingredientAmount3").val().trim();
-	let content3 = $("#content3").val().trim();
-	let imageFile3  = $("#fileInput3")[0].files[0];
-	// ----------------------------------------------------------------
 	
-	if (ingredientName === "") {
-		alert("재료 1을 입력해주세요.");
-		return;
-	}
-	if (ingredientAmount === "") {
-		alert("재료 1의 양을 입력해주세요.");
-		return;
-	}
-	// ----------------------------------------------------------------
-	if (ingredientName2 === "") {
-		alert("재료 2을 입력해주세요.");
-		return;
-	}
-	if (ingredientAmount2 === "") {
-		alert("재료 2의 양을 입력해주세요.");
-		return;
-	}
-	// ----------------------------------------------------------------
-	if (ingredientName3 === "") {
-		alert("재료 3을 입력해주세요.");
-		return;
-	}
-	if (ingredientAmount3 === "") {
-		alert("재료 3의 양을 입력해주세요.");
-		return;
-	}
-	// ----------------------------------------------------------------
+	let postId = $("#postId").val();
+
+	let ingredientName = $("#ingredientName").val().trim();
+	let ingredientAmount = $("#ingredientAmount").val().trim();
+	let content = $("#content").val().trim();
+	let imageFile = $("#fileInput")[0].files[0];
+
+	let ingredientName2 = $("#ingredientName2").val().trim();
+	let ingredientAmount2 = $("#ingredientAmount2").val().trim();
+	let content2 = $("#content2").val().trim();
+	let imageFile2 = $("#fileInput2")[0].files[0];
+
+	let ingredientName3 = $("#ingredientName3").val().trim();
+	let ingredientAmount3 = $("#ingredientAmount3").val().trim();
+	let content3 = $("#content3").val().trim();
+	let imageFile3 = $("#fileInput3")[0].files[0];
+	
 	let formData = new FormData();
+	
 	formData.append("postId", postId);
 	
 	formData.append("ingredientName", ingredientName);

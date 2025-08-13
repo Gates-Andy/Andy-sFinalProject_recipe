@@ -10,12 +10,12 @@
 		
 		<div class="type-box d-flex justify-content-between align-items-center">
 			<input type="text" id="titleInput" th:value="${postDto.title}">
-			<input type="number" id="headcountInput" th:value="${postDto.headcount}">
+			<input type="number" id="headcountInput" min="1" th:value="${postDto.headcount}">
 			<input type="text" id="categoryInput" th:value="${postDto.category}">
 		</div>
 
 		<div class="content">
-			<textarea class="form-control" id="contentInput" placeholder="요리 설명을 해보아요" th:text="${postDto.content}"></textarea>
+			<textarea class="form-control" id="contentInput" placeholder="요리 설명을 해보아요" rows="5" th:text="${postDto.content}"></textarea>
 		</div>
 
 		<div class="upload-section ">

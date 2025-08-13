@@ -54,10 +54,12 @@ public class IngredientRestController {
 		String imagePath2 = FileManager.saveFile(userId, imageFile2);
 		String imagePath3 = FileManager.saveFile(userId, imageFile3);
 
-		if (ingredientService.addIngredient(postId, ingredientName, ingredientAmount, content, imagePath) && 
+		if (
+				ingredientService.addIngredient(postId, ingredientName, ingredientAmount, content, imagePath) && 
 				ingredientService.addIngredient(postId, ingredientName2, ingredientAmount2, content2, imagePath2) && 
-				ingredientService.addIngredient(postId, ingredientName3, ingredientAmount3, content3, imagePath3) ) {
-			
+				ingredientService.addIngredient(postId, ingredientName3, ingredientAmount3, content3, imagePath3) 
+			) 
+		{
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");

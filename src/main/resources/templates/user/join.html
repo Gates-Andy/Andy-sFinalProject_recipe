@@ -14,7 +14,6 @@
 
 		<header class="join-logo text-center py-4">
 			<div class="display-3">ANDY's Recipes</div>
-			<h2 class="text-center">회원가입</h2>
 		</header>
 
 		<main class="flex-grow-1 d-flex justify-content-center align-items-center" style="padding: 40px;">
@@ -47,21 +46,46 @@
 				<div id="availableEmailText" class="text-success mt-1 d-none">✅ 사용 가능한 이메일 입니다.</div>
 
 				<button class="btn mt-5 join-btn" type="button" id="joinBtn">회원가입</button>
+				
 			</div>
 			
-			<div class="flex=colum">
-			
-				<div id="imageSection" class="ml-5" style="max-width: 300px; flex-shrink: 0;">
-					<img alt="음식사진" width="100%" src="https://cdn.pixabay.com/photo/2017/08/06/06/43/pizza-2589575_1280.jpg" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+			<div id="imageSection" class="ml-5" style="max-width: 300px; flex-shrink: 0;">
+				
+				<div id="foodCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+				  
+				<div class="carousel-inner">
+				
+					<div class="carousel-item active">
+						<img src="https://cdn.pixabay.com/photo/2020/03/22/16/18/bread-4957679_1280.jpg" 
+						class="d-block" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" alt="">
+					</div>
+				      
+					 <div class="carousel-item">
+					 	<img src="https://cdn.pixabay.com/photo/2016/11/29/04/49/blueberries-1867398_1280.jpg" 
+					 	class="d-block" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" alt="">
+					 </div>
+				      
+					 <div class="carousel-item">
+					 	<img src="https://cdn.pixabay.com/photo/2014/09/22/14/49/breakfast-456351_1280.jpg" 
+					 	class="d-block" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" alt="">
+					 </div>
+					 
+					 <div class="carousel-item">
+					 	<img src="https://cdn.pixabay.com/photo/2016/11/18/19/00/bread-1836411_1280.jpg" 
+					 	class="d-block" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);" alt="">
+					 </div>
+					 
 				</div>
-
-				<div id="loginArea" class="text-center ml-5 mt-3">
-					<span>이미 계정이 있으신가요? </span> <a href="/user/login/view" class="btn btn-link">로그인</a>
-				</div>
-
+			    
+			  </div>
+			  
 			</div>
-			
 		</main>
+
+			<div id="loginArea" class="text-center ml-5 mt-3">
+				<span>이미 계정이 있으신가요? </span> <a href="/user/login/view" class="btn btn-link">로그인</a>
+			</div>
+			
 
 		 <footer class="d-flex justify-content-start align-items-center py-3">
 			<div>Copyright 2024. ANDY’s Recipes all rights reserved.</div>
@@ -70,6 +94,9 @@
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+	
 	<script>
 		let isEmailChecked = false; // 이메일중복버튼을 누르지않았어요
 		let isEmailDuplicated = true; // 이메일이 중복된상태로 먼저 선택
