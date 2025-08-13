@@ -25,7 +25,7 @@
 
 				<div id="idInputSection" class="d-flex">
 					<input class="form-control" style="flex: 1;" type="text" placeholder="아이디를 입력해주세요" id="loginIdInput">
-					<button class="btn btn-primary ml-3" type="button" id="idDuplicateBtn" style="min-width: 110px;">아이디 중복확인</button>
+					<button class="btn ml-3 join-btn" type="button" id="idDuplicateBtn" style="min-width: 110px;">아이디 중복확인</button>
 				</div>
 				<div id="duplicateIdText" class="text-danger mt-1 d-none">❌ 이미 사용중인 아이디 입니다.</div>
 				<div id="availableIdText" class="text-success mt-1 d-none">✅ 사용 가능한 아이디 입니다.</div>
@@ -40,26 +40,30 @@
 
 				<div id="emailInputSection" class="d-flex">
 					<input class="form-control" style="flex: 1;" type="text" placeholder="이메일을 입력해주세요" id="emailInput">
-					<button class="btn btn-primary ml-3" type="button" id="emailDuplicateBtn" style="min-width: 110px;">이메일 중복확인</button>
+					<button class="btn ml-3 join-btn" type="button" id="emailDuplicateBtn" style="min-width: 110px;">이메일 중복확인</button>
 				</div>
 
 				<div id="duplicateEmailText" class="text-danger mt-1 d-none">❌ 이미 사용중인 이메일 입니다.</div>
 				<div id="availableEmailText" class="text-success mt-1 d-none">✅ 사용 가능한 이메일 입니다.</div>
 
-				<button class="btn btn-success btn-block mt-5" type="button" id="joinBtn">회원가입</button>
+				<button class="btn mt-5 join-btn" type="button" id="joinBtn">회원가입</button>
 			</div>
+			
+			<div class="flex=colum">
+			
+				<div id="imageSection" class="ml-5" style="max-width: 300px; flex-shrink: 0;">
+					<img alt="음식사진" width="100%" src="https://cdn.pixabay.com/photo/2017/08/06/06/43/pizza-2589575_1280.jpg" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+				</div>
 
-			<div id="imageSection" class="ml-5" style="max-width: 280px; flex-shrink: 0;">
-				<img alt="음식사진" width="100%" src="https://cdn.pixabay.com/photo/2017/08/06/06/43/pizza-2589575_1280.jpg" style="border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+				<div id="loginArea" class="text-center ml-5 mt-3">
+					<span>이미 계정이 있으신가요? </span> <a href="/user/login/view" class="btn btn-link">로그인</a>
+				</div>
+
 			</div>
-
+			
 		</main>
 
-		<div id="loginArea" class="text-center mt-4 mb-3">
-			<span>이미 계정이 있으신가요? </span> <a href="/user/login/view" class="btn btn-link">로그인</a>
-		</div>
-
-		 <footer class="d-flex justify-content-start align-items-center py-3" style="background-color:#f0f0f0;">
+		 <footer class="d-flex justify-content-start align-items-center py-3">
 			<div>Copyright 2024. ANDY’s Recipes all rights reserved.</div>
 		</footer>
 
@@ -101,7 +105,7 @@
 					}
 				},
 				error : function() {
-					alert("이메일 중복확인 버튼을 눌러주세요.");
+					alert("이메일 중복확인 버튼을 눌러주세요!");
 				}
 			});
 		});
@@ -110,7 +114,7 @@
 			let loginId = $("#loginIdInput").val();
 
 			if (loginId === "") {
-				alert("사용하실 닉네임을 적어주세요");
+				alert("사용하실 닉네임을 적어주세요!");
 				return;
 			}
 
@@ -132,7 +136,7 @@
 					}
 				},
 				error : function() {
-					alert("아이디 중복확인 버튼을 눌러주세요");
+					alert("아이디 중복확인 버튼을 눌러주세요!");
 				}
 			});
 		});
@@ -149,17 +153,17 @@
 			}
 
 			if (password !== passwordCheck) {
-				alert("비밀번호를 체크해주세요");
+				alert("비밀번호를 체크해주세요!");
 				return;
 			}
 
 			if (!isLoginIdChecked) {
-				alert("아이디 중복 확인을 해주세요.");
+				alert("아이디 중복 확인을 해주세요!");
 				return;
 			}
 
 			if (!isEmailChecked) {
-				alert("이메일 중복 확인을 해주세요.");
+				alert("이메일 중복 확인을 해주세요!");
 				return;
 			}
 

@@ -69,6 +69,7 @@ public class PostController {
 
 
 		PostDto postDto = postService.getPostById(id);
+		
 		model.addAttribute("postDto", postDto);
 
 		return "post/edit";

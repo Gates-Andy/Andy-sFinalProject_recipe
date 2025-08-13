@@ -7,8 +7,11 @@
 
 	<div class="post-card" th:each="postDto : ${postDtoList}">
 
-		<span class="artist" th:utext="${'<h4>' + postDto.loginId + '</h4>' + ' 의 Recipe'}"></span>
-		
+		<span class="artist">
+		  The recipe by
+		  <span class="badge" th:text="${postDto.loginId}"></span>
+		</span>
+			
 		<div class="main-food-pics">
 		
 			<a th:href="@{/post/recipes/view(id=${postDto.id})}">
@@ -21,10 +24,10 @@
 		
 			<div class="title" th:utext="${'레시피 이름 : <br>' + postDto.title}"></div>
 			
-			<div class="description" th:utext="${'<br>' + postDto.content}"></div>
+			<div class="description" th:text="${postDto.content}"></div>
 			
 			<div class="headcount" th:text="${'인분수 : ' + postDto.headcount + '인분'}"></div>
-
+	
 			<div class="ingredients">
 				<span>재료 태그 : </span> 
 					<span th:each="ingredient,stat : ${postDto.ingredientList}"> 
@@ -32,7 +35,7 @@
 				</span>
 			</div>
 
-			<div class="category" th:text="${'요리 카테고리 :' + postDto.category}"></div>
+			<div class="category" th:text="${'요리 카테고리 : ' + postDto.category}"></div>
 
 		</div>
 

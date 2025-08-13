@@ -40,4 +40,25 @@ public class CommentRestController {
 
 		return resultMap;
 	}
+
+	@PostMapping("/delete")
+	public Map<String, String> deleteComment(@RequestParam("commentId") long commentId, HttpSession session) {
+		Map<String, String> resultMap = new HashMap<>();
+
+		Object userIdObj = session.getAttribute("userId");
+
+		long userId = (long) userIdObj;
+
+		boolean deleted = commentService.deleteComment(commentId, userId);
+		
+		if (deleted) {
+			resultMap.put("result", "success");
+		} else {
+			resultMap.put("result", "fail");
+			resultMap.put("message", "삭제 권한이 없거나 댓글이 없습니다.");
+		}
+
+		return resultMap;
+	}
+	
 }

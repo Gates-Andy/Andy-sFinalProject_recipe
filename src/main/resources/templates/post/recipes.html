@@ -67,21 +67,51 @@
 		<div th:each="comment : ${postDto.commentList}">
 			<span th:text="${comment.userName}"></span> : 
 			<span th:text="${comment.text}">댓글 내용</span>
+				<a href="#" class="text-danger comment-delete" th:data-comment-id="${comment.id}" th:if="${comment.userId == session.userName}"> 댓글삭제 </a>
 		</div>
 	</div>
 
 </main>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"
-	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script layout:fragment="script">
+	$(".comment-delete").on("click", function(e) {
+	    e.preventDefault();
+	
+	    if (!confirm("정말 댓글을 삭제하시겠습니까?")) return;
+	
+	    let commentId = $(this).data("comment-id");
+	
+	    $.ajax({
+	        type: "post",
+	        url: "/post/comment/delete",
+	        data: { 
+	        	commentId : commentId 
+	        },
+	        success: function(response) {
+	            if (response.result === "success") {
+	                location.reload();
+	            } else {
+	                alert("댓글 삭제 실패");
+	            }
+	        },
+	        error: function() {
+	            alert("댓글 삭제 에러!");
+	        }
+	    });
+	});
+	
 	$(".comment-submit").on("click", function() {
 		
 		let postId = $(this).data("post-id");
     	let text = $("#text").val();
 		
+    	if(text=" "){
+    		alert("댓글을 작성 해주세요");
+    		return;
+    	}
+    	
 		$.ajax({
 			type : "post",
 			url : "/post/comment/create",

@@ -24,9 +24,8 @@
 					<a href="/user/join/view">회원가입/</a> <a href="/user/login/view">로그인</a>
 				</div>
 				<div th:if="${session.userId != null}">
-					<a href="/post/myRecipe/view"><span
-						th:text="${session.loginId + ' 님 환영합니다!'}"></span></a> <a
-						href="/user/logout" class="text-danger">logout</a>
+					<a href="/post/myRecipe/view"><span th:text="${session.loginId + ' 님 환영합니다!'}"></span></a> 
+					<a href="/user/logout" class="text-danger">logout</a>
 				</div>
 			</div>
 		</div>
