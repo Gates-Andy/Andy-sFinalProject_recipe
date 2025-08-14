@@ -67,5 +67,5 @@ public class IngredientRestController {
 		
 		return resultMap;
 	}
-
+	
 }
