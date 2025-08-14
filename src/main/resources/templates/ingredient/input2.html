@@ -1,0 +1,112 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/default}">
+
+<main layout:fragment="contents">
+
+	<input type="hidden" id="postId" th:value="${postId}">
+
+	<div id="ingredientList">
+		<div class="ingredient-item d-flex mb-3"
+			style="gap: 10px; height: auto;">
+			<div class="ingredient-input">
+				<input type="text" name="ingredientName" class="form-control mb-1"
+					placeholder="재료: "> <input type="text"
+					name="ingredientAmount" class="form-control mb-1"
+					placeholder="수량: ">
+				<textarea name="content" class="form-control note"
+					placeholder="재료 손질법 등" rows="3"></textarea>
+			</div>
+			<div class="ingredient-photo">
+				<img class="previewImg" src="#" alt="미리보기"
+					style="display: none; width: 150px; height: auto; margin-top: 5px;">
+				<input type="file" class="fileInput" name="imageFile" hidden>
+				<label class="btn btn-style mt-1">사진 첨부</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="d-flex mb-3">
+		<button type="button" id="addIngredientBtn" class="btn btn-secondary">재료
+			추가</button>
+	</div>
+
+	<div class="function d-flex justify-content-center mb-5">
+		<button type="button" class="form-control col-4 btn-style"
+			id="savebtn">저장하기</button>
+	</div>
+
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+	function previewImage(input, img) {
+		if (input.files && input.files[0]) {
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				img.attr('src', e.target.result).show();
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	// 사진 미리보기
+	$(document).on("change", ".fileInput", function() {
+		let img = $(this).siblings(".previewImg");
+		previewImage(this, img);
+	});
+
+	// 재료 추가
+	$("#addIngredientBtn").on("click", function() {
+		let newItem = $("#ingredientList .ingredient-item:first").clone();
+		newItem.find("input, textarea").val(""); // 값 초기화
+		newItem.find(".previewImg").hide().attr("src", "#"); // 이미지 초기화
+		newItem.find(".fileInput").val(""); // 파일 초기화
+		$("#ingredientList").append(newItem);
+	});
+
+	// 저장
+	$("#savebtn").on(
+			"click",
+			function() {
+				let postId = $("#postId").val();
+				let formData = new FormData();
+				formData.append("postId", postId);
+
+				$("#ingredientList .ingredient-item").each(
+						function() {
+							let name = $(this).find(
+									"input[name='ingredientName']").val()
+									.trim();
+							let amount = $(this).find(
+									"input[name='ingredientAmount']").val()
+									.trim();
+							let content = $(this).find(
+									"textarea[name='content']").val().trim();
+							let file = $(this).find(".fileInput")[0].files[0];
+
+							formData.append("ingredientName", name);
+							formData.append("ingredientAmount", amount);
+							formData.append("content", content);
+							if (file)
+								formData.append("imageFile", file);
+						});
+
+				$.ajax({
+					type : "post",
+					url : "/ingredient/create",
+					data : formData,
+					processData : false,
+					contentType : false,
+					success : function(response) {
+						if (response.result === "success")
+							location.href = "/post/myRecipe/view";
+						else
+							alert("레시피 재료 저장 실패");
+					},
+					error : function() {
+						alert("레시피 재료 저장 에러");
+					}
+				});
+			});
+</script>
