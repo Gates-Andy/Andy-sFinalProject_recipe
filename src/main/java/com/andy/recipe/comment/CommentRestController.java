@@ -55,7 +55,6 @@ public class CommentRestController {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
-			resultMap.put("message", "삭제 권한이 없거나 댓글이 없습니다.");
 		}
 
 		return resultMap;
