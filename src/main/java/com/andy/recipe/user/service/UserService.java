@@ -12,7 +12,7 @@ public class UserService {
 	private final UserRepository userRepository;
 
 	public UserService(UserRepository userRepository) {
-	    this.userRepository = userRepository;
+		this.userRepository = userRepository;
 	}
 
 	public boolean adduser(String loginId, String password, String email) {
@@ -29,7 +29,7 @@ public class UserService {
 	}
 
 	public boolean isDuplicateId(String loginId) {
-		
+
 		int count = userRepository.selectCountByloginId(loginId);
 
 		if (count == 0) {
@@ -40,7 +40,7 @@ public class UserService {
 	}
 
 	public boolean isDuplicateEmail(String email) {
-		
+
 		int count = userRepository.selectCountByemail(email);
 
 		if (count == 0) {
@@ -58,8 +58,8 @@ public class UserService {
 	}
 
 	public User getUserById(long Id) {
-		
+
 		return userRepository.selectUserById(Id);
-		
+
 	}
 }

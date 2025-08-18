@@ -7,17 +7,27 @@
 
 	<insert id="insertComment"
 		parameterType="com.andy.recipe.comment.domain.Comment">
-		INSERT INTO `post_comment` (
+		INSERT INTO
+		`post_comment`
+		(
 		`userId`,
 		`postId`,
 		`text`
 		)
-		VALUES (
+		VALUES
+		(
 		#{userId},
 		#{postId},
 		#{text}
 		)
 	</insert>
+
+	<delete id="deleteCommentById">
+		DELETE FROM
+		`post_comment`
+		WHERE
+		`id` = #{id}
+	</delete>
 
 	<select id="findCommentsByPostId"
 		resultType="com.andy.recipe.comment.domain.Comment">
@@ -36,13 +46,6 @@
 		`createdAt`
 		DESC
 	</select>
-
-	<delete id="deleteCommentById">
-		DELETE FROM
-		`post_comment`
-		WHERE
-		`id` = #{id}
-	</delete>
 
 	<select id="findById" parameterType="long"
 		resultType="com.andy.recipe.comment.domain.Comment">

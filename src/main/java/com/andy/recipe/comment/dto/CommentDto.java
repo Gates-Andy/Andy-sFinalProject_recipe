@@ -6,7 +6,7 @@ public class CommentDto {
 	private long id;
 	private long userId;
 	private String userName; // 닉네임 또는 로그인ID
-	private int postId;
+	private long postId;
 	private String text;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
@@ -35,11 +35,11 @@ public class CommentDto {
 		this.userName = userName;
 	}
 
-	public int getPostId() {
+	public long getPostId() {
 		return postId;
 	}
 
-	public void setPostId(int postId) {
+	public void setPostId(long postId) {
 		this.postId = postId;
 	}
 

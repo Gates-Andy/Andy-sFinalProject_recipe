@@ -21,11 +21,11 @@ public class CommentService {
 		this.userService = userService;
 	}
 
-	public boolean addComment(long userId, int postId, String text) {
+	public boolean addComment(long userId, long postId, String text) {
 
 		Comment comment = new Comment();
-		comment.setUserId((int) userId);
-		comment.setPostId((int) postId);
+		comment.setUserId(userId);
+		comment.setPostId(postId);
 		comment.setText(text);
 
 		int result = commentRepository.insertComment(comment);
@@ -33,16 +33,12 @@ public class CommentService {
 		return result == 1;
 	}
 
-	public boolean deleteComment(long commentId, long currentUserId) {
+	public boolean deleteComment(long commentId) {
 		
 	    Comment comment = commentRepository.findById(commentId);
 	    
 	    if (comment == null) {
 	        return false; // 댓글이 없음
-	    }
-	    
-	    if (comment.getUserId() != currentUserId) {
-	        return false; // 작성자가 아니므로 삭제 불가
 	    }
 	    
 	    int result = commentRepository.deleteCommentById(commentId);

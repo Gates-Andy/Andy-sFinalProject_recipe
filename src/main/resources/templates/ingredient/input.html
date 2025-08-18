@@ -60,12 +60,48 @@
 <script layout:fragment="script">
 
 function previewImage(input, previewId) {
-	  if (input.files && input.files[0]) {
-	    const reader = new FileReader();
-	    reader.onload = function(e) {
-	      $('#' + previewId).attr('src', e.target.result).show();
+	  if (input.files && input.files[0]) { 
+		  
+		  /*<input type="file"> 태그로 선택한 파일들을 배열처럼 담아두는 속성.
+		  실제로는 FileList라는 객체가 들어있고, 사용자가 여러 파일을 선택했다면 files[0], files[1]처럼 인덱스로 접근 가능해요.*/
+		  /*선택한 파일 중 첫 번째 파일을 의미합니다.만약 파일을 하나도 선택하지 않았다면 undefined가 됩니다.*/
+		  
+		  /*사용자가 실제로 파일을 선택했는지 확인하는 구문이에요. 
+		  input.files가 존재해야 하고 (null 또는 undefined가 아님)
+		  files[0]가 존재해야 파일이 실제로 선택된 상태임을 확인할 수 있어요.
+		  조건을 만족하면 FileReader로 미리보기를 진행할 수 있습니다.*/
+		  
+	    const reader = new FileReader(); // 객체 생성
+	    reader.onload = function(e) { // 파일 읽기가 끝났을 때 실행될 콜백 함수를 지정하는 코드.
+	      $('#' + previewId).attr('src', e.target.result).show(); 
+	    /*여기서 e는 이벤트 객체인데, e.target.result에 읽어온 파일의 내용(여기서는 이미지 데이터 URL)이 들어 있어요.
+	    즉, 파일을 읽은 후 이미지를 화면에 보여주기 위해 src 속성에 값을 넣는 역할을 하는 거죠.
+
+		예시 흐름:
+
+		사용자가 파일 선택 → input.files[0] 존재
+
+		reader.readAsDataURL()로 읽기 시작
+
+		브라우저가 읽기 완료 → onload 실행
+
+		e.target.result → 이미지 데이터를 <img> 태그의 src에 넣음
+	    */
 	    };
 	    reader.readAsDataURL(input.files[0]);
+	    
+	    /*
+	    FileReader 객체가 실제 파일을 읽도록 지시하는 메서드예요.
+
+		readAsDataURL은 선택한 파일을 Base64로 인코딩한 데이터 URL로 읽는 방식
+
+		이미지 미리보기할 때 많이 쓰임
+
+		input.files[0]는 <input type="file">에서 사용자가 선택한 첫 번째 파일을 의미
+
+		즉, **"이 파일을 읽어서 나중에 src로 쓸 수 있는 문자열 형태로 만들어라"**라고 명령하는 것과 같아요.
+	    */
+	    
 	  }
 	}
 
