@@ -63,7 +63,18 @@ public class PostController {
 
 		return "post/recipes";
 	}
+	
+	@GetMapping("/ranking/view")
+	public String ranking(Model model) {
 
+		List<PostDto> postDtoList = postService.getPostList(); 
+
+		model.addAttribute("postDtoList", postDtoList);
+
+		return "post/ranking";
+
+	}
+	
 	@GetMapping("/update/view")
 	public String updateView(@RequestParam("id") long id, HttpSession session, Model model) {
 

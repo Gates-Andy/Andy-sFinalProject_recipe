@@ -23,7 +23,7 @@ public class CommentRestController {
 	}
 
 	@PostMapping("/create")
-	public Map<String, String> createComment(@RequestParam("postId") int postId, @RequestParam("text") String text,
+	public Map<String, String> createComment(@RequestParam("postId") long postId, @RequestParam("text") String text,
 			HttpSession session) {
 
 		Map<String, String> resultMap = new HashMap<>();
@@ -42,20 +42,16 @@ public class CommentRestController {
 	}
 
 	@PostMapping("/delete")
-	public Map<String, String> deleteComment(@RequestParam("commentId") long commentId, HttpSession session) {
+	public Map<String, String> deleteComment(@RequestParam("commentId") long commentId) {
+		
 		Map<String, String> resultMap = new HashMap<>();
 
-		Object userIdObj = session.getAttribute("userId");
-
-		long userId = (long) userIdObj;
-
-		boolean deleted = commentService.deleteComment(commentId, userId);
+		boolean deleted = commentService.deleteComment(commentId);
 		
 		if (deleted) {
 			resultMap.put("result", "success");
 		} else {
 			resultMap.put("result", "fail");
-			resultMap.put("message", "삭제 권한이 없거나 댓글이 없습니다.");
 		}
 
 		return resultMap;

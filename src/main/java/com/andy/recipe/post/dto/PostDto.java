@@ -22,6 +22,7 @@ public class PostDto {
 	private List<Step> stepList;
 
 	private int likeCount;
+	
 	private boolean likedByCurrentUser;
 
 	private List<CommentDto> commentList;

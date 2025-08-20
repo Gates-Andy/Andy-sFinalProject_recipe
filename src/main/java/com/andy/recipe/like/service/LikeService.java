@@ -17,8 +17,8 @@ public class LikeService {
 	public boolean addLike(long userId, long postId) {
 
 		Like like = new Like();
-		like.setUserId((int) userId);
-		like.setPostId((int) postId);
+		like.setUserId(userId);
+		like.setPostId(postId);
 
 		int result = likeRepository.insertLike(like);
 
@@ -28,8 +28,8 @@ public class LikeService {
 	public boolean removeLike(long userId, long postId) {
 
 		Like like = new Like();
-		like.setUserId((int) userId);
-		like.setPostId((int) postId);
+		like.setUserId(userId);
+		like.setPostId(postId);
 
 		int result = likeRepository.deleteLike(userId, postId);
 

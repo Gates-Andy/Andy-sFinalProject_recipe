@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Comment {
 	private long id;
 	private long userId;
-	private int postId;
+	private long postId;
 	private String text;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
@@ -26,11 +26,11 @@ public class Comment {
 		this.userId = userId;
 	}
 
-	public int getPostId() {
+	public long getPostId() {
 		return postId;
 	}
 
-	public void setPostId(int postId) {
+	public void setPostId(long postId) {
 		this.postId = postId;
 	}
 
