@@ -24,6 +24,6 @@ public class StepController {
 
 		model.addAttribute("postId", postId);
 
-		return "step/input";
+		return "step/input2";
 	}
 }

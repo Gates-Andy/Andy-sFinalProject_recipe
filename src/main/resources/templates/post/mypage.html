@@ -15,13 +15,16 @@
 				</div>
 				
 				<div class="content">
+				
 					<div class="title" th:text="${'레시피 이름 : ' + postDto.title}"></div>
+					
 					<div class="description" th:utext="${'레시피 간단 설명 : <br>' + postDto.content}"></div>
+					
 					<div class="ingredients">
 						<span>재료 태그 : </span> 
-						<span th:each="ingredient,stat : ${postDto.ingredientList}"> 
-							<span th:utext="${ingredient.ingredientName} + (stat.last ? '' : ', ')"></span>
-						</span>
+							<span th:each="ingredient,stat : ${postDto.ingredientList}"> 
+								<span th:utext="${ingredient.ingredientName + (stat.last ? '' : ', ')}"></span>
+							</span>
 					</div>
 
 					<div class="headcount" th:text="${'인분수 : ' + postDto.headcount + '인분'}"></div>

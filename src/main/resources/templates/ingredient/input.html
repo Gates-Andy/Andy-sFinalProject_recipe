@@ -1,184 +1,193 @@
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layouts/default}">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default}">
 
 <main layout:fragment="contents">
 
 	<input type="hidden" id="postId" th:value="${postId}">
-	
+
 	<div class="ingredient1 d-flex mb-3" style="gap: 10px; height: 200px;">
-	
+
 		<div class="ingredient-input">
-			<input type="text" class="form-control mb-1" id="ingredientName" placeholder="재료1: ">
+			<input type="text" class="form-control mb-1" id="ingredientName" placeholder="재료1: "> 
 			<input type="text" class="form-control mb-1" id="ingredientAmount" placeholder="재료1의 수량: ">
-			<textarea class="note form-control" id="content" placeholder="재료 손질법등을 알려주세요." rows="5"></textarea>	
+			<textarea class="note form-control" id="content" placeholder="재료 손질법등을 알려주세요." rows="5"></textarea>
 		</div>
-		
+
 		<div class="ingredient-photo">
-			<img id="previewImg1" src="#" alt="미리보기" style="display:none; 
-			width:620px; max-width:none; height:auto; margin-top:5px;">
+			<img id="previewImg1" src="#" alt="미리보기" style="display: none; width: 620px; max-width: none; height: auto; margin-top: 5px;">
 
 			<input type="file" class="btn btn-style ml-3" id="fileInput" name="imageFile" hidden> 
-			 
-			 <label for="fileInput">
-			 	<span class="d-flex justify-content-center align-items-center">+</span>
-			 </label>
+			<label for="fileInput"> 
+				<span class="d-flex justify-content-center align-items-center"></span>
+			</label>
 		</div>
-		
+
 	</div>
-	
-	<div class="ingredient2 mb-1">
-  		<input type="text" class="form-control col-4 mb-1" id="ingredientName2" placeholder="재료2: ">
-   		<input type="text" class="form-control col-4 mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
-   		<img id="previewImg2" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
-    	<textarea class="note form-control col-4" id="content2" placeholder="추가 설명" rows="3"></textarea>
-   		
-   		<label class="btn btn-style mt-1"> 재료 사진 올리기 
-    		<input type="file" id="fileInput2" name="imageFile2" hidden> 
-    	</label> 
+
+	<div class="ingredient d-flex mb-3" style="gap: 10px; height: 200px;">
+
+		<div class="ingredient-input">
+			<input type="text" class="form-control mb-1" id="ingredientName2" placeholder="재료2: "> 
+			<input type="text" class="form-control mb-1" id="ingredientAmount2" placeholder="재료2의 수량: ">
+			<textarea class="note form-control" id="content2" placeholder="재료 손질법 등을 알려주세요." rows="5"></textarea>
+		</div>
+
+		<div class="ingredient-photo">
+			<img id="previewImg2" src="#" alt="미리보기" style="display: none; width: 620px; max-width: none; height: auto; margin-top: 5px;">
+
+			<input type="file" class="btn btn-style ml-3" id="fileInput2" name="imageFile2" hidden> <label for="fileInput2"> 
+				<span class="d-flex justify-content-center align-items-center">+</span>
+			</label>
+
+		</div>
 	</div>
-	
-	<div class="ingredient3 mb-1">
-    	<input type="text" class="form-control col-4 mb-1" id="ingredientName3" placeholder="재료3: ">
-   	 	<input type="text" class="form-control col-4 mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
-    	<img id="previewImg3" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
-   		<textarea class="note form-control col-4" id="content3" placeholder="추가 설명" rows="3"></textarea>
-    	
-    	<label class="btn btn-style mt-1"> 재료 사진 올리기 
-        	<input type="file" id="fileInput3" name="imageFile3" hidden> 
-    	</label> 
+
+	<div class="ingredient d-flex mb-3" style="gap: 10px; height: 200px;">
+
+		<div class="ingredient-input">
+			<input type="text" class="form-control mb-1" id="ingredientName3" placeholder="재료3: "> 
+				<input type="text" class="form-control mb-1" id="ingredientAmount3" placeholder="재료3의 수량: ">
+			<textarea class="note form-control" id="content3" placeholder="재료 손질법 등을 알려주세요." rows="5"></textarea>
+		</div>
+
+		<div class="ingredient-photo">
+			<img id="previewImg3" src="#" alt="미리보기" style="display: none; width: 620px; max-width: none; height: auto; margin-top: 5px;">
+
+			<input type="file" class="btn btn-style ml-3" id="fileInput3" name="imageFile3" hidden> 
+			<label for="fileInput3"> <span
+				class="d-flex justify-content-center align-items-center">+</span>
+			</label>
+		</div>
 	</div>
 
 	<div class="function d-flex justify-content-center mb-5">
 		<button type="button" class="form-control col-4 btn-style" id="savebtn">저장하기</button>
 	</div>
-	
+
 </main>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script layout:fragment="script">
+	function previewImage(input, previewId) {
+		if (input.files && input.files[0]) {
 
-function previewImage(input, previewId) {
-	  if (input.files && input.files[0]) { 
-		  
-		  /*<input type="file"> 태그로 선택한 파일들을 배열처럼 담아두는 속성.
-		  실제로는 FileList라는 객체가 들어있고, 사용자가 여러 파일을 선택했다면 files[0], files[1]처럼 인덱스로 접근 가능해요.*/
-		  /*선택한 파일 중 첫 번째 파일을 의미합니다.만약 파일을 하나도 선택하지 않았다면 undefined가 됩니다.*/
-		  
-		  /*사용자가 실제로 파일을 선택했는지 확인하는 구문이에요. 
-		  input.files가 존재해야 하고 (null 또는 undefined가 아님)
-		  files[0]가 존재해야 파일이 실제로 선택된 상태임을 확인할 수 있어요.
-		  조건을 만족하면 FileReader로 미리보기를 진행할 수 있습니다.*/
-		  
-	    const reader = new FileReader(); // 객체 생성
-	    reader.onload = function(e) { // 파일 읽기가 끝났을 때 실행될 콜백 함수를 지정하는 코드.
-	      $('#' + previewId).attr('src', e.target.result).show(); 
-	    /*여기서 e는 이벤트 객체인데, e.target.result에 읽어온 파일의 내용(여기서는 이미지 데이터 URL)이 들어 있어요.
-	    즉, 파일을 읽은 후 이미지를 화면에 보여주기 위해 src 속성에 값을 넣는 역할을 하는 거죠.
+			/*<input type="file"> 태그로 선택한 파일들을 배열처럼 담아두는 속성.
+			실제로는 FileList라는 객체가 들어있고, 사용자가 여러 파일을 선택했다면 files[0], files[1]처럼 인덱스로 접근 가능해요.*/
+			/*선택한 파일 중 첫 번째 파일을 의미합니다.만약 파일을 하나도 선택하지 않았다면 undefined가 됩니다.*/
 
-		예시 흐름:
+			/*사용자가 실제로 파일을 선택했는지 확인하는 구문이에요. 
+			input.files가 존재해야 하고 (null 또는 undefined가 아님)
+			files[0]가 존재해야 파일이 실제로 선택된 상태임을 확인할 수 있어요.
+			조건을 만족하면 FileReader로 미리보기를 진행할 수 있습니다.*/
 
-		사용자가 파일 선택 → input.files[0] 존재
+			const reader = new FileReader(); // 객체 생성
+			reader.onload = function(e) { // 파일 읽기가 끝났을 때 실행될 콜백 함수를 지정하는 코드.
+				$('#' + previewId).attr('src', e.target.result).show();
+				/*여기서 e는 이벤트 객체인데, e.target.result에 읽어온 파일의 내용(여기서는 이미지 데이터 URL)이 들어 있어요.
+				즉, 파일을 읽은 후 이미지를 화면에 보여주기 위해 src 속성에 값을 넣는 역할을 하는 거죠.
 
-		reader.readAsDataURL()로 읽기 시작
+				예시 흐름:
 
-		브라우저가 읽기 완료 → onload 실행
+				사용자가 파일 선택 → input.files[0] 존재
 
-		e.target.result → 이미지 데이터를 <img> 태그의 src에 넣음
-	    */
-	    };
-	    reader.readAsDataURL(input.files[0]);
-	    
-	    /*
-	    FileReader 객체가 실제 파일을 읽도록 지시하는 메서드예요.
+				reader.readAsDataURL()로 읽기 시작
 
-		readAsDataURL은 선택한 파일을 Base64로 인코딩한 데이터 URL로 읽는 방식
+				브라우저가 읽기 완료 → onload 실행
 
-		이미지 미리보기할 때 많이 쓰임
+				e.target.result → 이미지 데이터를 <img> 태그의 src에 넣음
+				 */
+			};
+			reader.readAsDataURL(input.files[0]);
 
-		input.files[0]는 <input type="file">에서 사용자가 선택한 첫 번째 파일을 의미
+			/*
+			FileReader 객체가 실제 파일을 읽도록 지시하는 메서드예요.
 
-		즉, **"이 파일을 읽어서 나중에 src로 쓸 수 있는 문자열 형태로 만들어라"**라고 명령하는 것과 같아요.
-	    */
-	    
-	  }
+			readAsDataURL은 선택한 파일을 Base64로 인코딩한 데이터 URL로 읽는 방식
+
+			이미지 미리보기할 때 많이 쓰임
+
+			input.files[0]는 <input type="file">에서 사용자가 선택한 첫 번째 파일을 의미
+
+			즉, **"이 파일을 읽어서 나중에 src로 쓸 수 있는 문자열 형태로 만들어라"**라고 명령하는 것과 같아요.
+			 */
+
+		}
 	}
 
 	$('#fileInput').on('change', function() {
-	  previewImage(this, 'previewImg1');
+		previewImage(this, 'previewImg1');
 	});
 	$('#fileInput2').on('change', function() {
-	  previewImage(this, 'previewImg2');
+		previewImage(this, 'previewImg2');
 	});
 	$('#fileInput3').on('change', function() {
-	  previewImage(this, 'previewImg3');
+		previewImage(this, 'previewImg3');
 	});
-	
-$("#savebtn").on("click", function () {
-	
-	let postId = $("#postId").val();
 
-	let ingredientName = $("#ingredientName").val().trim();
-	let ingredientAmount = $("#ingredientAmount").val().trim();
-	let content = $("#content").val().trim();
-	let imageFile = $("#fileInput")[0].files[0];
+	$("#savebtn").on("click", function() {
 
-	let ingredientName2 = $("#ingredientName2").val().trim();
-	let ingredientAmount2 = $("#ingredientAmount2").val().trim();
-	let content2 = $("#content2").val().trim();
-	let imageFile2 = $("#fileInput2")[0].files[0];
+		let postId = $("#postId").val();
 
-	let ingredientName3 = $("#ingredientName3").val().trim();
-	let ingredientAmount3 = $("#ingredientAmount3").val().trim();
-	let content3 = $("#content3").val().trim();
-	let imageFile3 = $("#fileInput3")[0].files[0];
-	
-	let formData = new FormData();
-	
-	formData.append("postId", postId);
-	
-	formData.append("ingredientName", ingredientName);
-	formData.append("ingredientAmount", ingredientAmount);
-	formData.append("content", content);
-	
-	formData.append("ingredientName2", ingredientName2);
-	formData.append("ingredientAmount2", ingredientAmount2);
-	formData.append("content2", content2);
-	
-	formData.append("ingredientName3", ingredientName3);
-	formData.append("ingredientAmount3", ingredientAmount3);
-	formData.append("content3", content3);
-	
-	if (imageFile) {
-		formData.append("imageFile", imageFile);
-	}
-	
-	if (imageFile2) {
-	    formData.append("imageFile2", imageFile2);
-	}
-	
-	if (imageFile3) {
-	    formData.append("imageFile3", imageFile3);
-	}
+		let ingredientName = $("#ingredientName").val().trim();
+		let ingredientAmount = $("#ingredientAmount").val().trim();
+		let content = $("#content").val().trim();
+		let imageFile = $("#fileInput")[0].files[0];
 
-	$.ajax({
-		type: "post",
-		url: "/ingredient/create",
-		data: formData,
-		enctype: "multipart/form-data",
-		processData: false,
-		contentType: false,
-		success: function (response) {
-			if (response.result === "success") {
-				location.href = "/post/myRecipe/view";
-			} else {
-				alert("레시피 재료저장 실패.");
-			}
-		},
-		error: function () {
-			alert("레시피 재료저장 에러");
+		let ingredientName2 = $("#ingredientName2").val().trim();
+		let ingredientAmount2 = $("#ingredientAmount2").val().trim();
+		let content2 = $("#content2").val().trim();
+		let imageFile2 = $("#fileInput2")[0].files[0];
+
+		let ingredientName3 = $("#ingredientName3").val().trim();
+		let ingredientAmount3 = $("#ingredientAmount3").val().trim();
+		let content3 = $("#content3").val().trim();
+		let imageFile3 = $("#fileInput3")[0].files[0];
+
+		let formData = new FormData();
+
+		formData.append("postId", postId);
+
+		formData.append("ingredientName", ingredientName);
+		formData.append("ingredientAmount", ingredientAmount);
+		formData.append("content", content);
+
+		formData.append("ingredientName2", ingredientName2);
+		formData.append("ingredientAmount2", ingredientAmount2);
+		formData.append("content2", content2);
+
+		formData.append("ingredientName3", ingredientName3);
+		formData.append("ingredientAmount3", ingredientAmount3);
+		formData.append("content3", content3);
+
+		if (imageFile) {
+			formData.append("imageFile", imageFile);
 		}
+
+		if (imageFile2) {
+			formData.append("imageFile2", imageFile2);
+		}
+
+		if (imageFile3) {
+			formData.append("imageFile3", imageFile3);
+		}
+
+		$.ajax({
+			type : "post",
+			url : "/ingredient/create",
+			data : formData,
+			enctype : "multipart/form-data",
+			processData : false,
+			contentType : false,
+			success : function(response) {
+				if (response.result === "success") {
+					location.href = "/post/myRecipe/view";
+				} else {
+					alert("레시피 재료저장 실패.");
+				}
+			},
+			error : function() {
+				alert("레시피 재료저장 에러");
+			}
+		});
 	});
-});
 </script>

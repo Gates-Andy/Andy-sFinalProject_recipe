@@ -13,6 +13,7 @@
 		`ingredient`
 		(
 		`postId`,
+		`ingredientNumber`,
 		`ingredientName`,
 		`ingredientAmount`,
 		`content`,
@@ -23,6 +24,7 @@
 		VALUES
 		(
 		#{postId},
+		#{ingredientNumber},
 		#{ingredientName},
 		#{ingredientAmount},
 		#{content},
@@ -36,6 +38,7 @@
 		SELECT
 		`id`,
 		`postId`,
+		`ingredientNumber`,
 		`ingredientName`,
 		`ingredientAmount`,
 		`content`,

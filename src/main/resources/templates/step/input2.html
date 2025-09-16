@@ -1,0 +1,107 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/default}">
+	
+<main layout:fragment="contents">
+	<input type="hidden" id="postId" th:value="${postId}">
+	
+	<div id="stepsContainer"></div>
+	<div class="mb-3">
+		<button type="button" id="addStepBtn" class="btn btn-style">STEP 추가</button>
+	</div>
+	<div class="function d-flex justify-content-center mb-5">
+		<button type="button" class="form-control col-4 btn-style" id="savebtn">저장하기</button>
+	</div>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script layout:fragment="script">
+
+	let stepCount = 0;
+	
+	function addStep() {
+	    stepCount++; 
+	    let stepHtml =  
+	    	`
+	    <div class="step mb-1" data-step="${stepCount}">
+	        <div class="stepNumber">STEP ${stepCount}</div>
+	        <textarea class="form-control content" placeholder="요리 과정을 상세히 꼭 적어주세요."></textarea>
+	        <img id="previewImg${stepCount}" src="#" alt="미리보기" style="display:none; max-width:100px; margin-top:5px;">
+	        <label class="btn btn-style mt-3"> 사진 올리기
+	            <input type="file" class="fileInput" data-preview="previewImg${stepCount}" hidden>
+	        </label>
+	    </div>
+	    `
+	    ;
+	    
+	    $('#stepsContainer').append(stepHtml);
+	    
+	}
+
+	for (let i = 0; i < 3; i++) addStep();
+	
+	$('#addStepBtn').on('click', function() {
+	    addStep();
+	});
+
+	$(document).on('change', '.fileInput', function() {
+	    const previewId = $(this).data('preview');
+	    if (this.files && this.files[0]) {
+	        const reader = new FileReader();
+	        reader.onload = function(e) {
+	            $('#' + previewId).attr('src', e.target.result).show();
+	        }
+	        reader.readAsDataURL(this.files[0]);
+	    }
+	});
+
+	$('#savebtn').on('click', function() {
+		
+	    let formData = new FormData();
+	    
+	    formData.append("postId", $("#postId").val());
+	    
+	    let valid = true;
+	    
+	    $('.step').each(function(index) {
+	        const stepNumber = index + 1; 
+	        const content = $(this).find('.content').val().trim();
+	        const imageFile = $(this).find('.fileInput')[0].files[0];
+	
+	        if (!content) {
+	            alert(`STEP ${stepNumber}의 설명을 입력해주세요.`);
+	            valid = false;
+	            return false; 
+	        }
+
+	        if (!imageFile) {
+	            alert(`STEP ${stepNumber}의 사진을 넣어주세요.`);
+	            valid = false;
+	            return false;
+	        }
+	
+	        formData.append("stepNumber", stepNumber);
+	        formData.append("content", content);
+	        formData.append("imageFile", imageFile);
+	    });
+	
+	    if (!valid) return;
+	
+	    $.ajax({
+	        type: "post",
+	        url: "/step/create",
+	        data: formData,
+	        enctype: "multipart/form-data",
+	        processData: false,
+	        contentType: false,
+	        success: function(response) {
+	            if (response.result === "success") {
+	                location.href = "/post/myRecipe/view";
+	            } else {
+	                alert("레시피 절차 저장 실패.");
+	            }
+	        },
+	        error: function() {
+	            alert("레시피 절차 저장 에러");
+	        }
+	    });
+	});
+</script>

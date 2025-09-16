@@ -16,12 +16,15 @@ public class IngredientService {
 		this.ingredientRepository = ingredientRepository;
 	}
 
-	public boolean addIngredient(int postId, String ingredientName, String ingredientAmount, String content,
-			String imagePath) {
+	public boolean addIngredient(int postId, String ingredientNumber, String ingredientName, String ingredientAmount,
+			String content, String imagePath) {
 
 		Ingredient ingredient = new Ingredient();
 
 		ingredient.setPostId(postId);
+
+		ingredient.setIngredientNumber(ingredientNumber);
+		
 		ingredient.setIngredientName(ingredientName);
 		ingredient.setIngredientAmount(ingredientAmount);
 		ingredient.setContent(content);
@@ -33,11 +36,11 @@ public class IngredientService {
 
 		return result == 1;
 	}
-	
+
 	public List<Ingredient> getIngredientsByPostId(long postId) {
-		
-        return ingredientRepository.selectByPostId(postId); // postid에 저장되어있는 모든 정보를 가져와 그대로 가져가
-        
-    }
-	
+
+		return ingredientRepository.selectByPostId(postId); // postid에 저장되어있는 모든 정보를 가져와 그대로 가져가
+
+	}
+
 }

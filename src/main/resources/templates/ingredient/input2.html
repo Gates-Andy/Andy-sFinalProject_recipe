@@ -6,107 +6,111 @@
 
 	<input type="hidden" id="postId" th:value="${postId}">
 
-	<div id="ingredientList">
-		<div class="ingredient-item d-flex mb-3"
-			style="gap: 10px; height: auto;">
-			<div class="ingredient-input">
-				<input type="text" name="ingredientName" class="form-control mb-1"
-					placeholder="재료: "> <input type="text"
-					name="ingredientAmount" class="form-control mb-1"
-					placeholder="수량: ">
-				<textarea name="content" class="form-control note"
-					placeholder="재료 손질법 등" rows="3"></textarea>
-			</div>
-			<div class="ingredient-photo">
-				<img class="previewImg" src="#" alt="미리보기"
-					style="display: none; width: 150px; height: auto; margin-top: 5px;">
-				<input type="file" class="fileInput" name="imageFile" hidden>
-				<label class="btn btn-style mt-1">사진 첨부</label>
-			</div>
-		</div>
+	<div id="ingredientContainer"></div>
+	<div class="mb-3 d-flex">
+		<button type="button" id="addIngredientBtn" class="btn btn-secondary">재료 추가</button>
 	</div>
-
-	<div class="d-flex mb-3">
-		<button type="button" id="addIngredientBtn" class="btn btn-secondary">재료
-			추가</button>
-	</div>
-
 	<div class="function d-flex justify-content-center mb-5">
-		<button type="button" class="form-control col-4 btn-style"
-			id="savebtn">저장하기</button>
+		<button type="button" class="form-control col-4 btn-style" id="savebtn">저장하기</button>
 	</div>
-
 </main>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script>
-	function previewImage(input, img) {
-		if (input.files && input.files[0]) {
-			const reader = new FileReader();
-			reader.onload = function(e) {
-				img.attr('src', e.target.result).show();
-			}
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-	// 사진 미리보기
-	$(document).on("change", ".fileInput", function() {
-		let img = $(this).siblings(".previewImg");
-		previewImage(this, img);
-	});
+<script layout:fragment="script">
+let ingredientCount = 0;
 
-	// 재료 추가
-	$("#addIngredientBtn").on("click", function() {
-		let newItem = $("#ingredientList .ingredient-item:first").clone();
-		newItem.find("input, textarea").val(""); // 값 초기화
-		newItem.find(".previewImg").hide().attr("src", "#"); // 이미지 초기화
-		newItem.find(".fileInput").val(""); // 파일 초기화
-		$("#ingredientList").append(newItem);
-	});
+function addIngredient() {
+    ingredientCount++;
 
-	// 저장
-	$("#savebtn").on(
-			"click",
-			function() {
-				let postId = $("#postId").val();
-				let formData = new FormData();
-				formData.append("postId", postId);
+    let ingredientHtml = `
+    <div class="ingredient mb-3" data-ingredient="${ingredientCount}">
+        <div class="ingredientNumber">재료 ${ingredientCount}</div>
+        
+        <div class="ingredient-input">
+            <input type="text" class="ingredientName form-control mb-1" placeholder="재료: "> 
+            <input type="text" class="ingredientAmount form-control mb-1" placeholder="재료의 수량: ">
+            <textarea class="ingredientContent form-control" placeholder="재료 손질법 등" rows="5"></textarea>
+        </div>
 
-				$("#ingredientList .ingredient-item").each(
-						function() {
-							let name = $(this).find(
-									"input[name='ingredientName']").val()
-									.trim();
-							let amount = $(this).find(
-									"input[name='ingredientAmount']").val()
-									.trim();
-							let content = $(this).find(
-									"textarea[name='content']").val().trim();
-							let file = $(this).find(".fileInput")[0].files[0];
+        <div class="ingredient-photo">
+            <img id="previewImg${ingredientCount}" src="#" alt="미리보기" style="display:none">
+            <input type="file" class="fileInput" id="fileInput${ingredientCount}" data-preview="previewImg${ingredientCount}" hidden>
+            <label for="fileInput${ingredientCount}" class="btn btn-style mt-2">+</label>
+        </div>
+    </div>
+    `;
+    $('#ingredientContainer').append(ingredientHtml);
+}
 
-							formData.append("ingredientName", name);
-							formData.append("ingredientAmount", amount);
-							formData.append("content", content);
-							if (file)
-								formData.append("imageFile", file);
-						});
+for (let i = 0; i < 3; i++) addIngredient();
 
-				$.ajax({
-					type : "post",
-					url : "/ingredient/create",
-					data : formData,
-					processData : false,
-					contentType : false,
-					success : function(response) {
-						if (response.result === "success")
-							location.href = "/post/myRecipe/view";
-						else
-							alert("레시피 재료 저장 실패");
-					},
-					error : function() {
-						alert("레시피 재료 저장 에러");
-					}
-				});
-			});
+$('#addIngredientBtn').on('click', function() {
+    addIngredient();
+});
+
+$(document).on('change', '.fileInput', function() {
+    const previewId = $(this).data('preview');
+    if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            $('#' + previewId).attr('src', e.target.result).show();
+        }
+        reader.readAsDataURL(this.files[0]);
+    }
+});
+
+$('#savebtn').on('click', function() {
+    let formData = new FormData();
+    formData.append("postId", $("#postId").val());
+
+    let valid = true;
+
+    $('.ingredient').each(function(index) {
+        const ingredientNumber = index + 1;
+        const name = $(this).find('.ingredientName').val().trim();
+        const amount = $(this).find('.ingredientAmount').val().trim();
+        const content = $(this).find('.ingredientContent').val().trim();
+        const imageFile = $(this).find('.fileInput')[0].files[0];
+
+        if (!name || !amount || !content) {
+            alert(`재료 ${ingredientNumber}의 모든 내용을 입력해주세요.`);
+            valid = false;
+            return false;
+        }
+
+        if (!imageFile) {
+            alert(`재료 ${ingredientNumber}의 사진을 넣어주세요.`);
+            valid = false;
+            return false;
+        }
+
+        formData.append("ingredientNumber", ingredientNumber);
+        formData.append("ingredientName", name);
+        formData.append("ingredientAmount", amount);
+        formData.append("content", content);
+        formData.append("imageFile", imageFile);
+    });
+
+    if (!valid) return;
+
+    $.ajax({
+        type: "post",
+        url: "/ingredient/create",
+        data: formData,
+        enctype: "multipart/form-data",
+        processData: false,
+        contentType: false,
+        success: function(response) {
+            if (response.result === "success") {
+                location.href = "/post/myRecipe/view";
+            } else {
+                alert("레시피 재료 저장 실패");
+            }
+        },
+        error: function() {
+            alert("레시피 재료 저장 에러");
+        }
+    });
+});
 </script>

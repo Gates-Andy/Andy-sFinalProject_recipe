@@ -26,6 +26,6 @@ public class IngredientController {
 
 		model.addAttribute("postId", postId);
 
-		return "ingredient/input";
+		return "ingredient/input2";
 	}
 }

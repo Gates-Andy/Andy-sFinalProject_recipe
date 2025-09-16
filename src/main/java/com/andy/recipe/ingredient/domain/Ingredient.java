@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class Ingredient {
 	private int id;
 	private int postId;
+	private String ingredientNumber;
 	private String ingredientName;
 	private String ingredientAmount;
 	private String content;
@@ -26,6 +27,14 @@ public class Ingredient {
 
 	public void setPostId(int postId) {
 		this.postId = postId;
+	}
+
+	public String getIngredientNumber() {
+		return ingredientNumber;
+	}
+
+	public void setIngredientNumber(String ingredientNumber) {
+		this.ingredientNumber = ingredientNumber;
 	}
 
 	public String getIngredientName() {
@@ -75,4 +84,5 @@ public class Ingredient {
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
 }
