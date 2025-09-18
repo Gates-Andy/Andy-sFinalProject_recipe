@@ -8,7 +8,7 @@ import com.andy.recipe.step.domain.Step;
 
 public class PostDto {
 	private long userId;
-	private String loginId; // user 테이블에서 조인해서 얻어오자..
+	private String loginId; // user 테이블에서 조인해서 얻어오자
 	private String title;
 	private String category;
 	private int headcount;

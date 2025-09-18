@@ -79,20 +79,16 @@ public class UserRestController {
 		User user = userService.getUser(loginId, password);
 
 		if (user != null) {
-			
 			resultMap.put("result", "success");
-
+			
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("userId", user.getId());
 			session.setAttribute("loginId", user.getLoginId());
 			
 		} else {
-			
 			resultMap.put("result", "fail");
-			
 		}
-		
 		return resultMap;
 		
 	}

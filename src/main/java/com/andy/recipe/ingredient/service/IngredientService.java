@@ -16,8 +16,13 @@ public class IngredientService {
 		this.ingredientRepository = ingredientRepository;
 	}
 
-	public boolean addIngredient(int postId, String ingredientNumber, String ingredientName, String ingredientAmount,
-			String content, String imagePath) {
+	public boolean addIngredient(
+			int postId, 
+			String ingredientNumber, 
+			String ingredientName, 
+			String ingredientAmount,
+			String content, 
+			String imagePath) {
 
 		Ingredient ingredient = new Ingredient();
 
@@ -38,9 +43,7 @@ public class IngredientService {
 	}
 
 	public List<Ingredient> getIngredientsByPostId(long postId) {
-
 		return ingredientRepository.selectByPostId(postId); // postid에 저장되어있는 모든 정보를 가져와 그대로 가져가
-
 	}
 
 }

@@ -28,6 +28,7 @@
 					<input class="form-control" style="flex: 1;" type="text" placeholder="아이디를 입력해주세요" id="loginIdInput">
 					<button class="btn ml-3 join-btn" type="button" id="idDuplicateBtn" style="min-width: 110px;">아이디 중복확인</button>
 				</div>
+				
 				<div id="duplicateIdText" class="text-danger mt-1 d-none">❌ 이미 사용중인 아이디 입니다.</div>
 				<div id="availableIdText" class="text-success mt-1 d-none">✅ 사용 가능한 아이디 입니다.</div>
 
@@ -95,7 +96,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
 	
 	<script>
-		let isEmailChecked = false; // 이메일중복버튼을 누르지않았어요
+		let isEmailChecked = false; // 이메일중복버튼을 누르지않았어요 플래그 설정
 		let isEmailDuplicated = true; // 이메일이 중복된상태로 먼저 선택
 		
 		let isLoginIdChecked = false;
@@ -135,6 +136,7 @@
 		});
 
 		$("#idDuplicateBtn").on("click", function() {
+			
 			let loginId = $("#loginIdInput").val();
 
 			if (loginId === "") {

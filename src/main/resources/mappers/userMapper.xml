@@ -58,9 +58,12 @@
 		FROM
 		`user`
 		WHERE
-		`loginId`= #{loginId}
+		`loginId`
+		= 
+		#{loginId}
 		AND
-		`password`=
+		`password`
+		= 
 		#{password}
 	</select>
 
@@ -76,6 +79,8 @@
 		FROM
 		`user`
 		WHERE
-		`id` = #{id}
+		`id` 
+		= 
+		#{id}
 	</select>
 </mapper>

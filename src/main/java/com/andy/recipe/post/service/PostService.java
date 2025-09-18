@@ -25,14 +25,19 @@ import com.andy.recipe.user.service.UserService;
 public class PostService {
 
 	private final PostRepository postRepository;
-	private final UserService userService; // loginId를 얻어오기 위해
+	private final UserService userService; 			   // loginId를 얻어오기 위해
 	private final IngredientService ingredientService; // 재료 수량 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
-	private final StepService stepService; // 작업 절차 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
+	private final StepService stepService; 			   // 작업 절차 사진 설명 얻어와야하잖아 postService에서 주입해서 dto만들어야지
 	private final LikeService likeService;
 	private final CommentService commentService;
 	
-	public PostService(PostRepository postRepository, UserService userService, IngredientService ingredientService,
-			StepService stepService, LikeService likeService, CommentService commentService) {
+	public PostService(
+			PostRepository postRepository, 
+			UserService userService, 
+			IngredientService ingredientService, 
+			StepService stepService, 
+			LikeService likeService, 
+			CommentService commentService) {
 		this.postRepository = postRepository;
 		this.userService = userService;
 		this.ingredientService = ingredientService;
@@ -41,40 +46,39 @@ public class PostService {
 		this.commentService = commentService;
 	}
 
-	public List<PostDto> getPostList() { // main 에서 사용할 정보들이 다 보여야하니
+	public List<PostDto> getPostList() { 
 
-		List<Post> postList = postRepository.selectPostList(); // DB에서 모든 게시글(Post 객체들)을 가져온다
+		List<Post> postList = postRepository.selectPostList(); 
 
-		List<PostDto> postDtoList = new ArrayList<>(); // 결과를 담을 DTO 리스트 생성
+		List<PostDto> postDtoList = new ArrayList<>(); 
 
 		for (Post post : postList) {
 
-			PostDto dto = new PostDto(); // 빈 DTO 객체 생성 (여기에 필요한 값들을 담을 예정)
-
-			User user = userService.getUserById(post.getUserId()); // post에 저장된 userId로 User 정보를 조회
-			String loginId = user.getLoginId(); // user 객체에서 loginId를 꺼냄 (예: superyoon1)
-			dto.setLoginId(loginId); // 로그인 ID를 DTO에 저장
-
+			PostDto dto = new PostDto(); 
+			// 1. post에 저장된 userId(fk)로 User 정보를 조회, 조회된 int에 user객체에서 loginId를 꺼내어 dto에 저장
+			User user = userService.getUserById(post.getUserId()); 
+			String loginId = user.getLoginId(); 
+			dto.setLoginId(loginId); 
+			
+			// 2. post entity 맴버변수 모두 꺼내어 저장
 			dto.setId(post.getId());
-
-			dto.setUserId(post.getUserId()); // 작성자 ID
-			dto.setTitle(post.getTitle()); // 제목
-			dto.setContent(post.getContent()); // 내용
-			dto.setHeadcount(post.getHeadcount()); // 모집 인원 수
-			dto.setCategory(post.getCategory()); // 카테고리
-			dto.setImagePath(post.getImagePath()); // 이미지 경로를 DTO에 저장
+			dto.setUserId(post.getUserId()); 
+			dto.setTitle(post.getTitle()); 
+			dto.setContent(post.getContent()); 
+			dto.setHeadcount(post.getHeadcount()); 
+			dto.setCategory(post.getCategory());
+			dto.setImagePath(post.getImagePath());
 
 			List<Ingredient> ingredientList = ingredientService.getIngredientsByPostId(post.getId());
-			// postId를 파라미터로 재료내용(list)를 가져와여기에 저장 한뒤 dto에 저장
 			dto.setIngredientList(ingredientList);
 			
 			int likeCount = likeService.likeCountByPostId(post.getId());
 			dto.setLikeCount(likeCount);
 			
-			postDtoList.add(dto); // 완성된 DTO를 리스트에 추가
+			postDtoList.add(dto); 
 		}
 
-		return postDtoList; // 모든 게시글 DTO 목록을 반환
+		return postDtoList; 
 	}
 
 	public List<PostDto> getPostList(long userId) {
@@ -166,12 +170,12 @@ public class PostService {
 		return dto;
 	}
 
-	public List<Post> getPostListByUserId(long userId) {
-
-		List<Post> postList = postRepository.selectByUserId(userId);
-
-		return postList;
-	}
+//	public List<Post> getPostListByUserId(long userId) {
+//
+//		List<Post> postList = postRepository.selectByUserId(userId);
+//
+//		return postList;
+//	}
 
 	public boolean addPost(long userId, String title, int headcount, String category, String content,
 			String imagePath) {
