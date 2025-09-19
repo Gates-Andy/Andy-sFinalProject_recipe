@@ -20,6 +20,7 @@ public class StepService {
 	public boolean addStep(int postId, int stepNumber, String content, String imagePath) {
 
 		Step step = new Step();
+		
 		step.setPostId(postId);
 		step.setStepNumber(stepNumber);
 		step.setContent(content);

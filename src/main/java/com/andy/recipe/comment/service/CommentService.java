@@ -24,6 +24,7 @@ public class CommentService {
 	public boolean addComment(long userId, long postId, String text) {
 
 		Comment comment = new Comment();
+		
 		comment.setUserId(userId);
 		comment.setPostId(postId);
 		comment.setText(text);
@@ -53,9 +54,11 @@ public class CommentService {
 		List<CommentDto> commentDtos = new ArrayList<>();
 
 		for (Comment comment : comments) {
+			
 			User user = userService.getUserById(comment.getUserId());
 
 			CommentDto dto = new CommentDto();
+			
 			dto.setId(comment.getId());
 			dto.setUserId(comment.getUserId());
 			dto.setUserName(user.getLoginId()); // 닉네임 또는 사용자명
